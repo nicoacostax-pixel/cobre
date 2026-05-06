@@ -194,17 +194,14 @@ export default function LandingPage() {
             </h2>
             <div className="space-y-5 text-gray-300 text-base leading-relaxed">
               <p>
-                Ya sé cómo se siente. Tienes la idea clara, el negocio listo para crecer, pero{" "}
+                Tienes la idea clara, pero{" "}
                 <strong className="text-white">no encuentras a alguien en quien confiar</strong> para
                 desarrollarla bien.
               </p>
               <p>
-                Cada semana que pasa es una semana de{" "}
-                <strong className="text-white">ventas perdidas</strong>, de competidores avanzando,
-                de momentum que se enfría.
-              </p>
-              <p>
-                No es tu culpa. El mercado de desarrollo está lleno de promesas que nunca se cumplen.
+                Cada semana que pasa son{" "}
+                <strong className="text-white">ventas perdidas</strong> y competidores avanzando.
+                El mercado de desarrollo está lleno de promesas que nunca se cumplen.
               </p>
             </div>
           </div>
@@ -242,8 +239,7 @@ export default function LandingPage() {
               Punto.
             </h2>
             <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
-              Un proceso claro, sin sorpresas, donde tú ves el avance en tiempo real y nosotros
-              entregamos lo que prometemos.
+              Proceso claro, avance en tiempo real, entrega garantizada.
             </p>
           </FadeIn>
 
@@ -282,8 +278,7 @@ export default function LandingPage() {
             </h2>
           </div>
           <p className="text-gray-300 text-lg leading-relaxed">
-            Como un auto recién salido del distribuidor: completo, testeado y listo para arrancar.
-            Sin que tengas que perseguir a nadie para que termine lo que prometió.
+            Completo, testeado y listo para arrancar. Sin depender de nadie más.
           </p>
         </FadeIn>
 
@@ -322,14 +317,11 @@ export default function LandingPage() {
             </h2>
             <div className="space-y-4 text-gray-300 text-base leading-relaxed mb-10">
               <p>
-                No somos una agencia que pone a un junior a trabajar en tu proyecto mientras el
-                "experto" cobra.{" "}
                 <strong className="text-white">Diseñamos y desarrollamos nosotros</strong>, con
-                estándares de producto, no de servicio.
+                estándares de producto. Tu presupuesto es el presupuesto. Tu fecha es la fecha.
               </p>
               <p>
-                Tu presupuesto es el presupuesto. Tu fecha es la fecha. Y si algo no queda como
-                acordamos,{" "}
+                Si algo no queda como acordamos,{" "}
                 <strong className="text-white">lo corregimos sin costo adicional.</strong>
               </p>
             </div>
@@ -391,8 +383,7 @@ export default function LandingPage() {
             <span className="font-serif italic text-gold font-normal">hablamos hoy.</span>
           </h2>
           <p className="text-gray-400 text-lg leading-relaxed mb-12 max-w-xl mx-auto">
-            Una llamada de 30 minutos es suficiente para saber si podemos hacer tu proyecto realidad
-            y darte un presupuesto exacto.
+            30 minutos para saber si podemos hacerlo y darte un presupuesto exacto.
           </p>
 
           <div className="bg-[#111] border border-white/10 p-8 md:p-10 text-left max-w-lg mx-auto">
