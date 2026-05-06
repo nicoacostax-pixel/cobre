@@ -1,10 +1,25 @@
+'use client'
+
+import { useEffect } from 'react'
 import { ArrowRight } from 'lucide-react'
-import Script from 'next/script'
+
+declare global {
+  interface Window { fbq?: (...args: unknown[]) => void }
+}
 
 export default function GraciasPage() {
+  useEffect(() => {
+    const fire = () => window.fbq?.('track', 'Lead')
+    if (window.fbq) {
+      fire()
+    } else {
+      const t = setInterval(() => { if (window.fbq) { fire(); clearInterval(t) } }, 50)
+      return () => clearInterval(t)
+    }
+  }, [])
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center px-6 text-center">
-      <Script id="pixel-lead" strategy="afterInteractive">{`fbq('track','Lead');`}</Script>
 
       <div className="max-w-xl">
         <p className="text-[10px] text-orange-500 font-bold uppercase tracking-widest mb-6">
