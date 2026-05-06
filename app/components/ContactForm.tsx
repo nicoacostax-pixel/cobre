@@ -1,15 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Send } from 'lucide-react'
 import QuestionnaireModal from './QuestionnaireModal'
 import PhoneInput from './PhoneInput'
 import { supabase } from '@/lib/supabase'
 
 export default function ContactForm() {
+  const router = useRouter()
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
   const [showModal, setShowModal] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,18 +43,7 @@ export default function ContactForm() {
       return
     }
 
-    setSubmitted(true)
-  }
-
-  if (submitted) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-2xl font-black mb-3">¡Listo!</p>
-        <p className="text-gray-400 text-sm">
-          Nos pondremos en contacto contigo en menos de 24 horas.
-        </p>
-      </div>
-    )
+    router.push('/gracias')
   }
 
   return (
