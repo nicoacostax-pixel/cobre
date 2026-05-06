@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npm cache *)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

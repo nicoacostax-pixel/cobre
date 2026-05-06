@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CobreStudio — Tu agencia de chatbots lista en 48 horas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:    #ea580c;
+      --orange-lt: #f97316;
+      --bg:        #0a0a0a;
+      --card:      #111111;
+      --border:    rgba(255,255,255,0.07);
+      --muted:     #6b7280;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .container      { max-width: 760px;  margin: 0 auto; padding: 0 20px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    .accent {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-weight: 400; color: #c9a46a;
+    }
+
+    /* ── Urgency Banner ── */
+    #urgency-banner {
+      background: var(--orange);
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .02em;
+      position: relative; z-index: 101;
+    }
+    #urgency-banner span { opacity: .85; font-weight: 400; margin-left: 6px; }
+    #urgency-banner strong { font-size: 14px; }
+
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    header nav {
+      max-width: 1100px; margin: 0 auto;
+      padding: 14px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 18px; font-weight: 900; letter-spacing: -.02em; color: var(--orange); text-transform: uppercase; }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--orange); color: #fff; text-decoration: none;
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 10px 20px; transition: background .2s;
+    }
+    .nav-btn:hover { background: var(--orange-lt); }
+
+    /* ── Section shared ── */
+    section { padding: 72px 0; }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    h2 {
+      font-size: clamp(32px, 5.5vw, 52px);
+      font-weight: 900; letter-spacing: -.03em; text-transform: uppercase;
+      line-height: .92; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; color: #9ca3af; line-height: 1.65; margin-bottom: 48px;
+      max-width: 560px;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* ── Hero ── */
+    #hero { position: relative; padding: 56px 0 40px; }
+    #hero .grid-bg { position: absolute; inset: 0; pointer-events: none; }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 65% 80% at 95% 50%, rgba(120,40,8,.55) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero .container-wide {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
+    }
+    @media (min-width: 900px) { #hero .container-wide { grid-template-columns: 3fr 2fr; } }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 24px;
+    }
+    .hero-badge span { color: var(--orange); }
+
+    h1 {
+      font-size: clamp(40px, 8vw, 76px);
+      font-weight: 900; line-height: 1; letter-spacing: -.03em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    h1 em { font-style: normal; color: var(--orange); }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 17px);
+      color: #9ca3af; line-height: 1.65;
+      max-width: 520px; margin-bottom: 32px;
+    }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 28px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: #fff; text-decoration: none;
+      font-size: 13px; font-weight: 700; letter-spacing: .04em;
+      padding: 16px 32px; transition: background .2s, transform .15s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover  { background: var(--orange-lt); transform: translateY(-1px); }
+    .btn-primary:active { transform: scale(.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.45); font-size: 13px; font-weight: 500;
+      text-decoration: none; padding: 16px 12px; transition: color .2s;
+    }
+    .btn-ghost:hover { color: #fff; }
+
+    .hero-checks { display: flex; flex-wrap: wrap; gap: 16px; }
+    .hero-checks span {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #6b7280;
+    }
+    .hero-checks span::before { content: '✓'; color: var(--orange); font-weight: 700; font-size: 13px; }
+
+    /* ── 3D Cube ── */
+    .rubiks-scene {
+      perspective: 900px; perspective-origin: 50% 45%;
+      display: flex; align-items: center; justify-content: center; padding: 40px 0;
+    }
+    .rubiks-glow { filter: drop-shadow(0 0 60px rgba(200,80,10,.55)); }
+    .rubiks-cube { position: relative; transform-style: preserve-3d; animation: rubikSpin 20s ease-in-out infinite; }
+    .layer { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; animation: layerTurn 9s ease-in-out infinite; }
+    .layer-0 { animation-delay: 0s; }
+    .layer-1 { animation-delay: -3s; }
+    .layer-2 { animation-delay: -6s; }
+    .cubelet { position: absolute; transform-style: preserve-3d; }
+    .face    { position: absolute; border: 2.5px solid #0a0a0a; box-sizing: border-box; border-radius: 3px; }
+
+    @keyframes rubikSpin {
+      0%   { transform: rotateX(-15deg) rotateY(0deg)   rotateZ(0deg);  }
+      8%   { transform: rotateX(-50deg) rotateY(60deg)  rotateZ(4deg);  }
+      18%  { transform: rotateX(12deg)  rotateY(130deg) rotateZ(-3deg); }
+      28%  { transform: rotateX(-65deg) rotateY(210deg) rotateZ(6deg);  }
+      38%  { transform: rotateX(-5deg)  rotateY(280deg) rotateZ(-2deg); }
+      48%  { transform: rotateX(-35deg) rotateY(360deg) rotateZ(0deg);  }
+      58%  { transform: rotateX(18deg)  rotateY(430deg) rotateZ(-5deg); }
+      68%  { transform: rotateX(-55deg) rotateY(510deg) rotateZ(3deg);  }
+      78%  { transform: rotateX(-8deg)  rotateY(580deg) rotateZ(-4deg); }
+      88%  { transform: rotateX(-42deg) rotateY(655deg) rotateZ(2deg);  }
+      100% { transform: rotateX(-15deg) rotateY(720deg) rotateZ(0deg);  }
+    }
+    @keyframes layerTurn {
+      0%   { transform: rotateY(0deg);   }
+      10%  { transform: rotateY(90deg);  }
+      38%  { transform: rotateY(90deg);  }
+      48%  { transform: rotateY(0deg);   }
+      76%  { transform: rotateY(0deg);   }
+      86%  { transform: rotateY(-90deg); }
+      100% { transform: rotateY(-90deg); }
+    }
+
+    /* ── Social proof strip ── */
+    #social-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      padding: 18px 0;
+    }
+    .social-strip-row {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; align-items: center; gap: 0;
+    }
+    .ss-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 28px;
+      border-right: 1px solid var(--border);
+      font-size: 13px; color: #9ca3af;
+    }
+    .ss-item:last-child { border-right: none; }
+    .ss-item strong { color: #fff; font-weight: 700; }
+    @media (max-width: 600px) {
+      .ss-item { border-right: none; border-bottom: 1px solid var(--border); width: 100%; justify-content: center; }
+      .ss-item:last-child { border-bottom: none; }
+    }
+
+    /* ── Stats strip ── */
+    #stats {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.015);
+      padding: 20px 0;
+    }
+    .stats-row {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; align-items: center; gap: 0;
+    }
+    .stat-item {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 8px 36px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    @media (max-width: 600px) {
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); width: 50%; }
+      .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+    }
+    .stat-num { font-size: 28px; font-weight: 900; color: var(--orange); letter-spacing: -.03em; }
+    .stat-lbl { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+
+    /* ── Two steps promise ── */
+    #dos-pasos { background: #0d0d0d; border-top: 1px solid var(--border); }
+    .dos-pasos-grid {
+      display: grid; grid-template-columns: 1fr; gap: 24px;
+      max-width: 800px; margin: 0 auto;
+    }
+    @media (min-width: 700px) { .dos-pasos-grid { grid-template-columns: 1fr 1fr; } }
+    .paso-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--orange);
+      padding: 32px 28px;
+    }
+    .paso-num {
+      font-size: 11px; font-weight: 800; color: var(--orange);
+      letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .paso-card h3 { font-size: 20px; font-weight: 900; margin-bottom: 10px; letter-spacing: -.02em; }
+    .paso-card p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── ¿Para ti? ── */
+    #para-ti { border-top: 1px solid var(--border); }
+    .para-ti-grid {
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+    }
+    @media (min-width: 700px) { .para-ti-grid { grid-template-columns: 1fr 1fr; } }
+    .para-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 28px;
+    }
+    .para-card-title {
+      font-size: 13px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .para-card.yes { border-top: 3px solid #16a34a; }
+    .para-card.no  { border-top: 3px solid #dc2626; }
+    .para-card.yes .para-card-title { color: #4ade80; }
+    .para-card.no  .para-card-title { color: #f87171; }
+    .para-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .para-list li {
+      font-size: 14px; color: #d1d5db; line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .para-list li .check { flex-shrink: 0; font-weight: 700; font-size: 13px; margin-top: 1px; }
+    .para-card.yes .check { color: #4ade80; }
+    .para-card.no  .check { color: #f87171; }
+
+    /* ── Qué incluye ── */
+    #incluye { background: #0d0d0d; border-top: 1px solid var(--border); }
+    .cards-grid {
+      display: grid; grid-template-columns: 1fr; gap: 14px;
+    }
+    @media (min-width: 580px)  { .cards-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 1000px) { .cards-grid { grid-template-columns: repeat(3,1fr); } }
+    .card {
+      background: #161616;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 24px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: background .2s, transform .2s;
+      border-radius: 0 4px 4px 0;
+    }
+    .card:hover { background: #1c1c1c; transform: translateY(-2px); }
+    .card-icon  { font-size: 24px; line-height: 1; }
+    .card h3    { font-size: 14px; font-weight: 700; }
+    .card p     { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Bonuses / Value stack ── */
+    #bonuses { border-top: 1px solid var(--border); }
+    .bonus-intro { text-align: center; margin-bottom: 40px; }
+    .bonus-grid {
+      display: grid; grid-template-columns: 1fr; gap: 12px;
+      max-width: 680px; margin: 0 auto 40px;
+    }
+    @media (min-width: 600px) { .bonus-grid { grid-template-columns: 1fr 1fr; } }
+    .bonus-item {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .bonus-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .bonus-label { font-size: 9px; font-weight: 700; color: var(--orange); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .bonus-name  { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .bonus-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .bonus-value { font-size: 11px; color: #4b5563; text-decoration: line-through; margin-top: 6px; }
+
+    .valor-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      max-width: 580px; margin: 0 auto;
+    }
+    .valor-header {
+      background: rgba(234,88,12,.08);
+      border-bottom: 1px solid rgba(234,88,12,.2);
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .valor-header-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .valor-badge {
+      background: var(--orange); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .valor-list { list-style: none; }
+    .valor-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 28px; border-bottom: 1px solid var(--border); font-size: 14px;
+    }
+    .valor-item:last-child { border-bottom: none; }
+    .valor-item-left { display: flex; align-items: center; gap: 12px; }
+    .valor-check {
+      width: 20px; height: 20px; background: rgba(234,88,12,.15);
+      border-radius: 999px; display: flex; align-items: center; justify-content: center;
+      color: var(--orange); font-size: 10px; font-weight: 700; flex-shrink: 0;
+    }
+    .valor-item-name  { font-weight: 500; color: #e5e7eb; }
+    .valor-item-price { font-size: 13px; color: #4b5563; text-decoration: line-through; }
+    .valor-footer {
+      background: rgba(234,88,12,.06);
+      border-top: 2px solid rgba(234,88,12,.25);
+      padding: 22px 28px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .valor-total-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .valor-total-old   { font-size: 20px; font-weight: 700; color: #4b5563; text-decoration: line-through; }
+    .valor-price-block { text-align: right; }
+    .valor-price-label { font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: .1em; text-transform: uppercase; }
+    .valor-price-num   { font-size: 52px; font-weight: 900; color: #fff; letter-spacing: -.04em; line-height: 1; }
+    .valor-price-usd   { font-size: 16px; font-weight: 600; color: var(--muted); vertical-align: super; }
+
+    /* ── Testimonials ── */
+    #testimonios { background: #0d0d0d; border-top: 1px solid var(--border); }
+    .testi-grid {
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+    }
+    @media (min-width: 620px)  { .testi-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { .testi-grid { grid-template-columns: repeat(3,1fr); } }
+    .testi-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 24px;
+    }
+    .testi-stars { color: var(--orange); font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+    .testi-text  { font-size: 14px; color: #d1d5db; line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 999px;
+      background: rgba(234,88,12,.15); border: 2px solid rgba(234,88,12,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .testi-name    { font-size: 13px; font-weight: 700; }
+    .testi-country { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .testi-result  {
+      display: inline-block; margin-top: 4px;
+      font-size: 10px; font-weight: 700; color: var(--orange);
+      background: rgba(234,88,12,.1); border: 1px solid rgba(234,88,12,.2);
+      padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    /* ── Post-compra steps ── */
+    #post-compra { border-top: 1px solid var(--border); }
+    .post-steps {
+      display: grid; grid-template-columns: 1fr; position: relative;
+      max-width: 860px; margin: 0 auto;
+    }
+    @media (min-width: 700px) {
+      .post-steps { grid-template-columns: repeat(3,1fr); }
+      .post-steps::before {
+        content: ''; position: absolute;
+        top: 22px; left: calc(16.66% + 12px); right: calc(16.66% + 12px);
+        height: 1px;
+        background: linear-gradient(90deg, var(--orange) 0%, rgba(234,88,12,.15) 100%);
+      }
+    }
+    .post-step { padding: 32px 0; }
+    @media (min-width: 700px) { .post-step { padding: 0 24px; } }
+    .step-num {
+      width: 44px; height: 44px; background: var(--orange); color: #fff;
+      font-size: 15px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .step-tag  { font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+    .post-step h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .post-step p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Garantía ── */
+    .garantia-wrap {
+      max-width: 620px; margin: 40px auto 0;
+    }
+    .garantia-card {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(22,163,74,.06);
+      border: 1px solid rgba(22,163,74,.2);
+      border-radius: 4px; padding: 24px 28px;
+    }
+    .garantia-icon  { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .garantia-title { font-size: 14px; font-weight: 800; color: #4ade80; margin-bottom: 8px; }
+    .garantia-text  { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── CTA + Form ── */
+    #contacto {
+      padding: 72px 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 110%, rgba(160,60,10,.45) 0%, transparent 70%),
+        var(--bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-heading {
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 900; letter-spacing: -.03em; text-transform: uppercase;
+      line-height: .9; margin-bottom: 20px;
+    }
+    .cta-sub { font-size: 17px; color: #9ca3af; line-height: 1.65; max-width: 500px; margin: 0 auto 40px; }
+
+    .form-card {
+      background: #111; border: 1px solid rgba(255,255,255,.1);
+      padding: 32px 36px; text-align: left;
+      max-width: 460px; margin: 0 auto;
+    }
+    .form-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+      border-left: 2px solid var(--orange); padding-left: 14px; margin-bottom: 28px;
+    }
+    .field-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+    .field-label { font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .field-group:focus-within .field-label { color: var(--orange); transition: color .2s; }
+    .field-input {
+      background: transparent; border: none;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: 14px; font-family: 'Inter', sans-serif;
+      padding: 8px 0; outline: none; width: 100%; transition: border-color .2s;
+    }
+    .field-input::placeholder { color: #374151; }
+    .field-input:focus { border-bottom-color: var(--orange); }
+
+    /* Phone input */
+    .phone-wrap {
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      transition: border-color .2s;
+    }
+    .phone-wrap:focus-within { border-bottom-color: var(--orange); }
+    .phone-row { display: flex; align-items: center; }
+    .country-btn {
+      display: flex; align-items: center; gap: 5px;
+      background: none; border: none; color: rgba(255,255,255,.8);
+      cursor: pointer; padding: 8px 10px 8px 0;
+      font-family: 'Inter', sans-serif; transition: color .2s; flex-shrink: 0;
+    }
+    .country-btn:hover { color: #fff; }
+    .c-flag { font-size: 15px; line-height: 1; }
+    .c-dial { font-size: 12px; font-weight: 500; }
+    .c-arrow { font-size: 9px; color: #6b7280; transition: transform .2s; display: inline-block; }
+    .c-arrow.open { transform: rotate(180deg); }
+    .phone-divider { width: 1px; height: 16px; background: rgba(255,255,255,.15); margin-right: 12px; flex-shrink: 0; }
+    .phone-num {
+      background: transparent; border: none; color: #fff;
+      font-size: 14px; font-family: 'Inter', sans-serif;
+      padding: 8px 0; outline: none; flex: 1; width: 100%;
+    }
+    .phone-num::placeholder { color: #374151; }
+    .country-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0; width: 220px;
+      background: #1a1a1a; border: 1px solid rgba(255,255,255,.1);
+      max-height: 220px; overflow-y: auto; z-index: 50;
+      box-shadow: 0 12px 32px rgba(0,0,0,.6); display: none;
+    }
+    .country-dropdown.open { display: block; }
+    .c-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; background: none; border: none; width: 100%;
+      text-align: left; font-family: 'Inter', sans-serif; font-size: 13px;
+      color: #d1d5db; cursor: pointer; transition: background .15s;
+    }
+    .c-item:hover { background: rgba(255,255,255,.05); }
+    .c-item.active { color: var(--orange); }
+    .c-item-flag { font-size: 15px; line-height: 1; }
+    .c-item-name { flex: 1; }
+    .c-item-dial { font-size: 12px; color: #6b7280; }
+
+    .submit-btn {
+      margin-top: 16px; width: 100%;
+      background: var(--orange); color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; padding: 16px;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .submit-btn:hover  { background: var(--orange-lt); }
+    .submit-btn:active { transform: scale(.98); }
+
+    .form-note { margin-top: 20px; font-size: 12px; color: #374151; }
+    .form-success { text-align: center; padding: 28px 0; }
+    .form-success h3 { font-size: 26px; font-weight: 900; margin-bottom: 10px; }
+    .form-success p  { color: var(--muted); font-size: 14px; }
+
+    /* ── FAQ ── */
+    #faq { background: #0d0d0d; border-top: 1px solid var(--border); }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; max-width: 680px; margin: 0 auto; }
+    .faq-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      text-align: left; padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      cursor: pointer; transition: background .15s;
+    }
+    .faq-q:hover { background: rgba(255,255,255,.03); }
+    .faq-q.open   { color: var(--orange); }
+    .faq-icon { font-size: 18px; color: var(--muted); flex-shrink: 0; transition: transform .2s; }
+    .faq-q.open .faq-icon { transform: rotate(45deg); color: var(--orange); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+      padding: 0 20px;
+    }
+    .faq-a.open { max-height: 300px; padding: 0 20px 18px; }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(6px);
+      z-index: 200; display: none;
+      align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #111; border: 1px solid rgba(255,255,255,.1);
+      width: 100%; max-width: 520px;
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 30px 14px;
+    }
+    .modal-step-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--orange); }
+    .modal-close { background: none; border: none; color: #6b7280; cursor: pointer; font-size: 16px; transition: color .2s; }
+    .modal-close:hover { color: #fff; }
+    .modal-progress { display: flex; gap: 4px; padding: 0 30px; }
+    .prog-bar { height: 2px; flex: 1; background: rgba(255,255,255,.1); transition: background .3s; }
+    .prog-bar.active { background: var(--orange); }
+    .modal-body { padding: 28px 30px; }
+    .modal-question { font-size: 18px; font-weight: 900; line-height: 1.3; margin-bottom: 20px; }
+    .modal-answer {
+      width: 100%; background: #1a1a1a; border: 1px solid rgba(255,255,255,.1);
+      color: #fff; font-family: 'Inter', sans-serif; font-size: 14px;
+      padding: 14px; resize: none; outline: none; transition: border-color .2s; border-radius: 0;
+    }
+    .modal-answer::placeholder { color: #374151; }
+    .modal-answer:focus { border-color: var(--orange); }
+    .modal-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+    .modal-prev {
+      background: none; border: none; color: #6b7280; font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; gap: 6px; transition: color .2s;
+    }
+    .modal-prev:hover { color: #fff; }
+    .modal-prev.hidden { visibility: hidden; }
+    .modal-next {
+      background: var(--orange); color: #fff; border: none;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 12px 24px; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: background .2s, transform .15s;
+    }
+    .modal-next:hover  { background: var(--orange-lt); }
+    .modal-next:active { transform: scale(.97); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); padding: 28px 0; }
+    footer .container-wide { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    @media (min-width: 600px) { footer .container-wide { flex-direction: row; justify-content: space-between; } }
+    footer .copy { font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ── Urgency Banner ── -->
+  <div id="urgency-banner">
+    ⚡ <strong>Últimos días a $100.</strong>
+    <span>El precio sube a $200 el próximo lunes. Asegura el tuyo ahora.</span>
+    <a href="#contacto" style="color:#fff;font-weight:800;text-decoration:underline;margin-left:10px;">Reservar →</a>
+  </div>
+
+  <!-- ── Header ── -->
+  <header>
+    <nav>
+      <span class="logo">CobreStudio</span>
+      <a href="#contacto" class="nav-btn">Hablemos hoy &rarr;</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── 1. Hero ── -->
+    <section id="hero">
+      <div class="grid-bg"></div>
+      <div class="container-wide">
+
+        <div>
+          <div class="hero-badge">
+            <span>Hecho para ti</span> — tú vendes, nosotros montamos
+          </div>
+
+          <h1>
+            Tu agencia<br>
+            de chatbots<br>
+            <em>lista en<br>48 horas</em>
+          </h1>
+
+          <p class="hero-sub">
+            Lista para cobrar <strong style="color:#fff">$300–$1,500 por cliente</strong> desde el día 1.
+            Sin que sepas de tecnología, sin cursos, sin meses de aprendizaje.
+            Tú consigues los clientes — nosotros montamos todo lo demás.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#contacto" class="btn-primary">Quiero mi agencia ahora &rarr;</a>
+            <a href="#como-funciona" class="btn-ghost">Ver cómo funciona &darr;</a>
+          </div>
+
+          <div class="hero-checks">
+            <span>Lista en 48 hrs</span>
+            <span>$100 pago único</span>
+            <span>Garantía 7 días</span>
+            <span>Sin saber de tecnología</span>
+          </div>
+        </div>
+
+        <div class="rubiks-scene">
+          <div class="rubiks-glow">
+            <div id="cube-root"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 2. Social proof strip ── -->
+    <div id="social-strip">
+      <div class="social-strip-row container-wide">
+        <div class="ss-item">⭐⭐⭐⭐⭐ <strong>+80 agencias lanzadas</strong> en LATAM</div>
+        <div class="ss-item">💬 <strong>"Primer cliente en 5 días"</strong> — promedio real</div>
+        <div class="ss-item">🛡️ <strong>Garantía de 7 días</strong> o te devolvemos el dinero</div>
+      </div>
+    </div>
+
+    <!-- ── 3. Stats strip ── -->
+    <div id="stats">
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">48h</span>
+          <span class="stat-lbl">Tiempo de entrega</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$100</span>
+          <span class="stat-lbl">Pago único</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$785</span>
+          <span class="stat-lbl">Valor entregado</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">7 días</span>
+          <span class="stat-lbl">Garantía</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. Dos pasos ── -->
+    <section id="dos-pasos">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:40px">
+          <p class="section-label">El concepto</p>
+          <h2>Dos cosas.<br><span class="accent" style="text-transform:none">Una sola vez.</span></h2>
+          <p class="section-sub" style="margin-bottom:0">
+            No es un curso. No te enseñamos a montar una agencia — te la montamos.
+            Tu único trabajo es conseguir clientes.
+          </p>
+        </div>
+        <div class="dos-pasos-grid">
+          <div class="paso-card">
+            <div class="paso-num">Paso 01 — Nosotros</div>
+            <h3>Montamos tu agencia completa</h3>
+            <p>
+              Chatbot de IA configurado, landing page con tu dominio, integración con WhatsApp Business
+              y script de ventas. Todo en 48 horas. Sin que toques nada.
+            </p>
+          </div>
+          <div class="paso-card">
+            <div class="paso-num">Paso 02 — Tú</div>
+            <h3>Consigues tus primeros clientes</h3>
+            <p>
+              Con el script que te damos, contactas negocios locales por Instagram o WhatsApp.
+              Cobras $300–$1,500 de setup más mensualidad. La mayoría cierra su primer cliente en 7 días.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. ¿Es para ti? ── -->
+    <section id="para-ti">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:40px">
+          <p class="section-label">¿Es esto para ti?</p>
+          <h2>Lee esto antes<br>de continuar.</h2>
+        </div>
+
+        <div class="para-ti-grid">
+          <div class="para-card yes">
+            <div class="para-card-title">✅ Sí es para ti si…</div>
+            <ul class="para-list">
+              <li><span class="check">✓</span> Quieres tu propia agencia sin aprender tecnología</li>
+              <li><span class="check">✓</span> Tienes 1–2 horas al día para conseguir clientes</li>
+              <li><span class="check">✓</span> Quieres ingresos en dólares desde cualquier país</li>
+              <li><span class="check">✓</span> Buscas algo hecho para ti, no otro curso para estudiar</li>
+              <li><span class="check">✓</span> Quieres tu primera venta en menos de una semana</li>
+              <li><span class="check">✓</span> Ya probaste cursos y prefieres que alguien lo haga por ti</li>
+            </ul>
+          </div>
+
+          <div class="para-card no">
+            <div class="para-card-title">✖ No es para ti si…</div>
+            <ul class="para-list">
+              <li><span class="check">✗</span> Buscas hacerte rico sin ningún esfuerzo comercial</li>
+              <li><span class="check">✗</span> No estás dispuesto a contactar clientes tú mismo</li>
+              <li><span class="check">✗</span> Ya tienes una agencia con ingresos de $5K+/mes</li>
+              <li><span class="check">✗</span> Quieres aprender a programar agentes de IA</li>
+              <li><span class="check">✗</span> No tienes $100 para invertir en tu negocio</li>
+              <li><span class="check">✗</span> Esperas resultados sin hablar con un solo cliente</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. Qué incluye ── -->
+    <section id="incluye">
+      <div class="container-wide">
+        <div class="text-center" style="margin-bottom:40px">
+          <p class="section-label">Qué incluye</p>
+          <h2>Todo. <span class="accent" style="text-transform:none">Llave en mano.</span></h2>
+          <p class="section-sub" style="margin-bottom:0">Nosotros montamos — tú vendes. Así de simple.</p>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>Chatbot de IA configurado</h3>
+            <p>Agente entrenado con el nombre, tono y oferta de tu agencia. Responde, califica y cierra leads 24/7.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Landing page + dominio propio</h3>
+            <p>Tu página de ventas profesional con tu dominio. Lista para recibir clientes desde el primer día.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">💬</div>
+            <h3>Integración con WhatsApp</h3>
+            <p>El chatbot conectado a WhatsApp Business. Tus prospectos escriben — el bot responde por ti.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>Script de ventas probado</h3>
+            <p>Guión para cerrar tus primeros clientes por Instagram, WhatsApp o llamada. Ya está escrito.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Soporte 7 días post-entrega</h3>
+            <p>Cualquier ajuste en la primera semana lo resolvemos sin costo adicional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. Bonuses + Value stack ── -->
+    <section id="bonuses">
+      <div class="container">
+        <div class="bonus-intro">
+          <p class="section-label">Bonuses incluidos</p>
+          <h2>Y además,<br><span class="accent" style="text-transform:none">esto también.</span></h2>
+          <p class="section-sub" style="margin-bottom:32px">
+            Extras que te damos sin costo adicional para que consigas tu primer cliente más rápido.
+          </p>
+        </div>
+
+        <div class="bonus-grid">
+          <div class="bonus-item">
+            <div class="bonus-icon">📩</div>
+            <div>
+              <div class="bonus-label">Bonus 1</div>
+              <div class="bonus-name">Plantillas de prospección</div>
+              <div class="bonus-desc">15 mensajes listos para enviar a negocios locales en Instagram y WhatsApp.</div>
+              <div class="bonus-value">Valor $97 USD</div>
+            </div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-icon">🎓</div>
+            <div>
+              <div class="bonus-label">Bonus 2</div>
+              <div class="bonus-name">Mini-curso: Tu primer cliente</div>
+              <div class="bonus-desc">Video de 45 minutos con el proceso exacto para cerrar tu primera venta en 7 días.</div>
+              <div class="bonus-value">Valor $97 USD</div>
+            </div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-icon">💰</div>
+            <div>
+              <div class="bonus-label">Bonus 3</div>
+              <div class="bonus-name">Guía de precios y propuesta</div>
+              <div class="bonus-desc">Cómo cobrar, qué incluir en tu propuesta y cómo manejar objeciones de precio.</div>
+              <div class="bonus-value">Valor $47 USD</div>
+            </div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-icon">🔑</div>
+            <div>
+              <div class="bonus-label">Bonus 4</div>
+              <div class="bonus-name">Acceso a comunidad privada</div>
+              <div class="bonus-desc">Canal privado con otros agentes CobreStudio. Casos reales, dudas resueltas, soporte entre pares.</div>
+              <div class="bonus-value">Valor $97/mes — tuyo sin costo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-header">
+            <span class="valor-header-title">Todo lo que recibes hoy</span>
+            <span class="valor-badge">Acceso inmediato</span>
+          </div>
+          <ul class="valor-list">
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Chatbot de IA configurado</span></div>
+              <span class="valor-item-price">$297</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Landing page + dominio</span></div>
+              <span class="valor-item-price">$197</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Integración con WhatsApp</span></div>
+              <span class="valor-item-price">$97</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Script de ventas probado</span></div>
+              <span class="valor-item-price">$97</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Plantillas de prospección (bonus)</span></div>
+              <span class="valor-item-price">$97</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Mini-curso primer cliente (bonus)</span></div>
+              <span class="valor-item-price">$97</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Guía de precios y propuesta (bonus)</span></div>
+              <span class="valor-item-price">$47</span>
+            </li>
+            <li class="valor-item">
+              <div class="valor-item-left"><div class="valor-check">✓</div><span class="valor-item-name">Comunidad privada (bonus)</span></div>
+              <span class="valor-item-price">$97/mes</span>
+            </li>
+          </ul>
+          <div class="valor-footer">
+            <div>
+              <div class="valor-total-label">Valor total real</div>
+              <div class="valor-total-old">$929+ USD</div>
+            </div>
+            <div class="valor-price-block">
+              <div class="valor-price-label">Tu precio hoy</div>
+              <div class="valor-price-num">$100 <span class="valor-price-usd">USD</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 8. Testimonios ── -->
+    <section id="testimonios">
+      <div class="container-wide">
+        <div class="text-center" style="margin-bottom:48px">
+          <p class="section-label">Resultados reales</p>
+          <h2>Ellos ya<br><span class="accent" style="text-transform:none">lo lograron.</span></h2>
+          <p class="section-sub" style="margin-bottom:0">
+            Gente común sin experiencia en tecnología que hoy tiene su agencia funcionando.
+          </p>
+        </div>
+
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "En 48 horas tenía todo funcionando. A los 5 días cerré mi primer cliente en una estética —
+              le cobré $400 de setup y $120 al mes. Ya recuperé la inversión en la primera semana."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👩</div>
+              <div>
+                <div class="testi-name">Valeria M.</div>
+                <div class="testi-country">Ciudad de México, MX</div>
+                <span class="testi-result">1er cliente en 5 días</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Yo no sé nada de programación. Literalmente nada. Pero con el script que me dieron
+              cerré tres clientes en el primer mes. Dos restaurantes y una clínica dental."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👨</div>
+              <div>
+                <div class="testi-name">Rodrigo A.</div>
+                <div class="testi-country">Bogotá, Colombia</div>
+                <span class="testi-result">3 clientes en 30 días</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Lo que más me sorprendió fue la velocidad. El jueves mandé el formulario,
+              el sábado ya tenía mi agencia activa. El lunes siguiente ya estaba mandando propuestas."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👩</div>
+              <div>
+                <div class="testi-name">Camila R.</div>
+                <div class="testi-country">Buenos Aires, Argentina</div>
+                <span class="testi-result">Activa en 48 horas exactas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Había comprado dos cursos antes y no los terminé. Acá no hay nada que estudiar —
+              me entregaron todo montado. Ya llevo $1,200 al mes de recurrencia."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👨</div>
+              <div>
+                <div class="testi-name">Diego F.</div>
+                <div class="testi-country">Guadalajara, MX</div>
+                <span class="testi-result">$1,200/mes en recurrencia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Mi primer cliente fue una inmobiliaria. Les presenté el chatbot en la reunión —
+              lo vi responder en vivo — y me dijeron sí en el momento. $800 de setup."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👩</div>
+              <div>
+                <div class="testi-name">Paola S.</div>
+                <div class="testi-country">Santiago, Chile</div>
+                <span class="testi-result">$800 primer cliente</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Pensé que era otro servicio que prometía mucho y entregaba poco. Me equivoqué.
+              El chatbot funciona increíble, la landing quedó profesional y el soporte es rápido."
+            </p>
+            <div class="testi-author">
+              <div class="testi-avatar">👨</div>
+              <div>
+                <div class="testi-name">Andrés C.</div>
+                <div class="testi-country">Lima, Perú</div>
+                <span class="testi-result">Superó expectativas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. Qué pasa después de pagar ── -->
+    <section id="post-compra" id="como-funciona">
+      <div class="container-wide">
+        <div class="text-center" style="margin-bottom:48px">
+          <p class="section-label">El proceso</p>
+          <h2>Qué pasa<br><span class="accent" style="text-transform:none">después de reservar.</span></h2>
+          <p class="section-sub" style="margin-bottom:0">
+            Tres pasos. Cuarenta y ocho horas. Tu agencia activa.
+          </p>
+        </div>
+
+        <div class="post-steps">
+          <div class="post-step">
+            <div class="step-num">01</div>
+            <span class="step-tag">Día 1 — 30 minutos</span>
+            <h3>Agendamos una llamada</h3>
+            <p>
+              Después de reservar te contactamos para agendar una videollamada de 30 minutos.
+              Nos cuentas el nombre de tu agencia y el sector que quieres atacar. Eso es todo.
+            </p>
+          </div>
+          <div class="post-step">
+            <div class="step-num">02</div>
+            <span class="step-tag">48 horas — Nosotros trabajamos</span>
+            <h3>Montamos todo desde cero</h3>
+            <p>
+              Configuramos el chatbot, compramos y conectamos tu dominio, publicamos la landing page
+              y activamos la integración con WhatsApp. Tú no tocas nada.
+            </p>
+          </div>
+          <div class="post-step">
+            <div class="step-num">03</div>
+            <span class="step-tag">Día 3 en adelante — Tú actúas</span>
+            <h3>Cobras tu primer cliente</h3>
+            <p>
+              Recibes el script de ventas, las plantillas de prospección y acceso a la comunidad.
+              La mayoría cierra su primera venta en los siguientes 7 días.
+            </p>
+          </div>
+        </div>
+
+        <div class="garantia-wrap">
+          <div class="garantia-card">
+            <div class="garantia-icon">🛡️</div>
+            <div>
+              <div class="garantia-title">Garantía de 7 días — sin burocracia</div>
+              <p class="garantia-text">
+                Si en los primeros 7 días tu agencia no está funcionando exactamente como acordamos,
+                lo corregimos sin costo adicional. Si aun así no quedas conforme, te devolvemos el dinero completo.
+                Sin preguntas, sin demoras.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10. CTA + Form ── -->
+    <section id="contacto">
+      <div class="container">
+
+        <p class="section-label text-center" style="color:#9ca3af">¿Listo para arrancar?</p>
+
+        <h2 class="cta-heading">
+          Si ya estás listo,
+          <span class="accent" style="text-transform:none"> hablamos hoy.</span>
+        </h2>
+
+        <p class="cta-sub">
+          Reserva tu lugar ahora — son plazas limitadas por semana para garantizar
+          la calidad de cada agencia que entregamos.
+        </p>
+
+        <div class="form-card">
+          <h3 class="form-title">Reservar mi agencia — $100 USD</h3>
+
+          <div id="form-wrap">
+            <form id="contact-form" novalidate>
+              <div class="field-group">
+                <label class="field-label" for="f-name">Nombre</label>
+                <input id="f-name" class="field-input" type="text" placeholder="Tu nombre completo" required />
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="f-email">Correo</label>
+                <input id="f-email" class="field-input" type="email" placeholder="nombre@empresa.com" required />
+              </div>
+              <div class="field-group">
+                <label class="field-label" id="phone-label">Número de WhatsApp</label>
+                <div class="phone-wrap" id="phone-wrap">
+                  <div class="phone-row">
+                    <button type="button" class="country-btn" id="country-btn">
+                      <span class="c-flag" id="c-flag">🇲🇽</span>
+                      <span class="c-dial" id="c-dial">+52</span>
+                      <span class="c-arrow" id="c-arrow">▾</span>
+                    </button>
+                    <div class="phone-divider"></div>
+                    <input type="tel" id="phone-num" class="phone-num" placeholder="000 000 0000" />
+                  </div>
+                  <div class="country-dropdown" id="country-dropdown" role="listbox"></div>
+                </div>
+              </div>
+              <p id="form-error" style="color:#ef4444;font-size:12px;margin-top:8px;display:none"></p>
+              <button type="submit" class="submit-btn">
+                Reservar mi agencia ahora &rarr;
+              </button>
+            </form>
+          </div>
+
+          <div id="form-success" class="form-success" style="display:none">
+            <h3>¡Listo!</h3>
+            <p>Te contactamos en menos de 24 horas para agendar tu llamada de inicio.</p>
+          </div>
+        </div>
+
+        <p class="form-note text-center">
+          Sin compromisos &nbsp;·&nbsp; Respuesta en menos de 24 horas &nbsp;·&nbsp; Garantía de 7 días
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ── 11. FAQ ── -->
+    <section id="faq">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:40px">
+          <p class="section-label">Preguntas frecuentes</p>
+          <h2>Resolvemos<br><span class="accent" style="text-transform:none">tus dudas.</span></h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" data-faq="0">
+              ¿Necesito saber de tecnología o programación?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-0">
+              No. Absolutamente nada. Nosotros configuramos todo — el chatbot, el dominio, la landing y WhatsApp.
+              Tu único trabajo es conseguir clientes y cerrar ventas con el script que te damos.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="1">
+              ¿Qué pasa exactamente después de reservar?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-1">
+              Te contactamos por WhatsApp o email en menos de 24 horas para agendar una llamada de 30 minutos.
+              Nos cuentas el nombre de tu agencia y el sector. En las siguientes 48 horas tienes todo activo.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="2">
+              ¿Cómo consigo mis primeros clientes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-2">
+              Te entregamos un script de ventas probado y 15 plantillas de mensajes para contactar negocios locales
+              por Instagram, WhatsApp o llamada. La mayoría cierra su primera venta en los primeros 7 días.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="3">
+              ¿El chatbot funciona en WhatsApp?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-3">
+              Sí. Conectamos el agente de IA directamente a tu WhatsApp Business. Cuando un prospecto
+              te escribe, el bot responde, califica y agenda — sin que tengas que hacer nada en tiempo real.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="4">
+              ¿Cuánto puedo cobrar por los chatbots a mis clientes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-4">
+              Los chatbots para negocios locales se venden entre $300 y $1,500 USD de setup, más $100–$300 USD
+              de mantenimiento mensual. Con un solo cliente ya recuperas tu inversión de $100 varias veces.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="5">
+              ¿Qué pasa si no estoy satisfecho?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-5">
+              Tienes 7 días de garantía. Si algo no funciona como acordamos, lo corregimos sin costo.
+              Si aun así no quedas conforme, te devolvemos el dinero completo. Sin preguntas, sin burocracia.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" data-faq="6">
+              ¿Por qué el precio sube a $200?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a" id="faq-6">
+              El precio de $100 es de lanzamiento. A medida que más agentes validen el modelo y tengamos
+              más testimonios y demanda, el precio sube. Quien entra ahora asegura el mejor precio y prioridad en la lista de entrega.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container-wide">
+      <span class="logo">CobreStudio</span>
+      <span class="copy">Hecho en México 🇲🇽 &nbsp;·&nbsp; © 2025 CobreStudio</span>
+    </div>
+  </footer>
+
+  <!-- ── Questionnaire modal ── -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-step-label" id="modal-label">Pregunta 1 de 5</span>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-progress" id="modal-progress"></div>
+      <div class="modal-body">
+        <h3 class="modal-question" id="modal-q"></h3>
+        <textarea class="modal-answer" id="modal-ans" rows="5" placeholder="Tu respuesta..."></textarea>
+        <div class="modal-nav">
+          <button class="modal-prev" id="modal-prev">&#8592; Anterior</button>
+          <button class="modal-next" id="modal-next">Siguiente &#8594;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── 3D Rubik's Cube ── */
+    (function () {
+      const S = 46, G = 4, STEP = S + G, H = S / 2, TOTAL = STEP * 3 - G;
+      const IDX = [-1, 0, 1];
+      const C = {
+        top:    'linear-gradient(145deg,#ffb060 0%,#d06020 100%)',
+        front:  'linear-gradient(145deg,#e87030 0%,#b84010 100%)',
+        right:  'linear-gradient(145deg,#f09050 0%,#d06020 100%)',
+        left:   'linear-gradient(145deg,#b84010 0%,#882800 100%)',
+        back:   'linear-gradient(145deg,#883000 0%,#601800 100%)',
+        bottom: 'linear-gradient(145deg,#602000 0%,#3a0e00 100%)',
+        inner:  '#141414',
+      };
+      const FT = {
+        front:  `translateZ(${H}px)`,
+        back:   `rotateY(180deg) translateZ(${H}px)`,
+        right:  `rotateY(90deg) translateZ(${H}px)`,
+        left:   `rotateY(-90deg) translateZ(${H}px)`,
+        top:    `rotateX(90deg) translateZ(${H}px)`,
+        bottom: `rotateX(-90deg) translateZ(${H}px)`,
+      };
+      function fc(f,xi,yi,zi){
+        if(f==='front')  return zi=== 1?C.front :C.inner;
+        if(f==='back')   return zi===-1?C.back  :C.inner;
+        if(f==='right')  return xi=== 1?C.right :C.inner;
+        if(f==='left')   return xi===-1?C.left  :C.inner;
+        if(f==='top')    return yi===-1?C.top   :C.inner;
+        if(f==='bottom') return yi=== 1?C.bottom:C.inner;
+      }
+      const cube = document.createElement('div');
+      cube.className = 'rubiks-cube';
+      cube.style.cssText = `width:${TOTAL}px;height:${TOTAL}px;`;
+      IDX.forEach((yi,li) => {
+        const layer = document.createElement('div');
+        layer.className = `layer layer-${li}`;
+        IDX.forEach(xi => IDX.forEach(zi => {
+          const cb = document.createElement('div');
+          cb.className = 'cubelet';
+          cb.style.cssText = `width:${S}px;height:${S}px;margin-left:-${H}px;margin-top:-${H}px;transform:translateX(${xi*STEP}px) translateY(${yi*STEP}px) translateZ(${zi*STEP}px);`;
+          Object.entries(FT).forEach(([fn,tf]) => {
+            const face = document.createElement('div');
+            face.className = 'face';
+            face.style.cssText = `width:${S}px;height:${S}px;background:${fc(fn,xi,yi,zi)};transform:${tf};`;
+            cb.appendChild(face);
+          });
+          layer.appendChild(cb);
+        }));
+        cube.appendChild(layer);
+      });
+      document.getElementById('cube-root').appendChild(cube);
+    })();
+
+    /* ── Phone input ── */
+    const COUNTRIES = [
+      { name: 'México',          dial: '+52',  flag: '🇲🇽' },
+      { name: 'España',          dial: '+34',  flag: '🇪🇸' },
+      { name: 'Argentina',       dial: '+54',  flag: '🇦🇷' },
+      { name: 'Colombia',        dial: '+57',  flag: '🇨🇴' },
+      { name: 'Chile',           dial: '+56',  flag: '🇨🇱' },
+      { name: 'Perú',            dial: '+51',  flag: '🇵🇪' },
+      { name: 'Venezuela',       dial: '+58',  flag: '🇻🇪' },
+      { name: 'Ecuador',         dial: '+593', flag: '🇪🇨' },
+      { name: 'Guatemala',       dial: '+502', flag: '🇬🇹' },
+      { name: 'Cuba',            dial: '+53',  flag: '🇨🇺' },
+      { name: 'Bolivia',         dial: '+591', flag: '🇧🇴' },
+      { name: 'Rep. Dominicana', dial: '+1',   flag: '🇩🇴' },
+      { name: 'Honduras',        dial: '+504', flag: '🇭🇳' },
+      { name: 'Paraguay',        dial: '+595', flag: '🇵🇾' },
+      { name: 'El Salvador',     dial: '+503', flag: '🇸🇻' },
+      { name: 'Nicaragua',       dial: '+505', flag: '🇳🇮' },
+      { name: 'Costa Rica',      dial: '+506', flag: '🇨🇷' },
+      { name: 'Panamá',          dial: '+507', flag: '🇵🇦' },
+      { name: 'Uruguay',         dial: '+598', flag: '🇺🇾' },
+      { name: 'Puerto Rico',     dial: '+1',   flag: '🇵🇷' },
+    ];
+    let selectedCountry = COUNTRIES[0];
+    const dropdown   = document.getElementById('country-dropdown');
+    const countryBtn = document.getElementById('country-btn');
+    const cFlag      = document.getElementById('c-flag');
+    const cDial      = document.getElementById('c-dial');
+    const cArrow     = document.getElementById('c-arrow');
+    const phoneNum   = document.getElementById('phone-num');
+
+    COUNTRIES.forEach((c, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'c-item' + (i === 0 ? ' active' : '');
+      btn.innerHTML = `<span class="c-item-flag">${c.flag}</span><span class="c-item-name">${c.name}</span><span class="c-item-dial">${c.dial}</span>`;
+      btn.addEventListener('click', () => selectCountry(i));
+      dropdown.appendChild(btn);
+    });
+
+    function selectCountry(i) {
+      selectedCountry = COUNTRIES[i];
+      cFlag.textContent = selectedCountry.flag;
+      cDial.textContent = selectedCountry.dial;
+      dropdown.querySelectorAll('.c-item').forEach((el, j) => el.classList.toggle('active', i === j));
+      closeDropdown(); phoneNum.focus();
+    }
+    function openDropdown()  { dropdown.classList.add('open');    cArrow.classList.add('open'); }
+    function closeDropdown() { dropdown.classList.remove('open'); cArrow.classList.remove('open'); }
+    countryBtn.addEventListener('click', e => { e.stopPropagation(); dropdown.classList.contains('open') ? closeDropdown() : openDropdown(); });
+    document.addEventListener('click', e => { if (!document.getElementById('phone-wrap').contains(e.target)) closeDropdown(); });
+    function getPhone() { const n = phoneNum.value.trim(); return n ? `${selectedCountry.dial} ${n}` : ''; }
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.faq;
+        const ans = document.getElementById(`faq-${idx}`);
+        const isOpen = ans.classList.contains('open');
+        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+        if (!isOpen) { ans.classList.add('open'); btn.classList.add('open'); }
+      });
+    });
+
+    /* ── Questionnaire modal ── */
+    const QUESTIONS = [
+      '¿Qué nombre tendrá tu agencia y a qué sector quieres enfocarte?',
+      '¿Tienes experiencia previa en ventas o en negocios digitales?',
+      '¿Ya tienes clientes potenciales en mente o empiezas desde cero?',
+      '¿Tienes marca o logo definido, o se diseña desde cero?',
+      '¿Cuántas horas al día puedes dedicarle a conseguir clientes?',
+    ];
+    let step = 0, answers = Array(QUESTIONS.length).fill(''), contactData = {};
+
+    const modal         = document.getElementById('modal');
+    const modalLabel    = document.getElementById('modal-label');
+    const modalQ        = document.getElementById('modal-q');
+    const modalAns      = document.getElementById('modal-ans');
+    const modalProgress = document.getElementById('modal-progress');
+    const modalPrev     = document.getElementById('modal-prev');
+    const modalNext     = document.getElementById('modal-next');
+
+    QUESTIONS.forEach(() => { const b = document.createElement('div'); b.className = 'prog-bar'; modalProgress.appendChild(b); });
+
+    function renderModal() {
+      modalLabel.textContent = `Pregunta ${step + 1} de ${QUESTIONS.length}`;
+      modalQ.textContent = QUESTIONS[step];
+      modalAns.value = answers[step];
+      modalAns.focus();
+      modalProgress.querySelectorAll('.prog-bar').forEach((b, i) => b.classList.toggle('active', i <= step));
+      modalPrev.classList.toggle('hidden', step === 0);
+      modalNext.innerHTML = step === QUESTIONS.length - 1 ? 'Enviar &#8594;' : 'Siguiente &#8594;';
+    }
+    function openModal()  { step = 0; answers = Array(QUESTIONS.length).fill(''); renderModal(); modal.classList.add('open'); }
+    function closeModal() { modal.classList.remove('open'); }
+
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    modalPrev.addEventListener('click', () => { answers[step] = modalAns.value; if (step > 0) { step--; renderModal(); } });
+    modalNext.addEventListener('click', async () => {
+      answers[step] = modalAns.value;
+      if (step < QUESTIONS.length - 1) { step++; renderModal(); }
+      else await submitLead();
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const err   = document.getElementById('form-error');
+      if (!name || !email) { err.textContent = 'Por favor completa nombre y correo.'; err.style.display = 'block'; return; }
+      err.style.display = 'none';
+      contactData = { name, email, phone: getPhone() };
+      openModal();
+    });
+
+    async function submitLead() {
+      modalNext.textContent = 'Enviando…';
+      modalNext.disabled = true;
+      try {
+        const res = await fetch('/api/ai-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...contactData, answers }),
+        });
+        if (res.ok) {
+          closeModal();
+          document.getElementById('form-wrap').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          alert('Hubo un error. Por favor intenta de nuevo.');
+          modalNext.innerHTML = 'Enviar &#8594;';
+          modalNext.disabled = false;
+        }
+      } catch {
+        alert('Error de conexión. Por favor intenta de nuevo.');
+        modalNext.innerHTML = 'Enviar &#8594;';
+        modalNext.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
