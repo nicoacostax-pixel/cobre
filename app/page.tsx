@@ -144,7 +144,7 @@ export default function LandingPage() {
             <h1 className="text-[9vw] sm:text-[9vw] md:text-[50px] font-black leading-[1.1] tracking-tighter uppercase mb-8">
               Transformamos
               <br />
-              <span className="text-orange-600 font-serif italic">tus ideas</span>
+              <span className="text-orange-600 font-serif italic tracking-wide">tus ideas</span>
               <br />
               en apps
             </h1>
@@ -235,7 +235,7 @@ export default function LandingPage() {
             </p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.88] tracking-tighter">
               Tu app en{" "}
-              <span className="font-serif italic text-gold font-normal">15 a 30 días.</span>{" "}
+              <span className="font-serif italic text-gold font-normal">10 a 15 días.</span>{" "}
               Punto.
             </h2>
             <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
