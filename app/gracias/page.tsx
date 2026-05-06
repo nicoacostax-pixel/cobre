@@ -1,8 +1,10 @@
 import { ArrowRight } from 'lucide-react'
+import PixelEvent from '../components/PixelEvent'
 
 export default function GraciasPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center px-6 text-center">
+      <PixelEvent event="Lead" />
 
       <div className="max-w-xl">
         <p className="text-[10px] text-orange-500 font-bold uppercase tracking-widest mb-6">
