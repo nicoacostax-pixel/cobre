@@ -223,6 +223,12 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
+      <div className="flex justify-center py-8">
+        <a href="#contacto" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors flex items-center gap-2 active:scale-95">
+          Quiero mi app <ArrowRight size={16} />
+        </a>
+      </div>
+
       {/* ── Process ── */}
       <section className="bg-[#0d0d0d] py-12">
         <div className="max-w-7xl mx-auto px-6">
@@ -257,6 +263,12 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <div className="flex justify-center py-8 bg-[#0d0d0d]">
+        <a href="#contacto" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors flex items-center gap-2 active:scale-95">
+          Quiero mi app <ArrowRight size={16} />
+        </a>
+      </div>
+
       {/* ── Includes ── */}
       <section id="incluye" className="max-w-7xl mx-auto px-6 py-12">
         <FadeIn className="grid lg:grid-cols-2 gap-12 mb-10 items-end">
@@ -287,6 +299,12 @@ export default function LandingPage() {
           ))}
         </FadeIn>
       </section>
+
+      <div className="flex justify-center py-8">
+        <a href="#contacto" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors flex items-center gap-2 active:scale-95">
+          Quiero mi app <ArrowRight size={16} />
+        </a>
+      </div>
 
       {/* ── Promise ── */}
       <section className="bg-[#0d0d0d] py-12">
@@ -345,10 +363,22 @@ export default function LandingPage() {
         <Portfolio />
       </FadeIn>
 
+      <div className="flex justify-center py-8">
+        <a href="#contacto" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors flex items-center gap-2 active:scale-95">
+          Quiero mi app <ArrowRight size={16} />
+        </a>
+      </div>
+
       {/* ── FAQ ── */}
       <FadeIn>
         <FAQ />
       </FadeIn>
+
+      <div className="flex justify-center py-8">
+        <a href="#contacto" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors flex items-center gap-2 active:scale-95">
+          Quiero mi app <ArrowRight size={16} />
+        </a>
+      </div>
 
       {/* ── CTA + Form ── */}
       <section id="contacto" className="cta-glow py-16">
