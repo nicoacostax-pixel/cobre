@@ -28,19 +28,13 @@ export default function RotatingCube() {
   return (
     <>
       <style>{`
-        /* ── Overall cube tumble ── */
+        /* ── Overall cube spin ── */
         @keyframes rubikSpin {
-          0%   { transform: rotateX(-15deg) rotateY(0deg)   rotateZ(0deg);  }
-          8%   { transform: rotateX(-50deg) rotateY(60deg)  rotateZ(4deg);  }
-          18%  { transform: rotateX(12deg)  rotateY(130deg) rotateZ(-3deg); }
-          28%  { transform: rotateX(-65deg) rotateY(210deg) rotateZ(6deg);  }
-          38%  { transform: rotateX(-5deg)  rotateY(280deg) rotateZ(-2deg); }
-          48%  { transform: rotateX(-35deg) rotateY(360deg) rotateZ(0deg);  }
-          58%  { transform: rotateX(18deg)  rotateY(430deg) rotateZ(-5deg); }
-          68%  { transform: rotateX(-55deg) rotateY(510deg) rotateZ(3deg);  }
-          78%  { transform: rotateX(-8deg)  rotateY(580deg) rotateZ(-4deg); }
-          88%  { transform: rotateX(-42deg) rotateY(655deg) rotateZ(2deg);  }
-          100% { transform: rotateX(-15deg) rotateY(720deg) rotateZ(0deg);  }
+          0%   { transform: rotateX(-22deg) rotateY(0deg);   }
+          25%  { transform: rotateX(-26deg) rotateY(90deg);  }
+          50%  { transform: rotateX(-22deg) rotateY(180deg); }
+          75%  { transform: rotateX(-26deg) rotateY(270deg); }
+          100% { transform: rotateX(-22deg) rotateY(360deg); }
         }
 
         /* ── Individual layer rotation (Rubik's move) ──
@@ -63,7 +57,7 @@ export default function RotatingCube() {
         .rubiks-cube {
           position: relative;
           transform-style: preserve-3d;
-          animation: rubikSpin 20s ease-in-out infinite;
+          animation: rubikSpin 12s linear infinite;
         }
         /* Each layer div sits at the cube's 3D centre so rotateY orbits
            cubelets around the global Y axis */

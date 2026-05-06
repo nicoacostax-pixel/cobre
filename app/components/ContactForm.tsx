@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { Send } from 'lucide-react'
 import QuestionnaireModal from './QuestionnaireModal'
 import PhoneInput from './PhoneInput'
-import { supabase } from '@/lib/supabase'
 
 export default function ContactForm() {
   const router = useRouter()
@@ -26,20 +25,15 @@ export default function ContactForm() {
   async function handleComplete(answers: string[]) {
     setShowModal(false)
 
-    const { error } = await supabase.from('cobre leads').insert({
-      nombre: form.name,
-      correo: form.email,
-      telefono: form.phone,
-      respuesta_1: answers[0] ?? '',
-      respuesta_2: answers[1] ?? '',
-      respuesta_3: answers[2] ?? '',
-      respuesta_4: answers[3] ?? '',
-      respuesta_5: answers[4] ?? '',
+    const res = await fetch('/api/ai-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone, answers }),
     })
 
-    if (error) {
-      console.error('Supabase error:', error)
-      setError(`Error: ${error.message}`)
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      setError(`Error: ${data.error ?? 'No se pudo guardar la solicitud'}`)
       return
     }
 

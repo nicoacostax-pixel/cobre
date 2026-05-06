@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { ArrowRight } from 'lucide-react'
+import FbLead from '@/app/components/FbLead'
 
 declare global {
   interface Window { fbq?: (...args: unknown[]) => void }
@@ -20,6 +21,7 @@ export default function GraciasPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center px-6 text-center">
+      <FbLead />
 
       <div className="max-w-xl">
         <p className="text-[10px] text-orange-500 font-bold uppercase tracking-widest mb-6">
