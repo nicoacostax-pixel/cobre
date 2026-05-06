@@ -29,7 +29,7 @@ const questions: Question[] = [
     options: [
       { emoji: '💳', label: 'Ventas o pagos',         sub: 'E-commerce, suscripciones' },
       { emoji: '📅', label: 'Agenda o reservas',       sub: 'Citas, turnos, eventos' },
-      { emoji: '👥', label: 'Gestión de equipos',      sub: 'CRM, operaciones internas' },
+      { emoji: '💡', label: 'Innovar',                  sub: 'Nuevas ideas, procesos o modelos' },
       { emoji: '🔗', label: 'Integración de sistemas', sub: 'APIs, conectores, ERPs' },
     ],
   },
