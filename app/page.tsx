@@ -263,7 +263,7 @@ export default function Home() {
       <section className="ia-sec" style={{ paddingTop: 28, paddingBottom: 28 }}>
         <div className="ia-wrap">
           <div className="ia-stats">
-            <div className="ia-stat full"><div className="ia-stat-n"><span>+</span>10K</div><div className="ia-stat-l">seguidores en todas mis cuentas</div></div>
+            <div className="ia-stat full"><div className="ia-stat-n"><span>+</span>100K</div><div className="ia-stat-l">seguidores en todas mis cuentas</div></div>
             <div className="ia-stat"><div className="ia-stat-n"><span>+</span>1500</div><div className="ia-stat-l">personas ya aprendieron</div></div>
             <div className="ia-stat"><div className="ia-stat-n"><span>+</span>97</div><div className="ia-stat-l">negocios usan IA</div></div>
           </div>
@@ -352,7 +352,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer className="ia-foot">
-        <div className="brand">Ana IA</div>
+        <div className="brand">Nico IA</div>
         <p>© 2026 · hecho con cariño en español</p>
         <p style={{ marginTop: 6 }}><a href="#">Instagram</a> · <a href="#">hola@cobrestudio.com</a></p>
       </footer>
