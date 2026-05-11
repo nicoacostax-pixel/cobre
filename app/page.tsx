@@ -275,7 +275,7 @@ export default function Home() {
         <div className="ia-wrap">
           <div className="ia-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Nicoia.png" alt="Ana" />
+            <img src="/PerfilNicoMayo.png" alt="Ana" />
             <div className="ia-b" style={{ top: 16, left: 16 }}>+100K 👀</div>
             <div className="ia-b" style={{ top: 16, right: 16, width: 42, height: 42, borderRadius: '50%', padding: 0, justifyContent: 'center' }}>✨</div>
             <div className="ia-b" style={{ bottom: 16, left: 16 }}>en español 🇪🇸</div>
