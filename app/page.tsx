@@ -93,7 +93,7 @@ export default function Home() {
 
         /* shared */
         .ia-wrap{max-width:540px;margin:0 auto;padding:0 20px}
-        .ia-sec{padding:52px 0;background:#FDFAE6}
+        .ia-sec{padding:20px 0;background:#FDFAE6}
         .ia-pill{display:inline-block;background:white;border:1px solid #ddd;border-radius:999px;padding:6px 18px;font-size:13px;font-weight:500;color:#555}
         .ia-notif{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid #ddd;border-radius:999px;padding:8px 18px;font-size:13px;color:#555}
         .ia-dot{width:7px;height:7px;border-radius:50%;background:#7C5CBF;flex-shrink:0}
