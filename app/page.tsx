@@ -3,13 +3,14 @@
 import { useState } from 'react'
 
 const faqs = [
-  { q: '¿Qué son las guías gratis?', a: 'Son tutoriales paso a paso enviados por correo que te enseñan a usar IA en situaciones reales. Desde los conceptos básicos hasta casos de uso avanzados para tu trabajo o negocio.' },
-  { q: '¿Y la comunidad? ¿Qué incluye?', a: 'La comunidad incluye acceso a todos los cursos, plantillas, sesiones en vivo, y un grupo activo donde puedes hacer preguntas y compartir avances con personas en la misma situación que tú.' },
-  { q: '¿Necesito experiencia previa con IA o tecnología?', a: 'Para nada. Empezamos desde cero. Si sabes usar WhatsApp, puedes aprender IA con nosotros. El contenido está diseñado para personas sin conocimientos técnicos.' },
-  { q: '¿Es solo para principiantes?', a: 'No. Tenemos contenido para todos los niveles. Si ya usas IA básica, el contenido PRO te llevará a construir agentes y automatizaciones que transforman cómo trabajas.' },
-  { q: '¿Está todo en español?', a: 'Sí, 100%. Todo el contenido, la comunidad, las guías y las sesiones en vivo son en español. Sin traducciones automáticas ni subtítulos.' },
-  { q: '¿Para quién es esto?', a: 'Para emprendedores, freelancers, creadores de contenido, profesionales y cualquier persona en LATAM o España que quiera usar la IA para trabajar mejor y ganar más.' },
-  { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. La comunidad es una suscripción mensual y puedes cancelar en cualquier momento sin penalizaciones. Las guías gratuitas siempre son gratis.' },
+  { q: '¿Qué son las guías gratis?', a: 'Tutoriales paso a paso para usar IA en tu día a día y en tu negocio. Te llegan por correo, son 100% gratis y están en español. Subimos guías nuevas cada mes.' },
+  { q: '¿Y la comunidad? ¿Qué incluye?', a: 'La comunidad es donde te llevamos más allá de las guías: tutoriales nuevos cada semana, plantillas listas para copiar, skills personalizadas, automatizaciones reales (clientes, ventas, contenido), y soporte directo. Es la diferencia entre leer sobre IA y hacerla trabajar para ti.' },
+  { q: '¿Necesito experiencia previa con IA o tecnología?', a: 'No. Todo está pensado para empezar desde cero. Si sabes usar WhatsApp, puedes hacer esto.' },
+  { q: '¿Es solo para principiantes?', a: 'No. Cubrimos desde lo básico (Claude, ChatGPT, prompts) hasta cosas avanzadas como agentes de IA, automatizaciones de negocio, integraciones por API y construir tu propia "IA empleada". Avanzas a tu ritmo.' },
+  { q: '¿Está todo en español?', a: 'Sí. Tutoriales, llamadas y comunidad. Todo 100% en español, sin traducciones automáticas raras.' },
+  { q: '¿Qué incluye la comunidad?', a: 'Acceso a tutoriales semanales, plantillas de prompts, retos prácticos, y una comunidad activa donde puedes preguntar y recibir feedback.' },
+  { q: '¿Para quién es esto?', a: 'Para cualquier persona que quiera usar IA en su día a día: emprendedores, creadores, profesionales o simplemente curiosos.' },
+  { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. Cancelas en un clic, sin preguntas.' },
 ]
 
 const features = [
