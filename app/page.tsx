@@ -138,6 +138,7 @@ export default function Home() {
 
         /* photo */
         .ia-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4}
+        .ia-photo img{width:100%;height:100%;object-fit:cover;display:block}
         .ia-photo-ph{width:100%;height:100%;background:linear-gradient(145deg,#d8ccf0,#b8a8e4);display:flex;align-items:center;justify-content:center;font-size:90px}
         .ia-b{position:absolute;background:white;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 
