@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprende IA en Español — Sin Tecnicismos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:        #FDFAE6;
+      --purple:       #7C5CBF;
+      --purple-dark:  #574088;
+      --purple-light: #9B7ED9;
+      --text:         #1a1a1a;
+      --muted:        #666;
+      --card:         #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Layout ── */
+    .wrap { max-width: 480px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── Notification bar ── */
+    .notif {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      color: #555;
+    }
+    .notif-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+
+    /* ── Pills ── */
+    .pill {
+      display: inline-block;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    /* ── Section headings ── */
+    .heading {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 12px 0 16px;
+    }
+    .serif-purple {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--purple);
+    }
+    .serif-dark {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--purple-dark);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 26px 22px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+
+    /* ── Form ── */
+    .form-badge {
+      display: inline-block;
+      background: #ede8f8;
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .checklist { list-style: none; margin: 14px 0 20px; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 9px;
+    }
+    .check {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--purple);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 10px;
+      color: white;
+      font-weight: 700;
+    }
+    input[type=text], input[type=email] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      margin-bottom: 10px;
+      background: #fafafa;
+      color: #1a1a1a;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: var(--purple); background: white; }
+    input::placeholder { color: #bbb; }
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.98); opacity: 0.9; }
+    .btn-hint { font-size: 12px; color: #aaa; text-align: center; margin-top: 10px; }
+
+    /* ── Trust strip ── */
+    .trust {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #999;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Stats ── */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .stat-card.full { grid-column: 1/-1; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--purple);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--text); }
+    .stat-label { font-size: 13px; color: #888; margin-top: 6px; }
+
+    /* ── Photo hero ── */
+    .photo-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(145deg, #d8ccf0, #b8a8e4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 90px;
+    }
+    .badge {
+      position: absolute;
+      background: white;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+    .badge-tl { top: 16px; left: 16px; }
+    .badge-bl { bottom: 16px; left: 16px; }
+    .badge-tr {
+      top: 16px; right: 16px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      padding: 0;
+      justify-content: center;
+    }
+
+    /* ── Feature cards ── */
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .f-icon {
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .f-pro {
+      position: absolute;
+      top: 20px; right: 20px;
+      border: 1.5px solid var(--purple);
+      color: var(--purple);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .feature-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
+    .feature-card p  { font-size: 13px; color: #777; line-height: 1.6; }
+
+    /* ── Testimonials ── */
+    .t-card { border-radius: 20px; padding: 22px; margin-bottom: 10px; }
+    .t-card.pink   { background: #fce8ef; }
+    .t-card.purple { background: #ede8f8; }
+    .t-card.peach  { background: #fde8d8; }
+    .t-quote { font-size: 1.4rem; font-weight: 700; color: var(--purple-dark); margin-bottom: 10px; }
+    .t-text  { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 14px; }
+    .t-name  { font-size: 14px; font-weight: 700; }
+    .t-role  { font-size: 12px; color: #999; }
+
+    /* ── FAQ ── */
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-icon { font-size: 20px; color: #bbb; flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+      padding: 0 20px;
+    }
+    .faq-item.open .faq-answer  { max-height: 200px; padding-bottom: 18px; }
+    .faq-item.open .faq-icon    { transform: rotate(45deg); color: var(--purple); }
+
+    /* ── CTA bottom ── */
+    .cta-block {
+      background: linear-gradient(145deg, var(--purple) 0%, var(--purple-dark) 100%);
+      padding: 60px 24px;
+      text-align: center;
+      color: white;
+    }
+    .cta-block h2 { font-size: 2.4rem; font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
+    .cta-block .serif-white { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.75); }
+    .cta-block p  { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 24px; line-height: 1.7; }
+    .cta-form     { background: white; border-radius: 20px; padding: 24px; text-align: left; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid rgba(124,92,191,0.15);
+      padding: 30px 24px;
+      text-align: center;
+    }
+    footer .brand { font-weight: 800; font-size: 16px; margin-bottom: 5px; color: var(--purple-dark); }
+    footer p { font-size: 13px; color: #aaa; }
+    footer a { color: var(--purple); text-decoration: none; }
+
+    /* ── Spacing helpers ── */
+    .section  { padding: 52px 0; }
+    .section-sm { padding: 28px 0; }
+    .mt-4  { margin-top: 16px; }
+    .mt-6  { margin-top: 24px; }
+    .mt-8  { margin-top: 32px; }
+    .mb-2  { margin-bottom: 8px; }
+    .mb-3  { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       HERO + FORM
+  ══════════════════════════ -->
+  <section style="padding: 40px 0 52px;">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom: 22px;">
+        <div class="notif">
+          <span class="notif-dot"></span>
+          +500 personas ya aprendieron con nosotros · IA en español
+        </div>
+      </div>
+
+      <h1 class="heading" style="text-align:center; font-size:2.9rem;">
+        Aprende <span class="serif-purple">IA</span> en<br>
+        español, sin<br>
+        <span class="serif-dark">tecnicismos.</span>
+      </h1>
+
+      <p style="text-align:center; color:var(--muted); font-size:15px; line-height:1.75; margin-bottom:4px;">
+        Recibe gratis nuestras guías para usar IA en tu día a día. Y entra a la comunidad donde te llevamos mucho más allá.
+      </p>
+
+      <div class="card mt-6">
+        <span class="form-badge">GRATIS · GUÍAS</span>
+        <h2 style="font-size:1.5rem; font-weight:800; line-height:1.2;">
+          Recibe las guías <span class="serif-purple">por correo</span>
+        </h2>
+        <ul class="checklist">
+          <li><span class="check">✓</span> Tutoriales paso a paso para usar IA en tu día a día</li>
+          <li><span class="check">✓</span> Plantillas y casos reales para tu negocio</li>
+          <li><span class="check">✓</span> Guías nuevas cada mes</li>
+          <li><span class="check">✓</span> Acceso a la comunidad incluido</li>
+        </ul>
+        <input type="text"  placeholder="Tu nombre">
+        <input type="email" placeholder="tu@email.com">
+        <button class="btn">Recibir las guías gratis</button>
+        <p class="btn-hint">Te enviamos las guías al correo. Cero spam, sales cuando quieras.</p>
+      </div>
+
+      <div class="trust">
+        <span>Acceso inmediato</span>
+        <span>·</span>
+        <span>100% gratis</span>
+        <span>·</span>
+        <span>En español</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       STATS
+  ══════════════════════════ -->
+  <section class="section-sm">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-card full">
+          <div class="stat-num"><span>+</span>10K</div>
+          <div class="stat-label">seguidores en 3 semanas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><span>+</span>500</div>
+          <div class="stat-label">personas ya aprendieron</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><span>+</span>86</div>
+          <div class="stat-label">negocios usan IA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       ABOUT / PHOTO
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="photo-wrap">
+        <!-- Reemplaza este div con <img src="tu-foto.jpg" alt=""> -->
+        <div class="photo-placeholder">👩‍💻</div>
+        <div class="badge badge-tl">+10K 👀</div>
+        <div class="badge badge-tr">✨</div>
+        <div class="badge badge-bl">en español 🇪🇸</div>
+      </div>
+
+      <div class="mt-8">
+        <div class="pill mb-3">sobre mí</div>
+        <h2 class="heading">
+          Hola, soy <span class="serif-purple">Ana</span> .
+        </h2>
+        <p style="color:var(--muted); font-size:15px; line-height:1.8;">
+          Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.
+        </p>
+        <p style="color:var(--muted); font-size:15px; line-height:1.8; margin-top:12px;">
+          En solo <strong style="color:var(--text);">3 semanas</strong> pasamos de 0 a más de 10.000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       CURRICULUM
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="pill mb-3">lo que vas a aprender</div>
+      <h2 class="heading">
+        De <em style="font-family:'Playfair Display',serif; font-style:italic;">prompts</em><br>
+        a tu <span class="serif-purple">IA empleada</span> .
+      </h2>
+      <p style="color:var(--muted); font-size:15px; line-height:1.7; margin-bottom:28px;">
+        Empezamos por lo fundamental y subimos hasta agentes, automatizaciones e integraciones avanzadas. Tú avanzas a tu ritmo.
+      </p>
+
+      <div class="feature-card">
+        <div class="f-icon" style="background:#fce8ef;">🧠</div>
+        <h3>Domina Claude, ChatGPT y todo el ecosistema</h3>
+        <p>No te quedas con un solo modelo. Aprendes a elegir y combinar las mejores herramientas para cada caso.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="f-pro">PRO</span>
+        <div class="f-icon" style="background:#ede8f8;">🤖</div>
+        <h3>Automatiza tu negocio con agentes de IA</h3>
+        <p>Agentes que responden correos, califican leads, agendan reuniones y hacen el trabajo por ti. Sin código.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="f-pro">PRO</span>
+        <div class="f-icon" style="background:#e8edf8;">🏢</div>
+        <h3>Construye tu "IA empleada" para tu equipo</h3>
+        <p>Un asistente entrenado con tus documentos, tu marca y tus procesos. Tu propia IA, dentro de tu negocio.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="f-icon" style="background:#fff8e1;">🪄</div>
+        <h3>Prompts profesionales con sistema de instrucciones</h3>
+        <p>Deja los prompts de TikTok. Aprendes a escribir instrucciones que producen resultados de calidad real, una y otra vez.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="f-icon" style="background:#fce8ef;">🎬</div>
+        <h3>Crea contenido 10× más rápido</h3>
+        <p>Ideas, guiones, posts, miniaturas, voces. Plantillas reales para creadores y emprendedores.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="f-icon" style="background:#e8f8ef;">💸</div>
+        <h3>Vende servicios y productos con IA</h3>
+        <p>Modelos de negocio que están funcionando hoy en LATAM y España. Pasa de aprender a facturar.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       TESTIMONIALS
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="pill mb-3">la comunidad</div>
+      <h2 class="heading">
+        Gente real,<br>
+        <span class="serif-purple">resultados reales</span> .
+      </h2>
+
+      <div class="mt-6">
+        <div class="t-card pink">
+          <div class="t-quote">"</div>
+          <p class="t-text">Llevaba meses queriendo entender la IA y nada me hacía clic. Con Ana en una semana ya estaba automatizando mi correo y ahorrándome horas.</p>
+          <div class="t-name">Camila R.</div>
+          <div class="t-role">Coach · Bogotá</div>
+        </div>
+        <div class="t-card purple">
+          <div class="t-quote">"</div>
+          <p class="t-text">Pasé de cero a tener mis propios prompts y plantillas para mi negocio. Lo mejor: todo en español y sin rollo técnico.</p>
+          <div class="t-name">Diego M.</div>
+          <div class="t-role">Emprendedor · CDMX</div>
+        </div>
+        <div class="t-card peach">
+          <div class="t-quote">"</div>
+          <p class="t-text">La comunidad es oro. Aprendes con gente real, con casos reales, no con teoría. Vale cada centavo.</p>
+          <div class="t-name">Lucía P.</div>
+          <div class="t-role">Freelancer · Madrid</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       FAQ
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="pill mb-3">preguntas</div>
+      <h2 class="heading">
+        Lo que <span class="serif-purple">todos<br>preguntan</span> .
+      </h2>
+
+      <div class="mt-6" id="faq">
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Qué son las guías gratis?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Son tutoriales paso a paso enviados por correo que te enseñan a usar IA en situaciones reales. Desde los conceptos básicos hasta casos de uso avanzados para tu trabajo o negocio.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Y la comunidad? ¿Qué incluye?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">La comunidad incluye acceso a todos los cursos, plantillas, sesiones en vivo, y un grupo activo donde puedes hacer preguntas y compartir avances con personas en la misma situación que tú.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Necesito experiencia previa con IA o tecnología?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Para nada. Empezamos desde cero. Si sabes usar WhatsApp, puedes aprender IA con nosotros. El contenido está diseñado para personas sin conocimientos técnicos.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Es solo para principiantes?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">No. Tenemos contenido para todos los niveles. Si ya usas IA básica, el contenido PRO te llevará a construir agentes y automatizaciones que transforman cómo trabajas.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Está todo en español?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Sí, 100%. Todo el contenido, la comunidad, las guías y las sesiones en vivo son en español. Sin traducciones automáticas ni subtítulos.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Para quién es esto?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Para emprendedores, freelancers, creadores de contenido, profesionales y cualquier persona en LATAM o España que quiera usar la IA para trabajar mejor y ganar más.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Puedo cancelar cuando quiera?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Sí. La comunidad es una suscripción mensual y puedes cancelar en cualquier momento sin penalizaciones. Las guías gratuitas siempre son gratis.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       CTA BOTTOM
+  ══════════════════════════ -->
+  <div class="cta-block">
+    <div style="max-width:420px; margin:0 auto;">
+      <h2>
+        La IA no espera.<br>
+        <span class="serif-white">Tú tampoco.</span>
+      </h2>
+      <p>Recibe gratis las guías de Ana. Y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
+      <div class="cta-form">
+        <input type="text"  placeholder="Tu nombre"    style="background:#f8f8f8;">
+        <input type="email" placeholder="tu@email.com" style="background:#f8f8f8;">
+        <button class="btn">Recibir las guías gratis</button>
+        <p class="btn-hint">Te enviamos las guías al correo. Cero spam, sales cuando quieras.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════
+       FOOTER
+  ══════════════════════════ -->
+  <footer>
+    <div class="brand">Ana IA</div>
+    <p>© 2026 · hecho con cariño en español</p>
+    <p style="margin-top:6px;">
+      <a href="#">Instagram</a> · <a href="#">hola@anaai.com</a>
+    </p>
+  </footer>
+
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item')
+      const isOpen = item.classList.contains('open')
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'))
+      if (!isOpen) item.classList.add('open')
+    }
+  </script>
+
+</body>
+</html>
