@@ -110,9 +110,9 @@ export default function Home() {
 
         /* hero */
         .ia-hero{background:#FDFAE6;padding:40px 0 52px}
-        .ia-mobile-head{margin-bottom:0}
+        .ia-hero-head{text-align:center;padding:0 20px;margin-bottom:28px}
         .ia-cards-col{display:none}
-        .ia-hero-grid{}
+        .ia-hero-grid{padding:0 20px}
 
         /* card stack */
         .ia-stack{position:relative;height:400px}
@@ -181,10 +181,11 @@ export default function Home() {
         /* ── DESKTOP ── */
         @media(min-width:900px){
           body{background:linear-gradient(135deg,#fff 0%,#f2ecff 55%,#ffe8f4 100%)!important}
-          .ia-hero{padding:80px 0}
+          .ia-hero{padding:60px 0 80px}
+          .ia-hero-head{max-width:700px;margin:0 auto 40px;padding:0 60px}
+          .ia-hero-head .ia-h1{text-align:center}
           .ia-hero-grid{max-width:1160px;margin:0 auto;padding:0 60px;display:grid;grid-template-columns:1fr 460px;gap:80px;align-items:center}
           .ia-cards-col{display:block}
-          .ia-mobile-head{display:none}
           .ia-form-row{flex-direction:row}
           .ia-trust{justify-content:flex-start}
           .ia-wrap{max-width:640px}
@@ -202,8 +203,8 @@ export default function Home() {
 
       {/* HERO */}
       <section className="ia-hero">
-        {/* mobile only: notif + headline */}
-        <div className="ia-wrap ia-mobile-head" style={{ textAlign: 'center', paddingBottom: 24 }}>
+        {/* notif + headline — visible on both mobile and desktop */}
+        <div className="ia-hero-head">
           <div className="ia-notif" style={{ marginBottom: 20 }}>
             <span className="ia-dot" />+500 personas ya aprendieron · IA en español
           </div>
