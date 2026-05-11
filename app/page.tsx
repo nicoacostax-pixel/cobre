@@ -22,9 +22,9 @@ const features = [
 ]
 
 const testimonials = [
-  { color: 'pink',   text: 'Llevaba meses queriendo entender la IA y nada me hacía clic. Con Ana en una semana ya estaba automatizando mi correo y ahorrándome horas.', name: 'Camila R.', role: 'Coach · Bogotá' },
-  { color: 'purple', text: 'Pasé de cero a tener mis propios prompts y plantillas para mi negocio. Lo mejor: todo en español y sin rollo técnico.', name: 'Diego M.', role: 'Emprendedor · CDMX' },
-  { color: 'peach',  text: 'La comunidad es oro. Aprendes con gente real, con casos reales, no con teoría. Vale cada centavo.', name: 'Lucía P.', role: 'Freelancer · Madrid' },
+  { color: 'pink',   text: 'Llevaba meses queriendo entender la IA y nada me hacía clic. Con Ana en una semana ya estaba automatizando mi correo y ahorrándome horas.', name: 'Vanessa R.', role: 'Coach · Barcelona' },
+  { color: 'purple', text: 'Pasé de cero a tener mis propios prompts y plantillas para mi negocio. Lo mejor: todo en español y sin rollo técnico.', name: 'Gonzalo M.', role: 'Emprendedor · Monterrey' },
+  { color: 'peach',  text: 'La comunidad es oro. Aprendes con gente real, con casos reales, no con teoría. Vale cada centavo.', name: 'Pamela P.', role: 'Freelancer · Medellín' },
 ]
 
 const guideCards = [
@@ -222,7 +222,7 @@ export default function Home() {
                 <div key={i} className="ia-gc" style={{ background: c.bg }}>
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 18 }}>
-                      <span className="ia-gc-brand" style={{ color: c.light ? 'rgba(255,255,255,.9)' : '#574088' }}>Ana IA_</span>
+                      <span className="ia-gc-brand" style={{ color: c.light ? 'rgba(255,255,255,.9)' : '#574088' }}>Nico IA_</span>
                       <span className="ia-gc-num"   style={{ color: c.light ? 'rgba(255,255,255,.7)' : '#574088' }}>Nº {c.num}</span>
                     </div>
                     <div className="ia-gc-lvl"   style={{ color: c.light ? 'rgba(255,255,255,.7)' : '#574088' }}>{c.level}</div>
@@ -262,9 +262,9 @@ export default function Home() {
       <section className="ia-sec" style={{ paddingTop: 28, paddingBottom: 28 }}>
         <div className="ia-wrap">
           <div className="ia-stats">
-            <div className="ia-stat full"><div className="ia-stat-n"><span>+</span>10K</div><div className="ia-stat-l">seguidores en 3 semanas</div></div>
-            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>500</div><div className="ia-stat-l">personas ya aprendieron</div></div>
-            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>86</div><div className="ia-stat-l">negocios usan IA</div></div>
+            <div className="ia-stat full"><div className="ia-stat-n"><span>+</span>10K</div><div className="ia-stat-l">seguidores en todas mis cuentas</div></div>
+            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>1500</div><div className="ia-stat-l">personas ya aprendieron</div></div>
+            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>97</div><div className="ia-stat-l">negocios usan IA</div></div>
           </div>
         </div>
       </section>
@@ -275,15 +275,15 @@ export default function Home() {
           <div className="ia-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/Nicoia.png" alt="Ana" />
-            <div className="ia-b" style={{ top: 16, left: 16 }}>+10K 👀</div>
+            <div className="ia-b" style={{ top: 16, left: 16 }}>+100K 👀</div>
             <div className="ia-b" style={{ top: 16, right: 16, width: 42, height: 42, borderRadius: '50%', padding: 0, justifyContent: 'center' }}>✨</div>
             <div className="ia-b" style={{ bottom: 16, left: 16 }}>en español 🇪🇸</div>
           </div>
           <div style={{ marginTop: 32 }}>
             <div className="ia-pill" style={{ marginBottom: 12 }}>sobre mí</div>
-            <h2 className="ia-h2">Hola, soy <span className="ia-sp">Ana</span> .</h2>
+            <h2 className="ia-h2">Hola, soy <span className="ia-sp">Nico</span> .</h2>
             <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8 }}>Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.</p>
-            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>En solo <strong style={{ color: '#1a1a1a' }}>3 semanas</strong> pasamos de 0 a más de 10.000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.</p>
+            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>En solo <strong style={{ color: '#1a1a1a' }}>2 años</strong> pasamos de 0 a más de 10.0000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.</p>
           </div>
         </div>
       </section>
@@ -353,7 +353,7 @@ export default function Home() {
       <footer className="ia-foot">
         <div className="brand">Ana IA</div>
         <p>© 2026 · hecho con cariño en español</p>
-        <p style={{ marginTop: 6 }}><a href="#">Instagram</a> · <a href="#">hola@anaai.com</a></p>
+        <p style={{ marginTop: 6 }}><a href="#">Instagram</a> · <a href="#">hola@cobrestudio.com</a></p>
       </footer>
     </>
   )
