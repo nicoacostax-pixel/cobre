@@ -138,8 +138,8 @@ export default function Home() {
         .ia-stat-l{font-size:13px;color:#888;margin-top:6px}
 
         /* photo */
-        .ia-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(124,92,191,0.25)}
-        .ia-photo img{width:100%;height:auto;display:block;object-fit:contain}
+        .ia-photo{position:relative}
+        .ia-photo img{width:100%;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 12px 32px rgba(124,92,191,0.35))}
         .ia-photo-ph{width:100%;height:100%;background:linear-gradient(145deg,#d8ccf0,#b8a8e4);display:flex;align-items:center;justify-content:center;font-size:90px}
         .ia-b{position:absolute;background:white;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 
