@@ -27,6 +27,12 @@ const testimonials = [
   { color: 'peach',  text: 'La comunidad es oro. Aprendes con gente real, con casos reales, no con teoría. Vale cada centavo.', name: 'Lucía P.', role: 'Freelancer · Madrid' },
 ]
 
+const guideCards = [
+  { num: '01', level: 'Fundamentos', title: 'Tu primer\nprompt',    bg: 'linear-gradient(145deg,#a898d8,#7a68c0)', light: true  },
+  { num: '02', level: 'Intermedio',  title: 'Agentes en\nespañol',  bg: 'linear-gradient(145deg,#cfc0f0,#b0a0e0)', light: false },
+  { num: '03', level: 'Avanzado',    title: 'Automatiza\ntu negocio',bg: 'linear-gradient(145deg,#f5f0e0,#e8e0c8)', light: false },
+]
+
 function LeadForm({ dark = false }: { dark?: boolean }) {
   const [name, setName]   = useState('')
   const [email, setEmail] = useState('')
@@ -41,20 +47,15 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, phone: '', answers: [] }),
     })
-    if (res.ok) {
-      setSent(true)
-    } else {
-      setErr('Hubo un error. Intenta de nuevo.')
-    }
+    if (res.ok) setSent(true)
+    else setErr('Hubo un error. Intenta de nuevo.')
   }
 
-  const inputStyle: React.CSSProperties = {
+  const inp: React.CSSProperties = {
     width: '100%', padding: '14px 16px',
     border: '1.5px solid #e5e5e5', borderRadius: 12,
-    fontSize: 15, fontFamily: 'Inter, sans-serif',
-    outline: 'none', marginBottom: 10,
-    background: dark ? '#f5f5f5' : '#fafafa',
-    color: '#1a1a1a',
+    fontSize: 15, fontFamily: 'Inter,sans-serif',
+    outline: 'none', background: dark ? '#f5f5f5' : '#fafafa', color: '#1a1a1a',
   }
 
   if (sent) return (
@@ -65,13 +66,17 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input style={inputStyle} type="text"  placeholder="Tu nombre"    value={name}  onChange={e => setName(e.target.value)}  required />
-      <input style={inputStyle} type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
-      <button type="submit" style={{ width: '100%', padding: 15, background: 'linear-gradient(135deg, #7C5CBF 0%, #574088 100%)', color: 'white', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: 'Inter, sans-serif', cursor: 'pointer' }}>
+      <div className="ia-form-row">
+        <input style={inp} type="text"  placeholder="Tu nombre"    value={name}  onChange={e => setName(e.target.value)}  required />
+        <input style={inp} type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
+      </div>
+      <button type="submit" style={{ width: '100%', marginTop: 10, padding: 15, background: 'linear-gradient(135deg,#7C5CBF,#574088)', color: 'white', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: 'Inter,sans-serif', cursor: 'pointer' }}>
         Recibir las guías gratis
       </button>
       {err && <p style={{ color: 'red', fontSize: 13, marginTop: 8 }}>{err}</p>}
-      <p style={{ fontSize: 12, color: '#aaa', textAlign: 'center', marginTop: 10 }}>Te enviamos las guías al correo. Cero spam, sales cuando quieras.</p>
+      <p style={{ fontSize: 12, color: '#aaa', textAlign: 'center', marginTop: 10 }}>
+        Te enviamos las guías al correo. Cero spam, sales cuando quieras.
+      </p>
     </form>
   )
 }
@@ -83,243 +88,269 @@ export default function Home() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif!important;background:#FDFAE6!important;color:#1a1a1a;line-height:1.6}
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* shared */
+        .ia-wrap{max-width:540px;margin:0 auto;padding:0 20px}
+        .ia-sec{padding:52px 0;background:#FDFAE6}
+        .ia-pill{display:inline-block;background:white;border:1px solid #ddd;border-radius:999px;padding:6px 18px;font-size:13px;font-weight:500;color:#555}
+        .ia-notif{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid #ddd;border-radius:999px;padding:8px 18px;font-size:13px;color:#555}
+        .ia-dot{width:7px;height:7px;border-radius:50%;background:#7C5CBF;flex-shrink:0}
+        .ia-h1{font-size:2.8rem;font-weight:900;line-height:1.05;letter-spacing:-.02em;margin:12px 0 16px;text-align:center}
+        .ia-h2{font-size:2.5rem;font-weight:900;line-height:1.05;letter-spacing:-.02em;margin:12px 0 16px}
+        .ia-sp{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#7C5CBF}
+        .ia-sd{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#574088}
+        .ia-badge-lbl{display:inline-block;background:#ede8f8;color:#7C5CBF;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+        .ia-cl{list-style:none;margin:14px 0 20px}
+        .ia-cl li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#555;margin-bottom:9px}
+        .ia-ck{width:18px;height:18px;border-radius:50%;background:#7C5CBF;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;color:white;font-weight:700}
+        .ia-trust{display:flex;justify-content:center;gap:10px;font-size:12px;color:#999;margin-top:16px;flex-wrap:wrap}
+        .ia-form-row{display:flex;flex-direction:column;gap:10px}
 
-        body { font-family: 'Inter', sans-serif !important; background: #FDFAE6 !important; color: #1a1a1a; line-height: 1.6; }
+        /* hero */
+        .ia-hero{background:#FDFAE6;padding:40px 0 52px}
+        .ia-mobile-head{margin-bottom:0}
+        .ia-cards-col{display:none}
+        .ia-hero-grid{}
 
-        .ia-wrap   { max-width: 480px; margin: 0 auto; padding: 0 20px; }
-        .ia-section { padding: 52px 0; }
+        /* card stack */
+        .ia-stack{position:relative;height:400px}
+        .ia-gc{position:absolute;width:185px;border-radius:22px;padding:20px 16px;box-shadow:0 8px 32px rgba(0,0,0,.15);display:flex;flex-direction:column;justify-content:space-between}
+        .ia-gc:nth-child(1){height:255px;top:60px;left:0;transform:rotate(-11deg);z-index:1}
+        .ia-gc:nth-child(2){height:275px;top:35px;left:75px;transform:rotate(-3deg);z-index:2}
+        .ia-gc:nth-child(3){height:265px;top:20px;left:160px;transform:rotate(6deg);z-index:3}
+        .ia-gc-brand{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;font-weight:700}
+        .ia-gc-num{font-size:11px;font-weight:600;opacity:.6}
+        .ia-gc-lvl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+        .ia-gc-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;font-weight:700;line-height:1.2;white-space:pre-line}
+        .ia-gc-bot{display:flex;align-items:center;justify-content:space-between}
+        .ia-gc-gratis{background:white;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:4px;color:#574088}
+        .ia-gc-date{font-size:9px;font-weight:600;opacity:.5;letter-spacing:.04em}
 
-        .ia-notif  { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid #ddd; border-radius: 999px; padding: 8px 18px; font-size: 13px; color: #555; }
-        .ia-dot    { width: 7px; height: 7px; border-radius: 50%; background: #7C5CBF; flex-shrink: 0; }
-        .ia-pill   { display: inline-block; background: white; border: 1px solid #ddd; border-radius: 999px; padding: 6px 18px; font-size: 13px; font-weight: 500; color: #555; }
+        /* stats */
+        .ia-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+        .ia-stat{background:white;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+        .ia-stat.full{grid-column:1/-1}
+        .ia-stat-n{font-family:'Playfair Display',serif;font-style:italic;font-size:3rem;font-weight:900;color:#7C5CBF;line-height:1}
+        .ia-stat-n span{color:#1a1a1a}
+        .ia-stat-l{font-size:13px;color:#888;margin-top:6px}
 
-        .ia-h1     { font-size: 2.8rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin: 12px 0 16px; text-align: center; }
-        .ia-h2     { font-size: 2.5rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin: 12px 0 16px; }
-        .ia-serif-purple { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; color: #7C5CBF; }
-        .ia-serif-dark   { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; color: #574088; }
+        /* photo */
+        .ia-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4}
+        .ia-photo-ph{width:100%;height:100%;background:linear-gradient(145deg,#d8ccf0,#b8a8e4);display:flex;align-items:center;justify-content:center;font-size:90px}
+        .ia-b{position:absolute;background:white;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 
-        .ia-card   { background: white; border-radius: 20px; padding: 26px 22px; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
-        .ia-badge-label { display: inline-block; background: #ede8f8; color: #7C5CBF; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+        /* features */
+        .ia-feat{background:white;border-radius:20px;padding:22px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.04);position:relative}
+        .ia-fi{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+        .ia-fpro{position:absolute;top:20px;right:20px;border:1.5px solid #7C5CBF;color:#7C5CBF;font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px}
+        .ia-feat h3{font-size:15px;font-weight:800;margin-bottom:6px;line-height:1.3}
+        .ia-feat p{font-size:13px;color:#777;line-height:1.6}
+        .ia-feats-grid{}
 
-        .ia-checklist    { list-style: none; margin: 14px 0 20px; }
-        .ia-checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #555; margin-bottom: 9px; }
-        .ia-check        { width: 18px; height: 18px; border-radius: 50%; background: #7C5CBF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; color: white; font-weight: 700; }
+        /* testimonials */
+        .ia-t{border-radius:20px;padding:22px;margin-bottom:10px}
+        .ia-t.pink{background:#fce8ef}.ia-t.purple{background:#ede8f8}.ia-t.peach{background:#fde8d8}
+        .ia-tq{font-size:1.4rem;font-weight:700;color:#574088;margin-bottom:10px}
+        .ia-tt{font-size:14px;color:#333;line-height:1.65;margin-bottom:14px}
+        .ia-tn{font-size:14px;font-weight:700}
+        .ia-tr{font-size:12px;color:#999}
+        .ia-t-grid{}
 
-        .ia-trust { display: flex; justify-content: center; gap: 10px; font-size: 12px; color: #999; margin-top: 16px; flex-wrap: wrap; }
+        /* faq */
+        .ia-faq{background:white;border-radius:16px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+        .ia-faq-btn{width:100%;background:none;border:none;padding:18px 20px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;color:#1a1a1a;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .ia-faq-icon{font-size:20px;color:#bbb;flex-shrink:0;transition:transform .2s,color .2s}
+        .ia-faq-icon.open{transform:rotate(45deg);color:#7C5CBF}
+        .ia-faq-ans{font-size:14px;color:#666;line-height:1.7;padding:0 20px 18px}
+        .ia-faq-cols{}
 
-        .ia-stats  { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .ia-stat   { background: white; border-radius: 20px; padding: 24px 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .ia-stat.full { grid-column: 1/-1; }
-        .ia-stat-n { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3rem; font-weight: 900; color: #7C5CBF; line-height: 1; }
-        .ia-stat-n span { color: #1a1a1a; }
-        .ia-stat-l { font-size: 13px; color: #888; margin-top: 6px; }
+        /* cta */
+        .ia-cta{background:linear-gradient(145deg,#7C5CBF,#574088);padding:60px 24px;text-align:center;color:white}
+        .ia-cta h2{font-size:2.4rem;font-weight:900;line-height:1.1;margin-bottom:12px}
+        .ia-cta p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:24px;line-height:1.7}
+        .ia-cta-form{background:white;border-radius:20px;padding:24px;text-align:left;max-width:520px;margin:0 auto}
 
-        .ia-photo-wrap { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 3/4; }
-        .ia-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .ia-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(145deg, #d8ccf0, #b8a8e4); display: flex; align-items: center; justify-content: center; font-size: 90px; }
-        .ia-badge { position: absolute; background: white; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
-        .ia-badge-tl { top: 16px; left: 16px; }
-        .ia-badge-bl { bottom: 16px; left: 16px; }
-        .ia-badge-tr { top: 16px; right: 16px; width: 42px; height: 42px; border-radius: 50%; padding: 0; justify-content: center; }
+        /* footer */
+        footer.ia-foot{background:#FDFAE6;border-top:1px solid rgba(124,92,191,.15);padding:30px 24px;text-align:center}
+        footer.ia-foot .brand{font-weight:800;font-size:16px;margin-bottom:5px;color:#574088}
+        footer.ia-foot p{font-size:13px;color:#aaa}
+        footer.ia-foot a{color:#7C5CBF;text-decoration:none}
 
-        .ia-feature { background: white; border-radius: 20px; padding: 22px; margin-bottom: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); position: relative; }
-        .ia-f-icon  { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
-        .ia-f-pro   { position: absolute; top: 20px; right: 20px; border: 1.5px solid #7C5CBF; color: #7C5CBF; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; }
-        .ia-feature h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
-        .ia-feature p  { font-size: 13px; color: #777; line-height: 1.6; }
-
-        .ia-t-card { border-radius: 20px; padding: 22px; margin-bottom: 10px; }
-        .ia-t-card.pink   { background: #fce8ef; }
-        .ia-t-card.purple { background: #ede8f8; }
-        .ia-t-card.peach  { background: #fde8d8; }
-        .ia-t-quote { font-size: 1.4rem; font-weight: 700; color: #574088; margin-bottom: 10px; }
-        .ia-t-text  { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 14px; }
-        .ia-t-name  { font-size: 14px; font-weight: 700; }
-        .ia-t-role  { font-size: 12px; color: #999; }
-
-        .ia-faq-item { background: white; border-radius: 16px; margin-bottom: 8px; overflow: hidden; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
-        .ia-faq-btn  { width: 100%; background: none; border: none; padding: 18px 20px; font-size: 15px; font-weight: 500; font-family: 'Inter', sans-serif; color: #1a1a1a; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-        .ia-faq-icon { font-size: 20px; color: #bbb; flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
-        .ia-faq-icon.open { transform: rotate(45deg); color: #7C5CBF; }
-        .ia-faq-answer { font-size: 14px; color: #666; line-height: 1.7; padding: 0 20px 18px; }
-
-        .ia-cta { background: linear-gradient(145deg, #7C5CBF 0%, #574088 100%); padding: 60px 24px; text-align: center; color: white; }
-        .ia-cta h2 { font-size: 2.4rem; font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
-        .ia-cta-sub { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.75); }
-        .ia-cta p  { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 24px; line-height: 1.7; }
-        .ia-cta-form { background: white; border-radius: 20px; padding: 24px; text-align: left; }
-
-        footer.ia-footer { background: #FDFAE6; border-top: 1px solid rgba(124,92,191,0.15); padding: 30px 24px; text-align: center; }
-        footer.ia-footer .brand { font-weight: 800; font-size: 16px; margin-bottom: 5px; color: #574088; }
-        footer.ia-footer p { font-size: 13px; color: #aaa; }
-        footer.ia-footer a { color: #7C5CBF; text-decoration: none; }
+        /* ── DESKTOP ── */
+        @media(min-width:900px){
+          body{background:linear-gradient(135deg,#fff 0%,#f2ecff 55%,#ffe8f4 100%)!important}
+          .ia-hero{padding:80px 0}
+          .ia-hero-grid{max-width:1160px;margin:0 auto;padding:0 60px;display:grid;grid-template-columns:1fr 460px;gap:80px;align-items:center}
+          .ia-cards-col{display:block}
+          .ia-mobile-head{display:none}
+          .ia-form-row{flex-direction:row}
+          .ia-trust{justify-content:flex-start}
+          .ia-wrap{max-width:640px}
+          .ia-stats{grid-template-columns:1fr 1fr 1fr}
+          .ia-stat.full{grid-column:auto}
+          .ia-feats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+          .ia-feats-grid .ia-feat{margin-bottom:0}
+          .ia-t-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+          .ia-t-grid .ia-t{margin-bottom:0}
+          .ia-faq-cols{columns:2;gap:8px}
+          .ia-faq-cols .ia-faq{break-inside:avoid}
+          .ia-cta h2{font-size:3rem}
+        }
       `}</style>
 
-      {/* ── HERO + FORM ── */}
-      <section style={{ padding: '40px 0 52px', background: '#FDFAE6' }}>
-        <div className="ia-wrap">
-          <div style={{ textAlign: 'center', marginBottom: 22 }}>
-            <div className="ia-notif">
-              <span className="ia-dot" />
-              +500 personas ya aprendieron con nosotros · IA en español
+      {/* HERO */}
+      <section className="ia-hero">
+        {/* mobile only: notif + headline */}
+        <div className="ia-wrap ia-mobile-head" style={{ textAlign: 'center', paddingBottom: 24 }}>
+          <div className="ia-notif" style={{ marginBottom: 20 }}>
+            <span className="ia-dot" />+500 personas ya aprendieron · IA en español
+          </div>
+          <h1 className="ia-h1">
+            Aprende <span className="ia-sp">IA</span> en español, sin <span className="ia-sd">tecnicismos.</span>
+          </h1>
+        </div>
+
+        <div className="ia-hero-grid">
+          {/* LEFT — stacked cards (desktop) */}
+          <div className="ia-cards-col">
+            <div className="ia-stack">
+              {guideCards.map((c, i) => (
+                <div key={i} className="ia-gc" style={{ background: c.bg }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 18 }}>
+                      <span className="ia-gc-brand" style={{ color: c.light ? 'rgba(255,255,255,.9)' : '#574088' }}>Ana IA_</span>
+                      <span className="ia-gc-num"   style={{ color: c.light ? 'rgba(255,255,255,.7)' : '#574088' }}>Nº {c.num}</span>
+                    </div>
+                    <div className="ia-gc-lvl"   style={{ color: c.light ? 'rgba(255,255,255,.7)' : '#574088' }}>{c.level}</div>
+                    <div className="ia-gc-title" style={{ color: c.light ? '#fff' : '#2a1a4a' }}>{c.title}</div>
+                  </div>
+                  <div className="ia-gc-bot">
+                    <div className="ia-gc-gratis">● GRATIS</div>
+                    <span className="ia-gc-date" style={{ color: c.light ? 'white' : '#574088' }}>GUÍA · 2026</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <h1 className="ia-h1">
-            Aprende <span className="ia-serif-purple">IA</span> en<br />
-            español, sin<br />
-            <span className="ia-serif-dark">tecnicismos.</span>
-          </h1>
-
-          <p style={{ textAlign: 'center', color: '#666', fontSize: 15, lineHeight: 1.75, marginBottom: 4 }}>
-            Recibe gratis nuestras guías para usar IA en tu día a día. Y entra a la comunidad donde te llevamos mucho más allá.
-          </p>
-
-          <div className="ia-card" style={{ marginTop: 24 }}>
-            <span className="ia-badge-label">GRATIS · GUÍAS</span>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1.2, marginBottom: 16 }}>
-              Recibe las guías <span className="ia-serif-purple">por correo</span>
-            </h2>
-            <ul className="ia-checklist">
-              {['Tutoriales paso a paso para usar IA en tu día a día', 'Plantillas y casos reales para tu negocio', 'Guías nuevas cada mes', 'Acceso a la comunidad incluido'].map(item => (
-                <li key={item}><span className="ia-check">✓</span> {item}</li>
-              ))}
-            </ul>
-            <LeadForm />
-          </div>
-
-          <div className="ia-trust">
-            <span>Acceso inmediato</span><span>·</span><span>100% gratis</span><span>·</span><span>En español</span>
+          {/* RIGHT — form */}
+          <div>
+            <div style={{ background: 'white', borderRadius: 24, padding: '28px 24px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}>
+              <span className="ia-badge-lbl">GRATIS · GUÍAS</span>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, lineHeight: 1.2, marginBottom: 16 }}>
+                Recibe las guías <span className="ia-sp">por correo</span>
+              </h2>
+              <ul className="ia-cl">
+                {['Tutoriales paso a paso para usar IA en tu día a día','Plantillas y casos reales para tu negocio','Guías nuevas cada mes','Acceso a la comunidad incluido'].map(item => (
+                  <li key={item}><span className="ia-ck">✓</span>{item}</li>
+                ))}
+              </ul>
+              <LeadForm />
+            </div>
+            <div className="ia-trust">
+              <span>Acceso inmediato</span><span>·</span><span>100% gratis</span><span>·</span><span>En español</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section style={{ padding: '28px 0', background: '#FDFAE6' }}>
+      {/* STATS */}
+      <section className="ia-sec" style={{ paddingTop: 28, paddingBottom: 28 }}>
         <div className="ia-wrap">
           <div className="ia-stats">
-            <div className="ia-stat full">
-              <div className="ia-stat-n"><span>+</span>10K</div>
-              <div className="ia-stat-l">seguidores en 3 semanas</div>
-            </div>
-            <div className="ia-stat">
-              <div className="ia-stat-n"><span>+</span>500</div>
-              <div className="ia-stat-l">personas ya aprendieron</div>
-            </div>
-            <div className="ia-stat">
-              <div className="ia-stat-n"><span>+</span>86</div>
-              <div className="ia-stat-l">negocios usan IA</div>
-            </div>
+            <div className="ia-stat full"><div className="ia-stat-n"><span>+</span>10K</div><div className="ia-stat-l">seguidores en 3 semanas</div></div>
+            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>500</div><div className="ia-stat-l">personas ya aprendieron</div></div>
+            <div className="ia-stat"><div className="ia-stat-n"><span>+</span>86</div><div className="ia-stat-l">negocios usan IA</div></div>
           </div>
         </div>
       </section>
 
-      {/* ── ABOUT ── */}
-      <section className="ia-section" style={{ background: '#FDFAE6' }}>
+      {/* ABOUT */}
+      <section className="ia-sec">
         <div className="ia-wrap">
-          <div className="ia-photo-wrap">
-            {/* Reemplaza con: <img src="/tu-foto.jpg" alt="Ana" /> */}
-            <div className="ia-photo-placeholder">👩‍💻</div>
-            <div className="ia-badge ia-badge-tl">+10K 👀</div>
-            <div className="ia-badge ia-badge-tr">✨</div>
-            <div className="ia-badge ia-badge-bl">en español 🇪🇸</div>
+          <div className="ia-photo">
+            <div className="ia-photo-ph">👩‍💻</div>
+            <div className="ia-b" style={{ top: 16, left: 16 }}>+10K 👀</div>
+            <div className="ia-b" style={{ top: 16, right: 16, width: 42, height: 42, borderRadius: '50%', padding: 0, justifyContent: 'center' }}>✨</div>
+            <div className="ia-b" style={{ bottom: 16, left: 16 }}>en español 🇪🇸</div>
           </div>
-
           <div style={{ marginTop: 32 }}>
             <div className="ia-pill" style={{ marginBottom: 12 }}>sobre mí</div>
-            <h2 className="ia-h2">Hola, soy <span className="ia-serif-purple">Ana</span> .</h2>
-            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8 }}>
-              Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.
-            </p>
-            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>
-              En solo <strong style={{ color: '#1a1a1a' }}>3 semanas</strong> pasamos de 0 a más de 10.000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.
-            </p>
+            <h2 className="ia-h2">Hola, soy <span className="ia-sp">Ana</span> .</h2>
+            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8 }}>Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.</p>
+            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>En solo <strong style={{ color: '#1a1a1a' }}>3 semanas</strong> pasamos de 0 a más de 10.000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.</p>
           </div>
         </div>
       </section>
 
-      {/* ── CURRICULUM ── */}
-      <section className="ia-section" style={{ background: '#FDFAE6' }}>
+      {/* CURRICULUM */}
+      <section className="ia-sec">
         <div className="ia-wrap">
           <div className="ia-pill" style={{ marginBottom: 12 }}>lo que vas a aprender</div>
-          <h2 className="ia-h2">
-            De <em style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>prompts</em><br />
-            a tu <span className="ia-serif-purple">IA empleada</span> .
-          </h2>
-          <p style={{ color: '#666', fontSize: 15, lineHeight: 1.7, marginBottom: 28 }}>
-            Empezamos por lo fundamental y subimos hasta agentes, automatizaciones e integraciones avanzadas. Tú avanzas a tu ritmo.
-          </p>
-
-          {features.map(f => (
-            <div key={f.title} className="ia-feature">
-              {f.pro && <span className="ia-f-pro">PRO</span>}
-              <div className="ia-f-icon" style={{ background: f.bg }}>{f.icon}</div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-            </div>
-          ))}
+          <h2 className="ia-h2">De <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic' }}>prompts</em> a tu <span className="ia-sp">IA empleada</span> .</h2>
+          <p style={{ color: '#666', fontSize: 15, lineHeight: 1.7, marginBottom: 28 }}>Empezamos por lo fundamental y subimos hasta agentes, automatizaciones e integraciones avanzadas. Tú avanzas a tu ritmo.</p>
+          <div className="ia-feats-grid">
+            {features.map(f => (
+              <div key={f.title} className="ia-feat">
+                {f.pro && <span className="ia-fpro">PRO</span>}
+                <div className="ia-fi" style={{ background: f.bg }}>{f.icon}</div>
+                <h3>{f.title}</h3><p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="ia-section" style={{ background: '#FDFAE6' }}>
+      {/* TESTIMONIALS */}
+      <section className="ia-sec">
         <div className="ia-wrap">
           <div className="ia-pill" style={{ marginBottom: 12 }}>la comunidad</div>
-          <h2 className="ia-h2">Gente real,<br /><span className="ia-serif-purple">resultados reales</span> .</h2>
-
-          <div style={{ marginTop: 24 }}>
+          <h2 className="ia-h2">Gente real, <span className="ia-sp">resultados reales</span> .</h2>
+          <div className="ia-t-grid" style={{ marginTop: 24 }}>
             {testimonials.map(t => (
-              <div key={t.name} className={`ia-t-card ${t.color}`}>
-                <div className="ia-t-quote">&ldquo;</div>
-                <p className="ia-t-text">{t.text}</p>
-                <div className="ia-t-name">{t.name}</div>
-                <div className="ia-t-role">{t.role}</div>
+              <div key={t.name} className={`ia-t ${t.color}`}>
+                <div className="ia-tq">&ldquo;</div>
+                <p className="ia-tt">{t.text}</p>
+                <div className="ia-tn">{t.name}</div>
+                <div className="ia-tr">{t.role}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section className="ia-section" style={{ background: '#FDFAE6' }}>
+      {/* FAQ */}
+      <section className="ia-sec">
         <div className="ia-wrap">
           <div className="ia-pill" style={{ marginBottom: 12 }}>preguntas</div>
-          <h2 className="ia-h2">Lo que <span className="ia-serif-purple">todos<br />preguntan</span> .</h2>
-
-          <div style={{ marginTop: 24 }}>
+          <h2 className="ia-h2">Lo que <span className="ia-sp">todos preguntan</span> .</h2>
+          <div className="ia-faq-cols" style={{ marginTop: 24 }}>
             {faqs.map((faq, i) => (
-              <div key={i} className="ia-faq-item">
+              <div key={i} className="ia-faq">
                 <button className="ia-faq-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                  {faq.q}
-                  <span className={`ia-faq-icon ${openFaq === i ? 'open' : ''}`}>+</span>
+                  {faq.q}<span className={`ia-faq-icon ${openFaq === i ? 'open' : ''}`}>+</span>
                 </button>
-                {openFaq === i && <div className="ia-faq-answer">{faq.a}</div>}
+                {openFaq === i && <div className="ia-faq-ans">{faq.a}</div>}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <div className="ia-cta">
-        <div style={{ maxWidth: 420, margin: '0 auto' }}>
-          <h2>La IA no espera.<br /><span className="ia-cta-sub">Tú tampoco.</span></h2>
-          <p>Recibe gratis las guías. Y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
-          <div className="ia-cta-form">
-            <LeadForm dark />
-          </div>
-        </div>
+        <h2>La IA no espera.<br /><em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', color: 'rgba(255,255,255,.75)' }}>Tú tampoco.</em></h2>
+        <p>Recibe gratis las guías. Y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
+        <div className="ia-cta-form"><LeadForm dark /></div>
       </div>
 
-      {/* ── FOOTER ── */}
-      <footer className="ia-footer">
+      {/* FOOTER */}
+      <footer className="ia-foot">
         <div className="brand">Ana IA</div>
         <p>© 2026 · hecho con cariño en español</p>
-        <p style={{ marginTop: 6 }}>
-          <a href="#">Instagram</a> · <a href="#">hola@anaai.com</a>
-        </p>
+        <p style={{ marginTop: 6 }}><a href="#">Instagram</a> · <a href="#">hola@anaai.com</a></p>
       </footer>
     </>
   )
