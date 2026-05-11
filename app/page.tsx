@@ -283,7 +283,7 @@ export default function Home() {
             <div className="ia-pill" style={{ marginBottom: 12 }}>sobre mí</div>
             <h2 className="ia-h2">Hola, soy <span className="ia-sp">Nico</span> .</h2>
             <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8 }}>Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.</p>
-            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>En solo <strong style={{ color: '#1a1a1a' }}>2 años</strong> pasamos de 0 a más de 10.0000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.</p>
+            <p style={{ color: '#666', fontSize: 15, lineHeight: 1.8, marginTop: 12 }}>En solo <strong style={{ color: '#1a1a1a' }}>2 años</strong> pasamos de 0 a más de 100.000 personas aprendiendo IA en español. Esto no es por mí. Es porque la IA está cambiando todo y tú necesitas estar al frente.</p>
           </div>
         </div>
       </section>
