@@ -272,7 +272,8 @@ export default function Home() {
       <section className="ia-sec">
         <div className="ia-wrap">
           <div className="ia-photo">
-            <div className="ia-photo-ph">👩‍💻</div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Nicoia.png" alt="Ana" />
             <div className="ia-b" style={{ top: 16, left: 16 }}>+10K 👀</div>
             <div className="ia-b" style={{ top: 16, right: 16, width: 42, height: 42, borderRadius: '50%', padding: 0, justifyContent: 'center' }}>✨</div>
             <div className="ia-b" style={{ bottom: 16, left: 16 }}>en español 🇪🇸</div>
