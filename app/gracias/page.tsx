@@ -1,12 +1,35 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ArrowRight } from 'lucide-react'
 import FbLead from '@/app/components/FbLead'
 
 declare global {
   interface Window { fbq?: (...args: unknown[]) => void }
 }
+
+const steps = [
+  {
+    num: '01',
+    emoji: '📬',
+    title: 'Revisa tu correo',
+    desc: 'Te acabamos de mandar la primera guía. Si no la ves, revisa la carpeta de spam y márcanos como remitente seguro.',
+    action: null,
+  },
+  {
+    num: '02',
+    emoji: '💬',
+    title: 'Únete al grupo de WhatsApp',
+    desc: 'Ahí compartimos recursos, novedades y respondemos dudas en tiempo real. Es gratis y puedes salir cuando quieras.',
+    action: { label: 'Unirme al grupo →', href: 'https://chat.whatsapp.com/F55Or9hAnPoF2FfjrcYNnE?mode=gi_t' },
+  },
+  {
+    num: '03',
+    emoji: '❤️',
+    title: 'Reacciona a los últimos 3 posts de Nico IA',
+    desc: 'Ayúdanos a llegar a más personas. Entra a nuestro perfil, dale like a los últimos 3 posts y activa las notificaciones.',
+    action: null,
+  },
+]
 
 export default function GraciasPage() {
   useEffect(() => {
@@ -20,51 +43,63 @@ export default function GraciasPage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center px-6 text-center">
+    <>
       <FbLead />
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif;background:#FDFAE6;color:#1a1a1a;min-height:100vh}
+        .gr-wrap{max-width:540px;margin:0 auto;padding:60px 20px}
+        .gr-badge{display:inline-block;background:#ede8f8;color:#7C5CBF;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:20px}
+        .gr-h1{font-size:2.6rem;font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:14px}
+        .gr-sp{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#7C5CBF}
+        .gr-sub{font-size:16px;color:#666;line-height:1.7;margin-bottom:40px}
+        .gr-steps{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+        .gr-step{background:white;border-radius:20px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.05);display:flex;gap:18px;align-items:flex-start}
+        .gr-num{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;font-weight:900;color:#ede8f8;line-height:1;flex-shrink:0;width:40px}
+        .gr-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:2px}
+        .gr-step-body h3{font-size:15px;font-weight:800;margin-bottom:6px}
+        .gr-step-body p{font-size:13px;color:#777;line-height:1.6}
+        .gr-btn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s}
+        .gr-btn:hover{opacity:.85}
+        .gr-back{display:inline-flex;align-items:center;gap:6px;color:#aaa;font-size:13px;text-decoration:none;transition:color .2s}
+        .gr-back:hover{color:#7C5CBF}
+        @media(min-width:600px){.gr-h1{font-size:3.2rem}}
+      `}</style>
 
-      <div className="max-w-xl">
-        <p className="text-[10px] text-orange-500 font-bold uppercase tracking-widest mb-6">
-          Registro exitoso
-        </p>
+      <div className="gr-wrap">
+        <span className="gr-badge">¡Ya estás dentro!</span>
 
-        <h1 className="text-5xl md:text-6xl font-black uppercase leading-[0.92] tracking-tighter mb-6">
-          Gracias por{' '}
-          <span className="font-serif italic text-orange-500 font-normal">registrarte.</span>
+        <h1 className="gr-h1">
+          Bienvenido a<br /><span className="gr-sp">Nico IA.</span>
         </h1>
 
-        <p className="text-gray-400 text-lg leading-relaxed mb-10">
-          Nos pondremos en contacto contigo en <strong className="text-white">menos de 24 horas</strong> para
-          agendar tu consultoría gratuita y hablar de tu proyecto.
+        <p className="gr-sub">
+          Completa estos 3 pasos para aprovechar todo al máximo desde el primer día.
         </p>
 
-        <div className="bg-[#111] border border-white/10 p-6 mb-10 text-left space-y-3">
-          <p className="text-[10px] font-bold uppercase tracking-widest border-l-2 border-orange-600 pl-4">
-            ¿Qué sigue?
-          </p>
-          <ul className="space-y-2 mt-4">
-            {[
-              'Revisamos tu solicitud y tus respuestas.',
-              'Te contactamos por correo o WhatsApp.',
-              'Agendamos una llamada de 30 minutos.',
-              'Te damos un presupuesto exacto sin compromisos.',
-            ].map((step, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-gray-400">
-                <span className="text-orange-500 font-black shrink-0">{i + 1}.</span>
-                {step}
-              </li>
-            ))}
-          </ul>
+        <div className="gr-steps">
+          {steps.map((s) => (
+            <div key={s.num} className="gr-step">
+              <span className="gr-num">{s.num}</span>
+              <div>
+                <span className="gr-icon">{s.emoji}</span>
+                <div className="gr-step-body">
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                  {s.action && (
+                    <a className="gr-btn" href={s.action.href} target="_blank" rel="noopener noreferrer">
+                      {s.action.label}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 font-bold text-sm transition-colors active:scale-95"
-        >
-          Volver al inicio <ArrowRight size={16} />
-        </a>
+        <a className="gr-back" href="/">← Volver al inicio</a>
       </div>
-
-    </main>
+    </>
   )
 }
