@@ -58,7 +58,7 @@ export async function POST(request: Request) {
   await sendCapiLead(email, phone)
 
   await resend.emails.send({
-    from: 'Nico IA <onboarding@resend.dev>',
+    from: 'Nico IA <hola@cobrestudio.net>',
     to: email,
     subject: '¡Bienvenido a Nico IA! Tu primera guía está lista 🎉',
     html: `
