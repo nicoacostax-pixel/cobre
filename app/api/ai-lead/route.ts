@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   await resend.emails.send({
     from: 'Nico IA <hola@cobrestudio.net>',
     to: email,
-    subject: '¡Bienvenido a Nico IA! Tu primera guía está lista 🎉',
+    subject: 'Tus guías de IA en español — aquí están',
     html: `
 <!DOCTYPE html>
 <html lang="es">

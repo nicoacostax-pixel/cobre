@@ -37,19 +37,24 @@ const guideCards = [
 function LeadForm({ dark = false }: { dark?: boolean }) {
   const [name, setName]   = useState('')
   const [email, setEmail] = useState('')
-  const [sent, setSent]   = useState(false)
+  const [loading, setLoading] = useState(false)
   const [err, setErr]     = useState('')
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setErr('')
+    setLoading(true)
     const res = await fetch('/api/ai-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, phone: '', answers: [] }),
     })
-    if (res.ok) setSent(true)
-    else setErr('Hubo un error. Intenta de nuevo.')
+    if (res.ok) {
+      window.location.href = '/gracias'
+    } else {
+      setLoading(false)
+      setErr('Hubo un error. Intenta de nuevo.')
+    }
   }
 
   const inp: React.CSSProperties = {
@@ -59,20 +64,14 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
     outline: 'none', background: dark ? '#f5f5f5' : '#fafafa', color: '#1a1a1a',
   }
 
-  if (sent) return (
-    <p style={{ textAlign: 'center', color: '#574088', fontWeight: 700, padding: '24px 0' }}>
-      ✅ ¡Listo! Revisa tu correo pronto.
-    </p>
-  )
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="ia-form-row">
         <input style={inp} type="text"  placeholder="Tu nombre"    value={name}  onChange={e => setName(e.target.value)}  required />
         <input style={inp} type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
       </div>
-      <button type="submit" style={{ width: '100%', marginTop: 10, padding: 15, background: 'linear-gradient(135deg,#7C5CBF,#574088)', color: 'white', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: 'Inter,sans-serif', cursor: 'pointer' }}>
-        Recibir las guías gratis
+      <button type="submit" disabled={loading} style={{ width: '100%', marginTop: 10, padding: 15, background: 'linear-gradient(135deg,#7C5CBF,#574088)', color: 'white', border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: 'Inter,sans-serif', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}>
+        {loading ? 'Enviando…' : 'Recibir las guías gratis'}
       </button>
       {err && <p style={{ color: 'red', fontSize: 13, marginTop: 8 }}>{err}</p>}
       <p style={{ fontSize: 12, color: '#aaa', textAlign: 'center', marginTop: 10 }}>
