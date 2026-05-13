@@ -147,14 +147,14 @@ export default function Home() {
         .lp-stat-div{width:1px;height:40px;background:#eee;display:none}
 
         /* ── ABOUT ── */
-        .lp-about{padding:72px 0;background:#FDFAE6}
-        .lp-about-grid{display:flex;flex-direction:column;gap:40px;align-items:center}
+        .lp-about{padding:80px 0 96px;background:#FDFAE6}
+        .lp-about-grid{display:flex;flex-direction:column;gap:48px;align-items:center;padding:0 24px}
         .lp-photo-wrap{position:relative;width:100%;max-width:340px;margin:0 auto}
         .lp-photo-wrap img{width:100%;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 16px 48px rgba(124,92,191,.3))}
         .lp-float-badge{position:absolute;background:white;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.1);white-space:nowrap}
-        .lp-about-text{}
-        .lp-about-text p{font-size:15px;color:#555;line-height:1.85}
-        .lp-about-text p+p{margin-top:14px}
+        .lp-about-text{padding:8px 0}
+        .lp-about-text p{font-size:15px;color:#555;line-height:1.9}
+        .lp-about-text p+p{margin-top:18px}
 
         /* ── SECTION SHARED ── */
         .lp-section{padding:72px 0;background:#FDFAE6}
