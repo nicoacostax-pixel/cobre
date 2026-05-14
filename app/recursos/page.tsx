@@ -92,7 +92,7 @@ export default function RecursosPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Poppins:wght@700;800;900&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body{font-family:'Inter',sans-serif;background:#FDFAE6;color:#1a1a1a;min-height:100vh;-webkit-font-smoothing:antialiased}
 
@@ -106,7 +106,7 @@ export default function RecursosPage() {
         .rc-hero{padding:56px 24px 48px;text-align:center;max-width:640px;margin:0 auto}
         .rc-pill{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid #e8e0f8;border-radius:999px;padding:6px 16px;font-size:11px;font-weight:700;color:#7C5CBF;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
         .rc-dot{width:7px;height:7px;border-radius:50%;background:#7C5CBF}
-        .rc-h1{font-size:3rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;font-family:'Playfair Display',serif;font-style:italic}
+        .rc-h1{font-size:3rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;font-family:'Poppins',sans-serif}
         .rc-sp{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#7C5CBF}
         .rc-sub{font-size:15px;color:#888;line-height:1.75}
 
@@ -122,7 +122,7 @@ export default function RecursosPage() {
         .rc-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .rc-num{font-size:11px;font-weight:700;letter-spacing:.1em;color:#ccc;text-transform:uppercase}
         .rc-cat{border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:.04em}
-        .rc-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.35rem;font-weight:700;line-height:1.25;color:#7C5CBF;margin:10px 0 8px}
+        .rc-title{font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:700;line-height:1.25;color:#7C5CBF;margin:10px 0 8px}
         .rc-card.soon .rc-title{color:#bbb}
         .rc-desc{font-size:13px;color:#777;line-height:1.65;flex:1}
         .rc-card-bot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:14px;border-top:1px solid #f5f0ff}
