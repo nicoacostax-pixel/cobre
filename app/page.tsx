@@ -152,11 +152,11 @@ export default function Home() {
         .lp-trust{display:flex;justify-content:center;gap:10px;font-size:12px;color:#aaa;margin-top:14px;flex-wrap:wrap}
 
         /* guide card stack */
-        .lp-stack{position:relative;height:380px}
-        .lp-gc{position:absolute;width:175px;border-radius:20px;padding:18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;justify-content:space-between}
-        .lp-gc:nth-child(1){height:240px;top:70px;left:0;transform:rotate(-11deg);z-index:1}
-        .lp-gc:nth-child(2){height:260px;top:40px;left:68px;transform:rotate(-3deg);z-index:2}
-        .lp-gc:nth-child(3){height:250px;top:24px;left:144px;transform:rotate(6deg);z-index:3}
+        .lp-stack{position:relative;height:340px;width:340px;margin:0 auto}
+        .lp-gc{position:absolute;width:165px;border-radius:20px;padding:18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;justify-content:space-between}
+        .lp-gc:nth-child(1){height:230px;top:60px;left:0;transform:rotate(-10deg);z-index:1}
+        .lp-gc:nth-child(2){height:250px;top:30px;left:88px;transform:rotate(-2deg);z-index:2}
+        .lp-gc:nth-child(3){height:240px;top:16px;left:172px;transform:rotate(7deg);z-index:3}
         .lp-gc-brand{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;font-weight:700}
         .lp-gc-num{font-size:10px;font-weight:600;opacity:.6}
         .lp-gc-lvl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
@@ -167,10 +167,10 @@ export default function Home() {
 
         /* ── STATS ── */
         .lp-stats{padding:28px 20px;background:white;border-top:1px solid #f0ecff;border-bottom:1px solid #f0ecff}
-        .lp-stats-grid{display:flex;flex-direction:column;gap:2px;max-width:840px;margin:0 auto}
-        .lp-stat-card{background:#FDFAE6;border-radius:20px;padding:24px 20px;text-align:center;flex:1}
-        .lp-stat-n{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;color:#7C5CBF;line-height:1}
-        .lp-stat-l{font-size:13px;color:#999;margin-top:6px;font-weight:500}
+        .lp-stats-grid{display:flex;flex-direction:column;gap:10px;max-width:840px;margin:0 auto}
+        .lp-stat-card{background:linear-gradient(135deg,#7C5CBF,#574088);border-radius:20px;padding:28px 20px;text-align:center;flex:1}
+        .lp-stat-n{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;color:#FDFAE6;line-height:1}
+        .lp-stat-l{font-size:13px;color:rgba(253,250,230,.65);margin-top:6px;font-weight:500}
 
         /* ── ABOUT ── */
         .lp-about{padding:88px 36px;background:#FDFAE6;position:relative;overflow:hidden}
