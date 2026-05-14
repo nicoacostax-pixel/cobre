@@ -2,6 +2,42 @@
 
 import { useState, useEffect, useRef } from 'react'
 
+function ParallaxBlobs() {
+  const b1 = useRef<HTMLDivElement>(null)
+  const b2 = useRef<HTMLDivElement>(null)
+  const b3 = useRef<HTMLDivElement>(null)
+  const b4 = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let raf = 0
+    const onScroll = () => {
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY
+        if (b1.current) b1.current.style.transform = `translate3d(0, ${y * 0.18}px, 0)`
+        if (b2.current) b2.current.style.transform = `translate3d(0, ${y * -0.12}px, 0)`
+        if (b3.current) b3.current.style.transform = `translate3d(0, ${y * 0.25}px, 0)`
+        if (b4.current) b4.current.style.transform = `translate3d(0, ${y * -0.08}px, 0)`
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf) }
+  }, [])
+
+  const blob: React.CSSProperties = {
+    position: 'fixed', borderRadius: '50%', pointerEvents: 'none',
+    filter: 'blur(80px)', willChange: 'transform', zIndex: 0,
+  }
+
+  return (
+    <>
+      <div ref={b1} style={{ ...blob, width: 600, height: 600, top: -100, right: -150, background: 'radial-gradient(circle, rgba(124,92,191,0.13) 0%, transparent 70%)' }} />
+      <div ref={b2} style={{ ...blob, width: 500, height: 500, top: 400, left: -150, background: 'radial-gradient(circle, rgba(124,92,191,0.09) 0%, transparent 70%)' }} />
+      <div ref={b3} style={{ ...blob, width: 400, height: 400, top: 900, right: -80, background: 'radial-gradient(circle, rgba(200,180,255,0.12) 0%, transparent 70%)' }} />
+      <div ref={b4} style={{ ...blob, width: 450, height: 450, top: 1500, left: -100, background: 'radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 70%)' }} />
+    </>
+  )
+}
+
 const faqs = [
   { q: '¿Qué son las guías gratis?', a: 'Tutoriales paso a paso para usar IA en tu día a día y en tu negocio. Te llegan por correo, son 100% gratis y están en español. Subimos guías nuevas cada mes.' },
   { q: '¿Y la comunidad? ¿Qué incluye?', a: 'La comunidad es donde te llevamos más allá de las guías: tutoriales nuevos cada semana, plantillas listas para copiar, skills personalizadas, automatizaciones reales (clientes, ventas, contenido), y soporte directo.' },
@@ -133,7 +169,7 @@ export default function Home() {
         @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
         /* ── HERO ── */
-        .lp-hero{background:#FDFAE6;padding:52px 20px 64px;position:relative;overflow:hidden;text-align:center}
+        .lp-hero{background:transparent;padding:52px 20px 64px;position:relative;overflow:hidden;text-align:center;z-index:1}
         .lp-hero::before{content:'';position:absolute;top:-160px;right:-160px;width:600px;height:600px;background:radial-gradient(circle,rgba(124,92,191,.1) 0%,transparent 65%);pointer-events:none}
         .lp-hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,92,191,.07) 0%,transparent 65%);pointer-events:none}
         .lp-notif{display:inline-flex;align-items:center;gap:8px;background:white;border:1.5px solid #e8e0f8;border-radius:999px;padding:8px 20px;font-size:13px;color:#555;margin-bottom:28px;box-shadow:0 2px 16px rgba(124,92,191,.1);animation:fadeUp .7s ease both}
@@ -166,14 +202,14 @@ export default function Home() {
         .lp-gc-date{font-size:9px;font-weight:600;opacity:.5;letter-spacing:.04em}
 
         /* ── STATS ── */
-        .lp-stats{padding:28px 20px;background:white;border-top:1px solid #f0ecff;border-bottom:1px solid #f0ecff}
+        .lp-stats{padding:28px 20px;background:white;border-top:1px solid #f0ecff;border-bottom:1px solid #f0ecff;position:relative;z-index:1}
         .lp-stats-grid{display:flex;flex-direction:column;gap:10px;max-width:840px;margin:0 auto}
         .lp-stat-card{background:linear-gradient(135deg,#7C5CBF,#574088);border-radius:20px;padding:28px 20px;text-align:center;flex:1}
         .lp-stat-n{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;color:#FDFAE6;line-height:1}
         .lp-stat-l{font-size:13px;color:rgba(253,250,230,.65);margin-top:6px;font-weight:500}
 
         /* ── ABOUT ── */
-        .lp-about{padding:88px 36px;background:#FDFAE6;position:relative;overflow:hidden}
+        .lp-about{padding:88px 36px;background:transparent;position:relative;overflow:hidden;z-index:1}
         .lp-about::before{content:'';position:absolute;top:-80px;left:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(124,92,191,.07) 0%,transparent 70%);pointer-events:none}
         .lp-about-grid{display:flex;flex-direction:column;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
         .lp-photo-wrap{position:relative;width:100%;max-width:340px}
@@ -183,7 +219,7 @@ export default function Home() {
         .lp-about-text p+p{margin-top:16px}
 
         /* ── FEATURES ── */
-        .lp-feats-sec{padding:88px 20px;background:white}
+        .lp-feats-sec{padding:88px 20px;background:white;position:relative;z-index:1}
         .lp-feats-grid{}
         .lp-feat{background:#FDFAE6;border-radius:20px;padding:24px;margin-bottom:10px;position:relative;border:1px solid #f0ecff;transition:box-shadow .25s,transform .25s}
         .lp-feat:hover{box-shadow:0 10px 36px rgba(124,92,191,.13);transform:translateY(-3px)}
@@ -193,7 +229,7 @@ export default function Home() {
         .lp-feat p{font-size:13px;color:#888;line-height:1.65}
 
         /* ── TESTIMONIALS ── */
-        .lp-test-sec{padding:88px 20px;background:#FDFAE6}
+        .lp-test-sec{padding:88px 20px;background:transparent;position:relative;z-index:1}
         .lp-test{border-radius:24px;padding:26px;margin-bottom:10px;border:1px solid rgba(0,0,0,.04)}
         .lp-test-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
         .lp-test-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#7C5CBF;background:white;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
@@ -204,7 +240,7 @@ export default function Home() {
         .lp-test-txt{font-size:14px;color:#444;line-height:1.7}
 
         /* ── FAQ ── */
-        .lp-faq-sec{padding:88px 20px;background:white}
+        .lp-faq-sec{padding:88px 20px;background:white;position:relative;z-index:1}
         .lp-faq{background:#FDFAE6;border-radius:16px;margin-bottom:8px;overflow:hidden;border:1px solid #f0ecff}
         .lp-faq-btn{width:100%;background:none;border:none;padding:18px 22px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;color:#1a1a1a;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.4}
         .lp-faq-icon{width:24px;height:24px;border-radius:50%;background:white;border:1.5px solid #e8e0f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:#7C5CBF;transition:transform .25s,background .2s,border-color .2s;font-weight:700}
@@ -212,7 +248,7 @@ export default function Home() {
         .lp-faq-ans{font-size:14px;color:#666;line-height:1.75;padding:0 22px 18px}
 
         /* ── CTA ── */
-        .lp-cta{background:linear-gradient(145deg,#7C5CBF 0%,#574088 100%);padding:88px 20px;text-align:center;position:relative;overflow:hidden}
+        .lp-cta{background:linear-gradient(145deg,#7C5CBF 0%,#574088 100%);padding:88px 20px;text-align:center;position:relative;overflow:hidden;z-index:1}
         .lp-cta::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 65%);pointer-events:none}
         .lp-cta::after{content:'';position:absolute;bottom:-80px;left:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 65%);pointer-events:none}
         .lp-cta h2{font-size:2.6rem;font-weight:900;line-height:1.1;color:white;margin-bottom:12px}
@@ -220,7 +256,7 @@ export default function Home() {
         .lp-cta-card{background:white;border-radius:24px;padding:28px;text-align:left;max-width:520px;margin:0 auto;box-shadow:0 24px 64px rgba(0,0,0,.2)}
 
         /* ── FOOTER ── */
-        .lp-foot{background:#FDFAE6;border-top:1px solid #eee;padding:40px 24px;text-align:center}
+        .lp-foot{background:#FDFAE6;border-top:1px solid #eee;padding:40px 24px;text-align:center;position:relative;z-index:1}
         .lp-foot-brand{font-weight:900;font-size:20px;color:#574088;margin-bottom:6px;font-family:'Playfair Display',serif;font-style:italic}
         .lp-foot p{font-size:13px;color:#bbb;margin-top:4px}
         .lp-foot a{color:#7C5CBF;text-decoration:none}
@@ -256,6 +292,8 @@ export default function Home() {
           .lp-wrap{max-width:720px}
         }
       `}</style>
+
+      <ParallaxBlobs />
 
       {/* ── HERO ── */}
       <section className="lp-hero">
