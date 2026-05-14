@@ -12,7 +12,7 @@ const guides = [
     title: 'Tu primer prompt con Claude',
     desc: 'Modelo, instrucciones, tono y formato. El setup que hace que Claude entienda exactamente lo que necesitas desde el primer mensaje.',
     meta: '· 6 min · ideal para empezar',
-    href: null,
+    href: '/recursos/01',
   },
   {
     num: '02',
