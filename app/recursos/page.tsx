@@ -104,7 +104,7 @@ export default function RecursosPage() {
 
         /* nav */
         .rc-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(124,92,191,.1);background:#FDFAE6}
-        .rc-logo{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;font-size:18px;color:#574088;text-decoration:none}
+        .rc-logo{font-family:'Poppins',sans-serif;font-style:normal;font-weight:900;font-size:18px;color:#574088;text-decoration:none}
         .rc-nav-back{display:flex;align-items:center;gap:6px;font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s}
         .rc-nav-back:hover{color:#7C5CBF}
 

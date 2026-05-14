@@ -22,13 +22,13 @@ export default function GraciasPage() {
     <>
       <FbLead />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Poppins:wght@700;800;900&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body{font-family:'Inter',sans-serif;background:#FDFAE6;color:#1a1a1a;min-height:100vh;-webkit-font-smoothing:antialiased}
 
         /* nav */
         .gr-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(124,92,191,.1);background:#FDFAE6}
-        .gr-logo{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;font-size:18px;color:#574088;text-decoration:none}
+        .gr-logo{font-family:'Poppins',sans-serif;font-style:normal;font-weight:900;font-size:18px;color:#574088;text-decoration:none}
         .gr-nav-back{display:flex;align-items:center;gap:6px;font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s}
         .gr-nav-back:hover{color:#7C5CBF}
 
