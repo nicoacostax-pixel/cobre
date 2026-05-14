@@ -21,6 +21,7 @@ const guides = [
     desc: 'Pack de 7 días para montar un agente que gestiona correos, califica leads y agenda reuniones. Plantillas listas para copiar.',
     meta: '· 7 días · setup completo',
     href: null,
+    soon: true,
   },
   {
     num: '03',
@@ -29,6 +30,7 @@ const guides = [
     desc: 'Una skill de Claude lista para usar. Hook, setup, contenido, cierre y CTA. 6 tipos de carrusel adaptables a cualquier nicho.',
     meta: '· skill · descarga directa',
     href: null,
+    soon: true,
   },
   {
     num: '04',
@@ -37,6 +39,7 @@ const guides = [
     desc: '1 prompt + 1 template + 3 reglas. Lo que uso antes de escribir cualquier instrucción. El filtro que te ahorra empezar de cero.',
     meta: '· 1 prompt · 1 template · 3 reglas',
     href: null,
+    soon: true,
   },
   {
     num: '05',
@@ -45,6 +48,7 @@ const guides = [
     desc: 'Construye un asistente entrenado con tus documentos, tu marca y tus procesos. Sin código. Sin plataformas de pago extra.',
     meta: '· 10 min de lectura',
     href: null,
+    soon: true,
   },
   {
     num: '06',
@@ -53,6 +57,7 @@ const guides = [
     desc: 'Sin After Effects, sin timeline, sin keyframes. Un sistema completo: ideas → guión → imagen → publicación automática.',
     meta: '· setup en 1 tarde · 0€ extra',
     href: null,
+    soon: true,
   },
   {
     num: '07',
@@ -61,6 +66,7 @@ const guides = [
     desc: 'Un agente que vigila 5-10 competidores y te avisa cuando publican algo viral. 15 min de setup con Claude + una herramienta gratuita.',
     meta: '· 5 pasos · 15 min · 0€ extra',
     href: null,
+    soon: true,
   },
   {
     num: '08',

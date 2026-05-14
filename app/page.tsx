@@ -148,8 +148,8 @@ export default function Home() {
         html{scroll-behavior:smooth}
         body{font-family:'Inter',sans-serif!important;background:#FDFAE6!important;color:#1a1a1a;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-        .lp-sp{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#7C5CBF}
-        .lp-sd{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#574088}
+        .lp-sp{font-family:'Poppins',sans-serif;font-style:normal;font-weight:800;color:#7C5CBF}
+        .lp-sd{font-family:'Poppins',sans-serif;font-style:normal;font-weight:800;color:#574088}
         .lp-wrap{max-width:600px;margin:0 auto;padding:0 24px}
         .lp-pill{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid #e8e0f8;border-radius:999px;padding:6px 16px;font-size:11px;font-weight:700;color:#7C5CBF;letter-spacing:.06em;text-transform:uppercase}
         .lp-h2{font-size:2.4rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin:14px 0 16px}
@@ -257,7 +257,7 @@ export default function Home() {
 
         /* ── FOOTER ── */
         .lp-foot{background:#FDFAE6;border-top:1px solid #eee;padding:40px 24px;text-align:center;position:relative;z-index:1}
-        .lp-foot-brand{font-weight:900;font-size:20px;color:#574088;margin-bottom:6px;font-family:'Playfair Display',serif;font-style:italic}
+        .lp-foot-brand{font-weight:900;font-size:20px;color:#574088;margin-bottom:6px;font-family:'Poppins',sans-serif}
         .lp-foot p{font-size:13px;color:#bbb;margin-top:4px}
         .lp-foot a{color:#7C5CBF;text-decoration:none}
 
@@ -400,7 +400,7 @@ export default function Home() {
         <div className="lp-wrap">
           <Reveal>
             <span className="lp-pill">lo que vas a aprender</span>
-            <h2 className="lp-h2">De <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic' }}>prompts</em> a tu <span className="lp-sp">IA empleada</span>.</h2>
+            <h2 className="lp-h2">De <span className="lp-sp">prompts</span> a tu <span className="lp-sp">IA empleada</span>.</h2>
             <p className="lp-sub">Empezamos por lo fundamental y subimos hasta agentes, automatizaciones e integraciones avanzadas. Tú avanzas a tu ritmo.</p>
           </Reveal>
           <div className="lp-feats-grid">
@@ -470,7 +470,7 @@ export default function Home() {
       {/* ── CTA ── */}
       <div className="lp-cta">
         <Reveal>
-          <h2>La IA no espera.<br /><em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', color: 'rgba(255,255,255,.55)' }}>Tú tampoco.</em></h2>
+          <h2>La IA no espera.<br /><span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, color: 'rgba(255,255,255,.55)' }}>Tú tampoco.</span></h2>
           <p className="lp-cta-sub">Recibe las guías y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
           <div className="lp-cta-card">
             <LeadForm dark />
