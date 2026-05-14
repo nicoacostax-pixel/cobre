@@ -219,9 +219,9 @@ export default function Home() {
         .lp-about-text p+p{margin-top:16px}
 
         /* ── FEATURES ── */
-        .lp-feats-sec{padding:88px 20px;background:white;position:relative;z-index:1}
+        .lp-feats-sec{padding:88px 20px;background:#FDFAE6;position:relative;z-index:1}
         .lp-feats-grid{}
-        .lp-feat{background:#FDFAE6;border-radius:20px;padding:24px;margin-bottom:10px;position:relative;border:1px solid #f0ecff;transition:box-shadow .25s,transform .25s}
+        .lp-feat{background:white;border-radius:20px;padding:24px;margin-bottom:10px;position:relative;border:1px solid #f0ecff;transition:box-shadow .25s,transform .25s}
         .lp-feat:hover{box-shadow:0 10px 36px rgba(124,92,191,.13);transform:translateY(-3px)}
         .lp-fi{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
         .lp-fpro{position:absolute;top:20px;right:20px;border:1.5px solid #7C5CBF;color:#7C5CBF;font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px}
@@ -240,8 +240,8 @@ export default function Home() {
         .lp-test-txt{font-size:14px;color:#444;line-height:1.7}
 
         /* ── FAQ ── */
-        .lp-faq-sec{padding:88px 20px;background:white;position:relative;z-index:1}
-        .lp-faq{background:#FDFAE6;border-radius:16px;margin-bottom:8px;overflow:hidden;border:1px solid #f0ecff}
+        .lp-faq-sec{padding:88px 20px;background:#FDFAE6;position:relative;z-index:1}
+        .lp-faq{background:white;border-radius:16px;margin-bottom:8px;overflow:hidden;border:1px solid #f0ecff}
         .lp-faq-btn{width:100%;background:none;border:none;padding:18px 22px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;color:#1a1a1a;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.4}
         .lp-faq-icon{width:24px;height:24px;border-radius:50%;background:white;border:1.5px solid #e8e0f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:#7C5CBF;transition:transform .25s,background .2s,border-color .2s;font-weight:700}
         .lp-faq-icon.open{transform:rotate(45deg);background:#7C5CBF;color:white;border-color:#7C5CBF}
