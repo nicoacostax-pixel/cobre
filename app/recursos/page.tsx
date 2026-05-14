@@ -106,7 +106,7 @@ export default function RecursosPage() {
         .rc-hero{padding:56px 24px 48px;text-align:center;max-width:640px;margin:0 auto}
         .rc-pill{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid #e8e0f8;border-radius:999px;padding:6px 16px;font-size:11px;font-weight:700;color:#7C5CBF;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
         .rc-dot{width:7px;height:7px;border-radius:50%;background:#7C5CBF}
-        .rc-h1{font-size:3rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px}
+        .rc-h1{font-size:3rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;font-family:'Playfair Display',serif;font-style:italic}
         .rc-sp{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#7C5CBF}
         .rc-sub{font-size:15px;color:#888;line-height:1.75}
 
@@ -138,7 +138,7 @@ export default function RecursosPage() {
 
       <div className="rc-hero">
         <span className="rc-pill"><span className="rc-dot" />biblioteca de nico</span>
-        <h1 className="rc-h1">Las <span className="rc-sp">guías</span> .</h1>
+        <h1 className="rc-h1">Las <span style={{ color: '#7C5CBF' }}>guías</span> .</h1>
         <p className="rc-sub">Tutoriales para dominar la IA en español, paso a paso.<br />Acceso libre para todos los suscriptores.</p>
       </div>
 
