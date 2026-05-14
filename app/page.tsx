@@ -173,7 +173,7 @@ export default function Home() {
         .lp-stat-l{font-size:13px;color:#999;margin-top:6px;font-weight:500}
 
         /* ── ABOUT ── */
-        .lp-about{padding:88px 20px;background:#FDFAE6;position:relative;overflow:hidden}
+        .lp-about{padding:88px 36px;background:#FDFAE6;position:relative;overflow:hidden}
         .lp-about::before{content:'';position:absolute;top:-80px;left:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(124,92,191,.07) 0%,transparent 70%);pointer-events:none}
         .lp-about-grid{display:flex;flex-direction:column;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
         .lp-photo-wrap{position:relative;width:100%;max-width:340px}
