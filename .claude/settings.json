@@ -3,7 +3,12 @@
     "allow": [
       "Bash(curl -s http://localhost:3000)",
       "Bash(npm cache *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(mkdir -p /Users/nicoacosta/estudiocobre/app/comunidad)",
+      "Bash(npx next *)"
+    ],
+    "additionalDirectories": [
+      "/Users/nicoacosta/estudiocobre/app"
     ]
   }
 }
