@@ -132,7 +132,7 @@ export default function ComunidadPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Inter',sans-serif;background:#f4f4f5;color:#1a1a1a;min-height:100vh;-webkit-font-smoothing:antialiased}
+        body{font-family:'Inter',sans-serif;background:#FDFAE6;color:#1a1a1a;min-height:100vh;-webkit-font-smoothing:antialiased}
 
         /* site nav */
         .cm-sitenav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:#FDFAE6;border-bottom:1px solid rgba(124,92,191,.1)}
@@ -141,35 +141,35 @@ export default function ComunidadPage() {
         .cm-siteback:hover{color:#7C5CBF}
 
         /* community header */
-        .cm-header{background:linear-gradient(135deg,#7C5CBF,#574088);padding:32px 24px 0}
+        .cm-header{background:#FDFAE6;border-bottom:1px solid rgba(124,92,191,.15);padding:28px 24px 0}
         .cm-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:0}
         .cm-header-left{display:flex;align-items:center;gap:16px}
-        .cm-community-icon{width:56px;height:56px;border-radius:14px;background:white;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#7C5CBF;font-family:'Poppins',sans-serif;flex-shrink:0}
-        .cm-community-name{font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:900;color:white;line-height:1.2}
-        .cm-community-sub{font-size:13px;color:#ddd4f8;margin-top:3px}
+        .cm-community-icon{width:56px;height:56px;border-radius:14px;background:#ede8f8;border:2px solid #d4c8f0;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#7C5CBF;font-family:'Poppins',sans-serif;flex-shrink:0}
+        .cm-community-name{font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:900;color:#574088;line-height:1.2}
+        .cm-community-sub{font-size:13px;color:#9a80c8;margin-top:3px}
         .cm-header-right{padding-bottom:12px}
-        .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:white;color:#574088;padding:11px 22px;border-radius:12px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(0,0,0,.15)}
-        .cm-join-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+        .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:11px 22px;border-radius:12px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(124,92,191,.3)}
+        .cm-join-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,92,191,.4)}
 
         /* tabs */
-        .cm-tabs{background:linear-gradient(135deg,#7C5CBF,#574088);border-bottom:none}
+        .cm-tabs{background:#FDFAE6;border-bottom:1px solid rgba(124,92,191,.15)}
         .cm-tabs-inner{max-width:960px;margin:0 auto;display:flex;gap:0;padding:0 24px;overflow-x:auto}
-        .cm-tab{padding:14px 18px;font-size:14px;font-weight:600;color:rgba(255,255,255,.65);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;user-select:none}
-        .cm-tab:hover{color:rgba(255,255,255,.9)}
-        .cm-tab.active{color:white;border-bottom-color:white;font-weight:800}
+        .cm-tab{padding:14px 18px;font-size:14px;font-weight:600;color:#aaa;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;user-select:none}
+        .cm-tab:hover{color:#7C5CBF}
+        .cm-tab.active{color:#574088;border-bottom-color:#7C5CBF;font-weight:800}
 
         /* layout */
         .cm-body{max-width:960px;margin:0 auto;padding:24px 16px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
         @media(max-width:700px){.cm-body{grid-template-columns:1fr}}
 
         /* write box */
-        .cm-write{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:box-shadow .2s}
+        .cm-write{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:box-shadow .2s}
         .cm-write:hover{box-shadow:0 2px 12px rgba(0,0,0,.07)}
         .cm-write-avatar{width:36px;height:36px;border-radius:50%;background:#7C5CBF;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
         .cm-write-placeholder{font-size:14px;color:#aaa;flex:1}
 
         /* onboarding banner */
-        .cm-onboard{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:13px;color:#555}
+        .cm-onboard{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:13px;color:#555}
         .cm-onboard-icon{font-size:16px}
         .cm-onboard strong{color:#1a1a1a}
         .cm-onboard-time{margin-left:auto;font-size:12px;color:#7C5CBF;font-weight:700}
@@ -182,16 +182,16 @@ export default function ComunidadPage() {
         .cm-cat:not(.active):hover{border-color:#7C5CBF;color:#7C5CBF}
 
         /* welcome widget */
-        .cm-welcome{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:18px;margin-bottom:14px}
+        .cm-welcome{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:18px;margin-bottom:14px}
         .cm-welcome-title{font-size:14px;font-weight:800;color:#1a1a1a;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-        .cm-welcome-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f4f4f5;cursor:pointer}
+        .cm-welcome-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #ede8f8;cursor:pointer}
         .cm-welcome-item:last-child{border-bottom:none}
         .cm-welcome-circle{width:20px;height:20px;border-radius:50%;border:2px solid #d4c8f0;flex-shrink:0}
         .cm-welcome-link{font-size:13px;color:#7C5CBF;font-weight:500;text-decoration:none}
         .cm-welcome-link:hover{text-decoration:underline}
 
         /* post card */
-        .cm-post{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:18px;margin-bottom:12px;transition:box-shadow .2s}
+        .cm-post{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:18px;margin-bottom:12px;transition:box-shadow .2s}
         .cm-post:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
         .cm-post.pinned{border-color:#e8e0f8}
         .cm-post-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
@@ -213,31 +213,31 @@ export default function ComunidadPage() {
 
         /* sidebar */
         .cm-sidebar{display:flex;flex-direction:column;gap:14px}
-        .cm-sidebar-card{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:18px}
+        .cm-sidebar-card{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:18px}
         .cm-sidebar-title{font-size:13px;font-weight:800;color:#1a1a1a;margin-bottom:14px}
         .cm-stat-row{display:flex;gap:12px;margin-bottom:12px}
-        .cm-stat{flex:1;text-align:center;background:#f4f4f5;border-radius:10px;padding:12px 8px}
+        .cm-stat{flex:1;text-align:center;background:#FDFAE6;border-radius:10px;padding:12px 8px}
         .cm-stat-num{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:900;color:#7C5CBF}
         .cm-stat-label{font-size:11px;color:#888;font-weight:600;margin-top:2px}
         .cm-join-sidebar-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:13px;border-radius:12px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,transform .15s;box-shadow:0 4px 16px rgba(124,92,191,.3);width:100%}
         .cm-join-sidebar-btn:hover{opacity:.9;transform:translateY(-1px)}
-        .cm-member-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f4f4f5}
+        .cm-member-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #ede8f8}
         .cm-member-row:last-child{border-bottom:none}
         .cm-member-name{font-size:13px;font-weight:600;color:#1a1a1a;flex:1}
         .cm-member-pts{font-size:12px;color:#7C5CBF;font-weight:700}
 
         /* clases tab */
-        .cm-clase-card{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .cm-clase-card{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
         .cm-clase-left{display:flex;align-items:center;gap:14px}
         .cm-clase-num{font-family:'Poppins',sans-serif;font-size:11px;font-weight:900;color:#ddd;letter-spacing:.05em;width:24px}
         .cm-clase-title{font-size:14px;font-weight:700;color:#1a1a1a}
         .cm-clase-dur{font-size:12px;color:#aaa;margin-top:2px}
         .cm-clase-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
         .cm-clase-badge.free{background:#e8f8ef;color:#1a6640}
-        .cm-clase-badge.locked{background:#f4f4f5;color:#aaa;display:flex;align-items:center;gap:4px}
+        .cm-clase-badge.locked{background:#FDFAE6;color:#aaa;display:flex;align-items:center;gap:4px}
 
         /* calendario */
-        .cm-evento{background:white;border-radius:14px;border:1px solid #e4e4e7;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:16px}
+        .cm-evento{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:16px}
         .cm-evento-date{width:48px;height:48px;background:#ede8f8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
         .cm-evento-day{font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:900;color:#574088;line-height:1}
         .cm-evento-month{font-size:9px;font-weight:700;letter-spacing:.07em;color:#9a80c8;text-transform:uppercase}
@@ -246,7 +246,7 @@ export default function ComunidadPage() {
         .cm-evento-type{margin-left:auto;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#ede8f8;color:#574088;white-space:nowrap}
 
         /* ranking */
-        .cm-rank-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:white;border-radius:14px;border:1px solid #e4e4e7;margin-bottom:8px}
+        .cm-rank-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:white;border-radius:14px;border:1px solid #e8e0f8;margin-bottom:8px}
         .cm-rank-pos{font-family:'Poppins',sans-serif;font-size:14px;font-weight:900;color:#ddd;width:24px;text-align:center}
         .cm-rank-pos.top{color:#7C5CBF}
         .cm-rank-name{font-size:14px;font-weight:700;color:#1a1a1a;flex:1}
