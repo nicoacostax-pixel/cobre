@@ -95,11 +95,72 @@ const POSTS = [
 ]
 
 const CLASES = [
-  { num: '01', title: 'Tu primer prompt con Claude', dur: '12 min', free: true },
-  { num: '02', title: 'Cómo montar un agente desde cero', dur: '28 min', free: false },
-  { num: '03', title: 'El sistema de instrucciones que funciona', dur: '19 min', free: false },
-  { num: '04', title: 'Automatiza tus respuestas en 7 días', dur: '35 min', free: false },
-  { num: '05', title: 'Carruseles virales con IA', dur: '22 min', free: false },
+  {
+    num: '00',
+    label: 'Empieza aquí',
+    sub: 'Tu ruta de inicio',
+    title: 'Bienvenida a la comunidad',
+    desc: 'El primer paso antes de todo. Te explico cómo sacarle el máximo partido a la comunidad y por dónde empezar.',
+    dur: '5 min',
+    free: true,
+    level: null,
+    grad: 'linear-gradient(135deg,#2d1f4a,#4a2d7a)',
+  },
+  {
+    num: '01',
+    label: '1.- Tu primer prompt',
+    sub: 'La base de todo',
+    title: 'Tu primer prompt con Claude',
+    desc: 'Modelo, instrucciones, tono y formato. El setup que hace que Claude entienda exactamente lo que necesitas.',
+    dur: '12 min',
+    free: true,
+    level: null,
+    grad: 'linear-gradient(135deg,#1a1525,#3d2870)',
+  },
+  {
+    num: '02',
+    label: '2.- Agentes desde cero',
+    sub: 'Sin código',
+    title: 'Cómo montar un agente desde cero',
+    desc: 'Crea tu primer agente autónomo en Claude. Gestiona correos, califica leads y agenda reuniones sin escribir código.',
+    dur: '28 min',
+    free: false,
+    level: 'Nivel 2',
+    grad: 'linear-gradient(135deg,#1a2535,#2a4070)',
+  },
+  {
+    num: '03',
+    label: '3.- Sistema de instrucciones',
+    sub: 'El método definitivo',
+    title: 'El sistema de instrucciones que funciona',
+    desc: '1 prompt + 1 template + 3 reglas. Lo que uso antes de escribir cualquier instrucción para Claude.',
+    dur: '19 min',
+    free: false,
+    level: 'Nivel 2',
+    grad: 'linear-gradient(135deg,#251a1a,#702828)',
+  },
+  {
+    num: '04',
+    label: '4.- Automatiza en 7 días',
+    sub: 'Setup completo',
+    title: 'Automatiza tus respuestas en 7 días',
+    desc: 'Pack de 7 días para montar un sistema que gestiona correos, califica leads y agenda reuniones por ti.',
+    dur: '35 min',
+    free: false,
+    level: 'Nivel 3',
+    grad: 'linear-gradient(135deg,#1a2520,#1a5040)',
+  },
+  {
+    num: '05',
+    label: '5.- Carruseles virales',
+    sub: '6 formatos listos',
+    title: 'Carruseles que paran el scroll',
+    desc: 'Una skill de Claude lista para usar. Hook, setup, contenido, cierre y CTA. 6 tipos de carrusel para cualquier nicho.',
+    dur: '22 min',
+    free: false,
+    level: 'Nivel 3',
+    grad: 'linear-gradient(135deg,#251a10,#704020)',
+  },
 ]
 
 const RANKING = [
@@ -227,15 +288,22 @@ export default function ComunidadPage() {
         .cm-member-name{font-size:13px;font-weight:600;color:#1a1a1a;flex:1}
         .cm-member-pts{font-size:12px;color:#7C5CBF;font-weight:700}
 
-        /* clases tab */
-        .cm-clase-card{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-        .cm-clase-left{display:flex;align-items:center;gap:14px}
-        .cm-clase-num{font-family:'Poppins',sans-serif;font-size:11px;font-weight:900;color:#ddd;letter-spacing:.05em;width:24px}
-        .cm-clase-title{font-size:14px;font-weight:700;color:#1a1a1a}
-        .cm-clase-dur{font-size:12px;color:#aaa;margin-top:2px}
-        .cm-clase-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
-        .cm-clase-badge.free{background:#e8f8ef;color:#1a6640}
-        .cm-clase-badge.locked{background:#FDFAE6;color:#aaa;display:flex;align-items:center;gap:4px}
+        /* clases grid */
+        .cm-clases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+        @media(max-width:700px){.cm-clases-grid{grid-template-columns:1fr;gap:14px}}
+        .cm-course-card{background:white;border-radius:16px;overflow:hidden;border:1px solid #e8e0f8;display:flex;flex-direction:column}
+        .cm-course-thumb{position:relative;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+        .cm-course-thumb.locked-thumb{filter:brightness(.55)}
+        .cm-course-label{font-size:15px;font-weight:700;color:white;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+        .cm-course-sublabel{font-size:12px;color:rgba(255,255,255,.8);margin-top:4px}
+        .cm-course-lock-badge{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:#4caf7d;color:white;font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
+        .cm-course-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:8px}
+        .cm-course-title{font-size:14px;font-weight:800;color:#1a1a1a;line-height:1.35}
+        .cm-course-desc{font-size:12px;color:#888;line-height:1.6;flex:1}
+        .cm-course-btn{display:block;text-align:center;padding:11px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;margin-top:4px;transition:opacity .2s}
+        .cm-course-btn.active{background:linear-gradient(135deg,#7C5CBF,#574088);color:white}
+        .cm-course-btn.active:hover{opacity:.88}
+        .cm-course-btn.blocked{background:#ede8f8;color:#bbb;cursor:default}
 
         /* calendario */
         .cm-evento{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:16px}
@@ -370,26 +438,31 @@ export default function ComunidadPage() {
             <>
               <div className="cm-onboard">
                 <span className="cm-onboard-icon">🎓</span>
-                <span><strong>5 clases disponibles</strong> · La primera es gratis</span>
+                <span><strong>6 clases disponibles</strong> · Las 2 primeras son gratis</span>
               </div>
-              {CLASES.map(c => (
-                <div key={c.num} className="cm-clase-card">
-                  <div className="cm-clase-left">
-                    <span className="cm-clase-num">{c.num}</span>
-                    <div>
-                      <div className="cm-clase-title">{c.title}</div>
-                      <div className="cm-clase-dur">⏱ {c.dur}</div>
+              <div className="cm-clases-grid">
+                {CLASES.map(c => (
+                  <div key={c.num} className="cm-course-card">
+                    <div
+                      className={`cm-course-thumb${c.free ? '' : ' locked-thumb'}`}
+                      style={{ background: c.grad }}
+                    >
+                      <div className="cm-course-label">{c.label}</div>
+                      <div className="cm-course-sublabel">{c.sub}</div>
+                      {!c.free && c.level && (
+                        <div className="cm-course-lock-badge">🔒 {c.level} requerido</div>
+                      )}
+                    </div>
+                    <div className="cm-course-body">
+                      <div className="cm-course-title">{c.title}</div>
+                      <div className="cm-course-desc">{c.desc}</div>
+                      {c.free
+                        ? <a className="cm-course-btn active" href="/recursos/01">Ver curso →</a>
+                        : <span className="cm-course-btn blocked">🔒 Bloqueado</span>
+                      }
                     </div>
                   </div>
-                  {c.free
-                    ? <span className="cm-clase-badge free">Gratis</span>
-                    : <span className="cm-clase-badge locked">🔒 Miembros</span>
-                  }
-                </div>
-              ))}
-              <div className="cm-lock-hint">
-                <p className="cm-lock-hint-text">Regístrate gratis para desbloquear todas las clases</p>
-                <a className="cm-lock-hint-btn" href="/#registro">Acceder gratis →</a>
+                ))}
               </div>
             </>
           )}
