@@ -135,9 +135,9 @@ export default function ComunidadPage() {
         body{font-family:'Inter',sans-serif;background:#FDFAE6;color:#1a1a1a;min-height:100vh;-webkit-font-smoothing:antialiased}
 
         /* site nav */
-        .cm-sitenav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:#FDFAE6;border-bottom:1px solid rgba(124,92,191,.1)}
-        .cm-sitelogo{font-family:'Poppins',sans-serif;font-weight:900;font-size:18px;color:#574088;text-decoration:none}
-        .cm-siteback{font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s}
+        .cm-sitenav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:#FDFAE6;border-bottom:1px solid rgba(124,92,191,.1);gap:12px}
+        .cm-sitelogo{font-family:'Poppins',sans-serif;font-weight:900;font-size:18px;color:#574088;text-decoration:none;white-space:nowrap}
+        .cm-siteback{font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
         .cm-siteback:hover{color:#7C5CBF}
 
         /* community header */
@@ -148,7 +148,7 @@ export default function ComunidadPage() {
         .cm-community-name{font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:900;color:#574088;line-height:1.2}
         .cm-community-sub{font-size:13px;color:#9a80c8;margin-top:3px}
         .cm-header-right{padding-bottom:12px}
-        .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:11px 22px;border-radius:12px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(124,92,191,.3)}
+        .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:10px 18px;border-radius:12px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(124,92,191,.3);white-space:nowrap;flex-shrink:0}
         .cm-join-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,92,191,.4)}
 
         /* tabs */
@@ -160,7 +160,8 @@ export default function ComunidadPage() {
 
         /* layout */
         .cm-body{max-width:960px;margin:0 auto;padding:28px 32px;display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
-        @media(max-width:700px){.cm-body{grid-template-columns:1fr;padding:20px 16px}}
+        @media(max-width:700px){.cm-body{grid-template-columns:1fr;padding:20px 20px}}
+        .cm-main-col{max-width:100%}
 
         /* write box */
         .cm-write{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:box-shadow .2s}
@@ -259,10 +260,8 @@ export default function ComunidadPage() {
         .cm-lock-hint-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#7C5CBF,#574088);color:white;padding:11px 22px;border-radius:12px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none}
 
         @media(max-width:700px){
-          .cm-header-inner{flex-direction:column;align-items:flex-start}
-          .cm-header-right{width:100%;padding-bottom:0;margin-bottom:-1px}
-          .cm-join-btn{width:100%;justify-content:center}
-          .cm-body{padding:16px 12px}
+          .cm-sitenav{padding:12px 16px}
+          .cm-tabs-inner{padding:0 16px}
         }
       `}</style>
 
