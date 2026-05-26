@@ -159,8 +159,9 @@ export default function ComunidadPage() {
         .cm-tab.active{color:#574088;border-bottom-color:#7C5CBF;font-weight:800}
 
         /* layout */
-        .cm-body{max-width:960px;margin:0 auto;padding:24px 24px;display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+        .cm-body{max-width:960px;margin:0 auto;padding:24px 24px;display:grid;grid-template-columns:minmax(0,75%) minmax(0,25%);gap:24px;align-items:start}
         @media(max-width:700px){.cm-body{grid-template-columns:1fr;padding:16px 16px}}
+        .cm-feed-col{min-width:0;width:100%}
 
         /* write box */
         .cm-write{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:box-shadow .2s}
@@ -293,7 +294,7 @@ export default function ComunidadPage() {
       <div className="cm-body">
 
         {/* MAIN COLUMN */}
-        <div>
+        <div className="cm-feed-col">
           {tab === 'Comunidad' && (
             <>
               {/* write box */}
