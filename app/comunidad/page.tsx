@@ -269,26 +269,11 @@ export default function ComunidadPage() {
       {/* SITE NAV */}
       <nav className="cm-sitenav">
         <a className="cm-sitelogo" href="/">Nico IA_</a>
-        <a className="cm-siteback" href="/">← Inicio</a>
-      </nav>
-
-      {/* COMMUNITY HEADER */}
-      <div className="cm-header">
-        <div className="cm-header-inner">
-          <div className="cm-header-left">
-            <div className="cm-community-icon">N</div>
-            <div>
-              <div className="cm-community-name">Comunidad Nico IA</div>
-              <div className="cm-community-sub">IA práctica · en español · gratis para suscriptores</div>
-            </div>
-          </div>
-          <div className="cm-header-right">
-            <a className="cm-join-btn" href="/#registro">
-              Unirme gratis →
-            </a>
-          </div>
+        <div style={{display:'flex',alignItems:'center',gap:16}}>
+          <a className="cm-siteback" href="/">← Inicio</a>
+          <a className="cm-join-btn" href="/#registro">Unirme gratis →</a>
         </div>
-      </div>
+      </nav>
 
       {/* TABS */}
       <div className="cm-tabs">
