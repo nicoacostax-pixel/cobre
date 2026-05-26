@@ -159,8 +159,8 @@ export default function ComunidadPage() {
         .cm-tab.active{color:#574088;border-bottom-color:#7C5CBF;font-weight:800}
 
         /* layout */
-        .cm-body{max-width:960px;margin:0 auto;padding:24px 16px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
-        @media(max-width:700px){.cm-body{grid-template-columns:1fr}}
+        .cm-body{max-width:960px;margin:0 auto;padding:28px 32px;display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+        @media(max-width:700px){.cm-body{grid-template-columns:1fr;padding:20px 16px}}
 
         /* write box */
         .cm-write{background:white;border-radius:14px;border:1px solid #e8e0f8;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:box-shadow .2s}
@@ -268,11 +268,11 @@ export default function ComunidadPage() {
 
       {/* SITE NAV */}
       <nav className="cm-sitenav">
-        <a className="cm-sitelogo" href="/">Nico IA_</a>
-        <div style={{display:'flex',alignItems:'center',gap:16}}>
+        <div style={{display:'flex',alignItems:'center',gap:20}}>
+          <a className="cm-sitelogo" href="/">Nico IA_</a>
           <a className="cm-siteback" href="/">← Inicio</a>
-          <a className="cm-join-btn" href="/#registro">Unirme gratis →</a>
         </div>
+        <a className="cm-join-btn" href="/#registro">Unirme gratis →</a>
       </nav>
 
       {/* TABS */}
