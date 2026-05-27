@@ -116,7 +116,7 @@ export default function RecursosPage() {
         .rc-dot{width:7px;height:7px;border-radius:50%;background:var(--pink)}
         .rc-h1{font-family:'Poppins',sans-serif;font-size:3rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;color:#fff}
         .rc-sp{color:var(--pink)}
-        .rc-sub{font-size:15px;color:#777;line-height:1.75}
+        .rc-sub{font-size:15px;color:#ccc;line-height:1.75}
 
         /* grid */
         .rc-grid{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 20px 80px;display:grid;grid-template-columns:1fr;gap:14px}
@@ -132,9 +132,9 @@ export default function RecursosPage() {
         .rc-cat{border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:.04em}
         .rc-title{font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:700;line-height:1.25;color:var(--pink);margin:10px 0 8px}
         .rc-card.soon .rc-title{color:#444}
-        .rc-desc{font-size:13px;color:#666;line-height:1.65;flex:1}
+        .rc-desc{font-size:13px;color:#ccc;line-height:1.65;flex:1}
         .rc-card-bot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:14px;border-top:1px solid var(--border)}
-        .rc-meta{font-size:12px;color:#444;font-weight:500}
+        .rc-meta{font-size:12px;color:#888;font-weight:500}
         .rc-read{font-size:13px;font-weight:700;color:var(--pink)}
         .rc-soon-lbl{font-size:12px;color:#444;font-weight:600;letter-spacing:.04em}
       `}</style>

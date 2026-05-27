@@ -30,12 +30,12 @@ export default function Guia02Page() {
         .g2-meta-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,42,109,.4)}
         .g2-h1{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;color:#fff}
         .g2-h1 em{font-style:normal;color:var(--pink)}
-        .g2-intro{font-size:16px;color:#888;line-height:1.8;margin-bottom:28px}
-        .g2-readtime{display:flex;gap:20px;font-size:13px;color:#555;font-weight:500}
+        .g2-intro{font-size:16px;color:#ccc;line-height:1.8;margin-bottom:28px}
+        .g2-readtime{display:flex;gap:20px;font-size:13px;color:#aaa;font-weight:500}
 
         .g2-hook{background:var(--surface);border-radius:20px;border-left:3px solid var(--pink);padding:28px;margin:32px 0;position:relative}
         .g2-hook-quote{font-family:'Poppins',sans-serif;font-size:1.25rem;font-weight:900;color:#fff;line-height:1.35;margin-bottom:8px}
-        .g2-hook-sub{font-size:13px;color:#666;font-weight:500}
+        .g2-hook-sub{font-size:13px;color:#aaa;font-weight:500}
 
         .g2-overview{background:var(--surface);border-radius:20px;border:1px solid var(--border);padding:28px;margin:32px 0}
         .g2-overview-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;margin-bottom:18px}
@@ -59,16 +59,16 @@ export default function Guia02Page() {
         .g2-section-label::before{content:'';display:block;width:20px;height:2px;background:var(--pink);border-radius:2px}
         .g2-section-h2{font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:900;line-height:1.15;letter-spacing:-.015em;color:#fff;margin-bottom:16px}
         .g2-section-h2 em{font-style:normal;color:var(--pink)}
-        .g2-section-body{font-size:15px;color:#888;line-height:1.85}
+        .g2-section-body{font-size:15px;color:#ccc;line-height:1.85}
         .g2-section-body p{margin-bottom:16px}
         .g2-section-body p:last-child{margin-bottom:0}
-        .g2-section-body strong{color:#e0e0e0;font-weight:700}
+        .g2-section-body strong{color:#fff;font-weight:700}
 
         .g2-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0}
         @media(max-width:500px){.g2-stat-row{grid-template-columns:1fr}}
         .g2-stat{background:var(--surface);border-radius:16px;padding:20px;text-align:center;border:1px solid var(--border)}
         .g2-stat-num{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:900;color:var(--pink);line-height:1;text-shadow:0 0 20px rgba(255,42,109,.3)}
-        .g2-stat-label{font-size:12px;color:#666;margin-top:6px;font-weight:500}
+        .g2-stat-label{font-size:12px;color:#ccc;margin-top:6px;font-weight:500}
 
         .g2-code{background:#070707;border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0;overflow-x:auto}
         .g2-code-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-bottom:14px}
@@ -81,14 +81,14 @@ export default function Guia02Page() {
         .g2-callout.warn{border-left-color:#ffc500}
         .g2-callout-head{font-size:13px;font-weight:800;color:#e0e0e0;margin-bottom:8px;display:flex;align-items:center;gap:8px}
         .g2-callout.warn .g2-callout-head{color:#ffc500}
-        .g2-callout-body{font-size:13px;color:#888;line-height:1.7}
-        .g2-callout-body strong{color:#e0e0e0;font-weight:700}
+        .g2-callout-body{font-size:13px;color:#ccc;line-height:1.7}
+        .g2-callout-body strong{color:#fff;font-weight:700}
 
         .g2-cats{display:flex;flex-direction:column;gap:10px;margin:24px 0}
         .g2-cat-item{background:var(--surface);border-radius:14px;padding:16px 20px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px}
         .g2-cat-num{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:900;color:rgba(255,42,109,.15);line-height:1;flex-shrink:0;width:36px}
         .g2-cat-title{font-size:14px;font-weight:800;color:#e0e0e0;margin-bottom:3px}
-        .g2-cat-desc{font-size:13px;color:#777;line-height:1.55}
+        .g2-cat-desc{font-size:13px;color:#bbb;line-height:1.55}
         .g2-cat-pct{font-size:11px;font-weight:700;color:var(--pink);margin-top:4px}
 
         .g2-flow{display:flex;flex-direction:column;gap:0;margin:24px 0}
@@ -97,13 +97,13 @@ export default function Guia02Page() {
         .g2-flow-step:last-child{border-radius:0 0 16px 16px;border-bottom:1px solid var(--border)}
         .g2-flow-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,42,109,.08);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
         .g2-flow-text{font-size:14px;font-weight:700;color:#e0e0e0}
-        .g2-flow-sub{font-size:12px;color:#555;margin-top:2px}
+        .g2-flow-sub{font-size:12px;color:#aaa;margin-top:2px}
         .g2-flow-arrow{display:flex;justify-content:center;padding:6px 0;color:rgba(255,42,109,.3);font-size:16px}
 
         .g2-checklist{background:#070707;border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0}
         .g2-checklist-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-bottom:14px}
         .g2-checklist-items{display:flex;flex-direction:column;gap:10px}
-        .g2-check-item{display:flex;align-items:flex-start;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:#999}
+        .g2-check-item{display:flex;align-items:flex-start;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:#ccc}
         .g2-check-box{width:18px;height:18px;border-radius:4px;background:var(--pink);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;box-shadow:0 0 8px rgba(255,42,109,.3)}
         .g2-check-box::after{content:'✓';font-size:11px;color:white;font-family:'Inter',sans-serif;font-weight:700}
 
@@ -111,7 +111,7 @@ export default function Guia02Page() {
 
         .g2-cta{background:linear-gradient(135deg,#1a0010,#2a0015);border:1px solid var(--border-pink);border-radius:24px;padding:40px;text-align:center;margin-top:60px;box-shadow:0 0 60px rgba(255,42,109,.08)}
         .g2-cta h3{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:10px}
-        .g2-cta p{font-size:14px;color:#888;line-height:1.7;margin-bottom:24px}
+        .g2-cta p{font-size:14px;color:#ccc;line-height:1.7;margin-bottom:24px}
         .g2-cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:white;padding:14px 28px;border-radius:14px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s,opacity .2s;box-shadow:0 0 24px var(--pink-glow)}
         .g2-cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 36px var(--pink-glow);opacity:.9}
 

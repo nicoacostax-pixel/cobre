@@ -201,7 +201,7 @@ export default function ComunidadPage() {
         .cm-sitenav{position:relative;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(5,5,5,.92);border-bottom:1px solid var(--border);gap:12px;backdrop-filter:blur(12px)}
         .cm-sitelogo{font-family:'Poppins',sans-serif;font-weight:900;font-size:18px;color:#fff;text-decoration:none;white-space:nowrap}
         .cm-sitelogo span{color:var(--pink)}
-        .cm-siteback{font-size:13px;color:#555;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
+        .cm-siteback{font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
         .cm-siteback:hover{color:var(--pink)}
         .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:var(--pink);color:white;padding:10px 18px;border-radius:12px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,box-shadow .2s;box-shadow:0 0 16px var(--pink-glow);white-space:nowrap;flex-shrink:0}
         .cm-join-btn:hover{opacity:.88;box-shadow:0 0 28px var(--pink-glow)}
@@ -222,10 +222,10 @@ export default function ComunidadPage() {
         .cm-write{background:var(--surface);border-radius:14px;border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer;transition:border-color .2s}
         .cm-write:hover{border-color:var(--border-pink)}
         .cm-write-avatar{width:36px;height:36px;border-radius:50%;background:var(--pink);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;box-shadow:0 0 10px rgba(255,42,109,.25)}
-        .cm-write-placeholder{font-size:14px;color:#444;flex:1}
+        .cm-write-placeholder{font-size:14px;color:#888;flex:1}
 
         /* onboarding banner */
-        .cm-onboard{background:var(--surface);border-radius:14px;border:1px solid var(--border);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:13px;color:#777}
+        .cm-onboard{background:var(--surface);border-radius:14px;border:1px solid var(--border);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:13px;color:#ccc}
         .cm-onboard-icon{font-size:16px}
         .cm-onboard strong{color:#e0e0e0}
         .cm-onboard-time{margin-left:auto;font-size:12px;color:var(--pink);font-weight:700}
@@ -249,9 +249,9 @@ export default function ComunidadPage() {
         .cm-post-pin{font-size:12px;color:#444;display:flex;align-items:center;gap:4px;font-weight:600}
         .cm-post-cat{border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.03em}
         .cm-post-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:7px;line-height:1.4}
-        .cm-post-body{font-size:13px;color:#777;line-height:1.65;margin-bottom:14px}
+        .cm-post-body{font-size:13px;color:#bbb;line-height:1.65;margin-bottom:14px}
         .cm-post-foot{display:flex;align-items:center;gap:16px}
-        .cm-post-action{display:flex;align-items:center;gap:5px;font-size:13px;color:#555;font-weight:500;cursor:pointer;transition:color .15s}
+        .cm-post-action{display:flex;align-items:center;gap:5px;font-size:13px;color:#888;font-weight:500;cursor:pointer;transition:color .15s}
         .cm-post-action:hover{color:var(--pink)}
         .cm-post-avatars{display:flex;align-items:center;margin-left:auto}
         .cm-micro-avatar{width:22px;height:22px;border-radius:50%;background:var(--surface2);border:2px solid #0f0f0f;margin-left:-6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#e0e0e0}
@@ -265,7 +265,7 @@ export default function ComunidadPage() {
         .cm-stat-row{display:flex;gap:12px;margin-bottom:12px}
         .cm-stat{flex:1;text-align:center;background:var(--surface2);border-radius:10px;padding:12px 8px;border:1px solid var(--border)}
         .cm-stat-num{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:900;color:var(--pink)}
-        .cm-stat-label{font-size:11px;color:#555;font-weight:600;margin-top:2px}
+        .cm-stat-label{font-size:11px;color:#bbb;font-weight:600;margin-top:2px}
         .cm-join-sidebar-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--pink);color:white;padding:13px;border-radius:12px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,transform .15s,box-shadow .2s;box-shadow:0 0 20px var(--pink-glow);width:100%}
         .cm-join-sidebar-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 0 32px var(--pink-glow)}
         .cm-member-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)}
@@ -293,7 +293,7 @@ export default function ComunidadPage() {
         .cm-course-lock-badge{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(255,42,109,.8);color:white;font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
         .cm-course-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:8px}
         .cm-course-title{font-size:14px;font-weight:800;color:#e0e0e0;line-height:1.35}
-        .cm-course-desc{font-size:12px;color:#666;line-height:1.6;flex:1}
+        .cm-course-desc{font-size:12px;color:#bbb;line-height:1.6;flex:1}
         .cm-course-btn{display:block;text-align:center;padding:11px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;margin-top:4px;transition:opacity .2s,box-shadow .2s}
         .cm-course-btn.active{background:var(--pink);color:white;box-shadow:0 0 14px rgba(255,42,109,.3)}
         .cm-course-btn.active:hover{opacity:.88;box-shadow:0 0 22px rgba(255,42,109,.4)}
@@ -306,7 +306,7 @@ export default function ComunidadPage() {
         .cm-evento-day{font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:900;color:var(--pink);line-height:1}
         .cm-evento-month{font-size:9px;font-weight:700;letter-spacing:.07em;color:#ff6b9d;text-transform:uppercase}
         .cm-evento-title{font-size:14px;font-weight:700;color:#e0e0e0}
-        .cm-evento-meta{font-size:12px;color:#555;margin-top:2px}
+        .cm-evento-meta{font-size:12px;color:#aaa;margin-top:2px}
         .cm-evento-type{margin-left:auto;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(255,42,109,.1);color:#ff6b9d;white-space:nowrap}
 
         /* ranking */
@@ -320,7 +320,7 @@ export default function ComunidadPage() {
 
         /* lock overlay hint */
         .cm-lock-hint{background:linear-gradient(to bottom,transparent,#050505 60%);border-radius:0 0 14px 14px;padding:40px 20px 20px;text-align:center;margin-top:-30px;position:relative}
-        .cm-lock-hint-text{font-size:13px;color:#666;margin-bottom:12px}
+        .cm-lock-hint-text{font-size:13px;color:#bbb;margin-bottom:12px}
         .cm-lock-hint-btn{display:inline-flex;align-items:center;gap:7px;background:var(--pink);color:white;padding:11px 22px;border-radius:12px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;box-shadow:0 0 20px var(--pink-glow);transition:opacity .2s}
         .cm-lock-hint-btn:hover{opacity:.88}
 

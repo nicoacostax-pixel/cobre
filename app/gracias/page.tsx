@@ -46,18 +46,18 @@ export default function GraciasPage() {
         .gr-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0}
         .gr-h1{font-family:'Poppins',sans-serif;font-size:2.8rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin-bottom:10px;color:#fff}
         .gr-sp{color:var(--pink)}
-        .gr-sub{font-size:15px;color:#777;line-height:1.75;margin-bottom:40px}
+        .gr-sub{font-size:15px;color:#ccc;line-height:1.75;margin-bottom:40px}
 
         /* steps */
         .gr-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
         .gr-step{background:var(--surface);border-radius:20px;padding:24px 22px;border:1px solid var(--border);display:flex;gap:20px;align-items:flex-start;transition:border-color .2s,box-shadow .2s}
         .gr-step:hover{border-color:var(--border-pink);box-shadow:0 0 24px rgba(255,42,109,.06)}
-        .gr-num{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:900;color:rgba(255,42,109,.12);line-height:1;flex-shrink:0;width:44px}
+        .gr-num{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:900;color:var(--pink);text-shadow:0 0 20px var(--pink-glow);line-height:1;flex-shrink:0;width:44px}
         .gr-step-inner{flex:1}
         .gr-step-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
         .gr-icon{font-size:1.4rem;line-height:1}
         .gr-step-inner h3{font-size:15px;font-weight:800;color:#fff;line-height:1.3}
-        .gr-step-inner p{font-size:13px;color:#888;line-height:1.65;margin-top:4px}
+        .gr-step-inner p{font-size:13px;color:#ccc;line-height:1.65;margin-top:4px}
         .gr-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--pink);color:white;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,transform .15s,box-shadow .2s;box-shadow:0 0 20px var(--pink-glow)}
         .gr-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 0 32px var(--pink-glow)}
         .gr-btn-outline{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:transparent;color:var(--pink);padding:11px 22px;border-radius:12px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;border:1.5px solid var(--border-pink);transition:background .2s,color .2s}

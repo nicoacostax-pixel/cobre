@@ -33,8 +33,8 @@ export default function Guia01Page() {
         .g1-meta-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,42,109,.4)}
         .g1-h1{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;color:#fff}
         .g1-h1 em{font-style:normal;color:var(--pink)}
-        .g1-intro{font-size:16px;color:#888;line-height:1.8;margin-bottom:28px}
-        .g1-readtime{display:flex;gap:20px;font-size:13px;color:#555;font-weight:500}
+        .g1-intro{font-size:16px;color:#ccc;line-height:1.8;margin-bottom:28px}
+        .g1-readtime{display:flex;gap:20px;font-size:13px;color:#aaa;font-weight:500}
         .g1-readtime span{display:flex;align-items:center;gap:5px}
 
         /* step overview */
@@ -62,10 +62,10 @@ export default function Guia01Page() {
         .g1-section-label::before{content:'';display:block;width:20px;height:2px;background:var(--pink);border-radius:2px}
         .g1-section-h2{font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:900;line-height:1.15;letter-spacing:-.015em;color:#fff;margin-bottom:16px}
         .g1-section-h2 em{font-style:normal;color:var(--pink)}
-        .g1-section-body{font-size:15px;color:#888;line-height:1.85}
+        .g1-section-body{font-size:15px;color:#ccc;line-height:1.85}
         .g1-section-body p{margin-bottom:16px}
         .g1-section-body p:last-child{margin-bottom:0}
-        .g1-section-body strong{color:#e0e0e0;font-weight:700}
+        .g1-section-body strong{color:#fff;font-weight:700}
 
         /* problem cards */
         .g1-problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
@@ -76,9 +76,9 @@ export default function Guia01Page() {
         .g1-problem-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
         .g1-problem-card.bad .g1-problem-label{color:#ff5555}
         .g1-problem-card.good .g1-problem-label{color:var(--pink)}
-        .g1-problem-text{font-size:13px;line-height:1.65;color:#777;font-style:italic}
-        .g1-problem-card.good .g1-problem-text{color:#bbb}
-        .g1-problem-result{margin-top:10px;font-size:12px;font-weight:600;color:#555}
+        .g1-problem-text{font-size:13px;line-height:1.65;color:#bbb;font-style:italic}
+        .g1-problem-card.good .g1-problem-text{color:#e0e0e0}
+        .g1-problem-result{margin-top:10px;font-size:12px;font-weight:600;color:#888}
         .g1-problem-card.good .g1-problem-result{color:var(--pink)}
 
         /* code block */
@@ -95,8 +95,8 @@ export default function Guia01Page() {
         .g1-callout.warn{border-left-color:#ffc500}
         .g1-callout-head{font-size:13px;font-weight:800;color:#e0e0e0;margin-bottom:8px;display:flex;align-items:center;gap:8px}
         .g1-callout.warn .g1-callout-head{color:#ffc500}
-        .g1-callout-body{font-size:13px;color:#888;line-height:1.7}
-        .g1-callout-body strong{color:#e0e0e0;font-weight:700}
+        .g1-callout-body{font-size:13px;color:#ccc;line-height:1.7}
+        .g1-callout-body strong{color:#fff;font-weight:700}
 
         /* formula */
         .g1-formula{background:var(--surface);border-radius:20px;border:2px solid var(--border-pink);padding:28px;margin:24px 0;text-align:center}
@@ -109,7 +109,7 @@ export default function Guia01Page() {
         .g1-checklist{background:#070707;border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0}
         .g1-checklist-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-bottom:14px}
         .g1-checklist-items{display:flex;flex-direction:column;gap:10px}
-        .g1-check-item{display:flex;align-items:flex-start;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:#999}
+        .g1-check-item{display:flex;align-items:flex-start;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:#ccc}
         .g1-check-box{width:18px;height:18px;border-radius:4px;background:var(--pink);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;box-shadow:0 0 8px rgba(255,42,109,.3)}
         .g1-check-box::after{content:'✓';font-size:11px;color:white;font-family:'Inter',sans-serif;font-weight:700}
 
@@ -117,8 +117,8 @@ export default function Guia01Page() {
         .g1-anatomy{display:flex;flex-direction:column;gap:10px;margin:24px 0}
         .g1-anatomy-block{border-radius:14px;padding:18px 20px;border:1px solid var(--border)}
         .g1-anatomy-tag{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
-        .g1-anatomy-text{font-size:14px;color:#777;line-height:1.6;font-style:italic}
-        .g1-anatomy-note{font-size:12px;color:#444;margin-top:4px}
+        .g1-anatomy-text{font-size:14px;color:#bbb;line-height:1.6;font-style:italic}
+        .g1-anatomy-note{font-size:12px;color:#888;margin-top:4px}
         .g1-anatomy-block.highlighted{border-color:var(--border-pink);background:rgba(255,42,109,.04)}
         .g1-anatomy-block:not(.highlighted){background:var(--surface)}
 
@@ -128,7 +128,7 @@ export default function Guia01Page() {
         /* cta bottom */
         .g1-cta{background:linear-gradient(135deg,#1a0010,#2a0015);border:1px solid var(--border-pink);border-radius:24px;padding:40px;text-align:center;margin-top:60px;box-shadow:0 0 60px rgba(255,42,109,.08)}
         .g1-cta h3{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:10px}
-        .g1-cta p{font-size:14px;color:#888;line-height:1.7;margin-bottom:24px}
+        .g1-cta p{font-size:14px;color:#ccc;line-height:1.7;margin-bottom:24px}
         .g1-cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:white;padding:14px 28px;border-radius:14px;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:transform .15s,box-shadow .15s,opacity .2s;box-shadow:0 0 24px var(--pink-glow)}
         .g1-cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 36px var(--pink-glow);opacity:.9}
 
