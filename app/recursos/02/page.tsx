@@ -285,11 +285,11 @@ Dame el resultado en una lista ordenada por frecuencia.`}</pre>
           </div>
 
           <div className="g2-callout">
-            <div className="g2-callout-head">⚡ Más rápido con la extensión de Claude Code</div>
+            <div className="g2-callout-head">⚡ Más rápido con la extensión de Claude para Chrome</div>
             <div className="g2-callout-body">
-              En lugar de copiar y pegar manualmente, puedes hacerlo directamente desde <strong>Claude Code</strong> (la extensión para VS Code o el desktop app). El proceso es simple: exporta tus conversaciones desde Meta Business Suite como archivo de texto o PDF, ábrelo en Claude Code y pídele que haga el análisis. Claude Code lee el archivo entero de golpe — sin límite de caracteres, sin perder contexto.
+              Si tienes instalada la <strong>extensión de Claude para Chrome</strong>, no necesitas copiar ni pegar nada. Abre tu bandeja de entrada en <strong>Meta Business Suite o Instagram</strong>, activa la extensión y pídele a Claude que analice las conversaciones que tiene delante. Claude lee directamente lo que hay en pantalla.
               <br /><br />
-              No necesitas configurar nada ni conectar ninguna API. Solo el archivo y el prompt. Lo que tardas copiando y pegando 50 conversaciones a mano, con Claude Code lo haces en un clic.
+              Ve scrolleando por tus DMs con la extensión activa y Claude va procesando el contexto en tiempo real. Sin exportar archivos, sin salir del navegador, sin pasos intermedios.
             </div>
           </div>
         </div>
