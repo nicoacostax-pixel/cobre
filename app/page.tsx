@@ -84,7 +84,7 @@ function Reveal({ children, delay = 0, className = '' }: { children: React.React
   )
 }
 
-function LeadForm({ dark = false }: { dark?: boolean }) {
+function LeadForm() {
   const [name, setName]   = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
@@ -149,7 +149,7 @@ export default function Home() {
 
         /* input */
         .lp-input{width:100%;padding:14px 16px;border:1.5px solid var(--border-pink);border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;outline:none;background:#0a0a0a;color:#e0e0e0;transition:border-color .2s,box-shadow .2s;box-shadow:0 0 10px rgba(255,42,109,.06)}
-        .lp-input::placeholder{color:#555}
+        .lp-input::placeholder{color:#aaa}
         .lp-input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,42,109,.12),0 0 20px rgba(255,42,109,.15)}
         .lp-form-row{display:flex;flex-direction:column;gap:10px}
 
@@ -483,7 +483,7 @@ export default function Home() {
           <h2>La IA no espera.<br /><span style={{ color: 'var(--pink)', textShadow: '0 0 30px var(--pink-glow)' }}>Tú tampoco.</span></h2>
           <p className="lp-cta-sub">Recibe las guías y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
           <div className="lp-cta-card">
-            <LeadForm dark />
+            <LeadForm />
           </div>
         </Reveal>
       </div>
