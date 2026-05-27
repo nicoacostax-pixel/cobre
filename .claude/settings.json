@@ -5,7 +5,12 @@
       "Bash(npm cache *)",
       "Bash(python3 -c ' *)",
       "Bash(mkdir -p /Users/nicoacosta/estudiocobre/app/comunidad)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(mkdir -p \"/Users/nicoacosta/estudiocobre/app/admin/cursos/[id]\")",
+      "Bash(mkdir -p \"/Users/nicoacosta/estudiocobre/app/admin/cursos/[id]/leccion/[lessonId]\")",
+      "Bash(mkdir -p \"/Users/nicoacosta/estudiocobre/app/api/admin/cursos/[id]\")",
+      "Bash(mkdir -p \"/Users/nicoacosta/estudiocobre/app/api/admin/cursos/[id]/modulos\")",
+      "Bash(mkdir -p \"/Users/nicoacosta/estudiocobre/app/api/admin/modulos/[moduloId]\")"
     ],
     "additionalDirectories": [
       "/Users/nicoacosta/estudiocobre/app"
