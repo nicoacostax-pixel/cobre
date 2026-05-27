@@ -285,11 +285,11 @@ Dame el resultado en una lista ordenada por frecuencia.`}</pre>
           </div>
 
           <div className="g2-callout">
-            <div className="g2-callout-head">⚡ Alternativa con Claude Code</div>
+            <div className="g2-callout-head">⚡ Más rápido con la extensión de Claude Code</div>
             <div className="g2-callout-body">
-              Si usas <strong>Claude Code</strong> (la extensión de VS Code o la CLI), puedes conectarte a la <strong>API de Meta Business</strong> y extraer las conversaciones directamente — sin copiar y pegar manualmente. Claude Code accede al endpoint de mensajes de tu cuenta, descarga los últimos 50 hilos y ejecuta el análisis en un solo paso. El resultado es el mismo, pero el proceso pasa de 20 minutos a menos de 2 minutos.
+              En lugar de copiar y pegar manualmente, puedes hacerlo directamente desde <strong>Claude Code</strong> (la extensión para VS Code o el desktop app). El proceso es simple: exporta tus conversaciones desde Meta Business Suite como archivo de texto o PDF, ábrelo en Claude Code y pídele que haga el análisis. Claude Code lee el archivo entero de golpe — sin límite de caracteres, sin perder contexto.
               <br /><br />
-              Para hacerlo necesitas: tu <strong>Page Access Token</strong> de Meta Business Suite y el <strong>ID de tu página</strong>. Una vez que Claude Code tiene acceso, el prompt de diagnóstico funciona igual — solo que sobre datos en tiempo real, no sobre texto copiado.
+              No necesitas configurar nada ni conectar ninguna API. Solo el archivo y el prompt. Lo que tardas copiando y pegando 50 conversaciones a mano, con Claude Code lo haces en un clic.
             </div>
           </div>
         </div>
