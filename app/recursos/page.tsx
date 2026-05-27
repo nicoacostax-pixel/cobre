@@ -17,11 +17,10 @@ const guides = [
   {
     num: '02',
     cat: 'Negocio',
-    title: 'Automatiza tus respuestas hoy',
-    desc: 'Pack de 7 días para montar un agente que gestiona correos, califica leads y agenda reuniones. Plantillas listas para copiar.',
-    meta: '· 7 días · setup completo',
-    href: null,
-    soon: true,
+    title: 'Automatiza tus DMs con Claude',
+    desc: 'Cómo liberar 2 horas al día sin contratar a nadie. El sistema de categorías + ManyChat que construí con Claude en una tarde.',
+    meta: '· 8 min · caso real',
+    href: '/recursos/02',
   },
   {
     num: '03',
