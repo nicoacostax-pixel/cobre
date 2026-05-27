@@ -43,7 +43,7 @@ export default function Guia02Page() {
         .g2-step-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
         .g2-step-row:last-child{border-bottom:none}
         .g2-step-left{display:flex;align-items:center;gap:14px}
-        .g2-step-num{font-family:'Poppins',sans-serif;font-size:11px;font-weight:900;color:#333;width:24px}
+        .g2-step-num{font-family:'Poppins',sans-serif;font-size:11px;font-weight:900;color:var(--pink);width:24px;text-shadow:0 0 10px var(--pink-glow)}
         .g2-step-name{font-size:14px;font-weight:700;color:#e0e0e0}
         .g2-step-tag{font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.04em;text-transform:uppercase}
 
