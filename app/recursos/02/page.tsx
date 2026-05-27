@@ -283,6 +283,15 @@ Dame el resultado en una lista ordenada por frecuencia.`}</pre>
               Antes de pegar, <strong>anonimiza los nombres y datos personales</strong> de quien te escribió. Claude no los necesita y es buena práctica no compartirlos.
             </div>
           </div>
+
+          <div className="g2-callout">
+            <div className="g2-callout-head">⚡ Alternativa con Claude Code</div>
+            <div className="g2-callout-body">
+              Si usas <strong>Claude Code</strong> (la extensión de VS Code o la CLI), puedes conectarte a la <strong>API de Meta Business</strong> y extraer las conversaciones directamente — sin copiar y pegar manualmente. Claude Code accede al endpoint de mensajes de tu cuenta, descarga los últimos 50 hilos y ejecuta el análisis en un solo paso. El resultado es el mismo, pero el proceso pasa de 20 minutos a menos de 2 minutos.
+              <br /><br />
+              Para hacerlo necesitas: tu <strong>Page Access Token</strong> de Meta Business Suite y el <strong>ID de tu página</strong>. Una vez que Claude Code tiene acceso, el prompt de diagnóstico funciona igual — solo que sobre datos en tiempo real, no sobre texto copiado.
+            </div>
+          </div>
         </div>
 
         <div className="g2-divider" />
