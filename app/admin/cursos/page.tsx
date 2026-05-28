@@ -19,6 +19,7 @@ export default function CursosPage() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState(false)
   const [newTitle, setNewTitle] = useState('')
+  const [newDesc, setNewDesc] = useState('')
   const [newLevel, setNewLevel] = useState('')
   const [uploadingId, setUploadingId] = useState<string | null>(null)
 
@@ -39,12 +40,14 @@ export default function CursosPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         title: newTitle.trim(),
+        description: newDesc.trim(),
         level_required: newLevel.trim() || null,
         order_index: courses.length + 1,
       }),
     })
     if (res.ok) {
       setNewTitle('')
+      setNewDesc('')
       setNewLevel('')
       setCreating(false)
       load()
@@ -113,6 +116,13 @@ export default function CursosPage() {
               placeholder="Título del curso"
               className="bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-orange-600/50"
             />
+            <textarea
+              value={newDesc}
+              onChange={e => setNewDesc(e.target.value)}
+              placeholder="Descripción del curso (opcional)"
+              rows={2}
+              className="bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-orange-600/50 resize-none"
+            />
             <input
               value={newLevel}
               onChange={e => setNewLevel(e.target.value)}
@@ -127,7 +137,7 @@ export default function CursosPage() {
                 Crear curso
               </button>
               <button
-                onClick={() => { setCreating(false); setNewTitle(''); setNewLevel('') }}
+                onClick={() => { setCreating(false); setNewTitle(''); setNewDesc(''); setNewLevel('') }}
                 className="text-gray-500 hover:text-white text-sm px-4 py-2 transition-colors"
               >
                 Cancelar

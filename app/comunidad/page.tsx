@@ -58,7 +58,7 @@ export default function ComunidadPage() {
         .cm-body{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:32px 24px}
 
         /* clases grid */
-        .cm-clases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .cm-clases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 8px}
         @media(max-width:700px){.cm-clases-grid{grid-template-columns:1fr}}
         @media(min-width:701px) and (max-width:900px){.cm-clases-grid{grid-template-columns:1fr 1fr}}
 
