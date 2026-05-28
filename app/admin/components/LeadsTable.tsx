@@ -20,6 +20,7 @@ interface Lead {
   created_at: string
   calificacion: Calificacion
   contactado: boolean
+  nivel: number
 }
 
 const questions = [
@@ -151,6 +152,21 @@ export default function LeadsTable({ leads: initial }: { leads: Lead[] }) {
                   <p className="text-gray-600 text-xs hidden md:block shrink-0">{date}</p>
                   {isOpen ? <ChevronUp size={14} className="text-gray-500 shrink-0" /> : <ChevronDown size={14} className="text-gray-500 shrink-0" />}
                 </button>
+
+                {/* Level selector */}
+                <div className="flex items-center gap-1 shrink-0 border border-white/10 rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => updateLead(lead.id, { nivel: Math.max(1, (lead.nivel ?? 1) - 1) })}
+                    className="w-6 h-7 flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/5 transition-colors text-xs font-bold"
+                  >−</button>
+                  <span className="px-2 text-[11px] font-bold text-orange-400 min-w-[36px] text-center">
+                    Nv {lead.nivel ?? 1}
+                  </span>
+                  <button
+                    onClick={() => updateLead(lead.id, { nivel: Math.min(10, (lead.nivel ?? 1) + 1) })}
+                    className="w-6 h-7 flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/5 transition-colors text-xs font-bold"
+                  >+</button>
+                </div>
 
                 {/* Contacted toggle */}
                 <button
