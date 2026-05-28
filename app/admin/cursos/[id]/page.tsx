@@ -39,9 +39,12 @@ export default function CourseBuilderPage({ params }: { params: Promise<{ id: st
     const fd = new FormData()
     fd.append('image', file)
     const res = await fetch(`/api/admin/cursos/${id}/cover`, { method: 'POST', body: fd })
-    const data = await res.json()
+    let data: { error?: string; cover_url?: string } = {}
+    try { data = await res.json() } catch { /* nginx returned html */ }
     if (!res.ok) {
-      alert(`Error al subir imagen: ${data.error ?? 'desconocido'}`)
+      alert(res.status === 413
+        ? 'Imagen demasiado grande. Usa una de menos de 10 MB.'
+        : `Error al subir: ${data.error ?? res.statusText}`)
     } else if (data.cover_url) {
       setCourse(prev => prev ? { ...prev, cover_url: data.cover_url } : prev)
     }
