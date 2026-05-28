@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, BookOpen, Lock, Eye, EyeOff, Trash2, ChevronRight, ImageIcon } from 'lucide-react'
+import { Plus, BookOpen, Lock, Eye, EyeOff, Trash2, ChevronRight, ImageIcon, Pencil, Check, X } from 'lucide-react'
 import Link from 'next/link'
 
 interface Course {
@@ -22,6 +22,9 @@ export default function CursosPage() {
   const [newDesc, setNewDesc] = useState('')
   const [newLevel, setNewLevel] = useState('')
   const [uploadingId, setUploadingId] = useState<string | null>(null)
+  const [editingId, setEditingId]   = useState<string | null>(null)
+  const [editTitle, setEditTitle]   = useState('')
+  const [editDesc, setEditDesc]     = useState('')
 
   async function load() {
     setLoading(true)
@@ -69,6 +72,28 @@ export default function CursosPage() {
       setCourses(prev => prev.map(c => c.id === courseId ? { ...c, cover_url: data.cover_url } : c))
     }
     setUploadingId(null)
+  }
+
+  function startEdit(course: Course) {
+    setEditingId(course.id)
+    setEditTitle(course.title)
+    setEditDesc(course.description ?? '')
+  }
+
+  async function saveEdit(id: string) {
+    if (!editTitle.trim()) return
+    const res = await fetch(`/api/admin/cursos/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: editTitle.trim(), description: editDesc.trim() }),
+    })
+    if (res.ok) {
+      setCourses(prev => prev.map(c => c.id === id
+        ? { ...c, title: editTitle.trim(), description: editDesc.trim() }
+        : c
+      ))
+    }
+    setEditingId(null)
   }
 
   async function togglePublish(course: Course) {
@@ -195,19 +220,54 @@ export default function CursosPage() {
               </label>
 
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-sm">{course.title}</span>
-                  {course.level_required && (
-                    <span className="flex items-center gap-1 text-[10px] bg-white/5 text-gray-400 px-2 py-0.5 rounded-full font-bold">
-                      <Lock size={9} /> {course.level_required}
-                    </span>
-                  )}
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${course.is_published ? 'bg-emerald-500/10 text-emerald-400' : 'bg-white/5 text-gray-600'}`}>
-                    {course.is_published ? 'Publicado' : 'Borrador'}
-                  </span>
-                </div>
-                {course.description && (
-                  <p className="text-xs text-gray-600 mt-0.5 truncate">{course.description}</p>
+                {editingId === course.id ? (
+                  <div className="flex flex-col gap-2 pr-2">
+                    <input
+                      autoFocus
+                      value={editTitle}
+                      onChange={e => setEditTitle(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') saveEdit(course.id); if (e.key === 'Escape') setEditingId(null) }}
+                      className="bg-[#1a1a1a] border border-orange-600/40 rounded-lg px-3 py-1.5 text-sm text-white outline-none w-full"
+                    />
+                    <textarea
+                      value={editDesc}
+                      onChange={e => setEditDesc(e.target.value)}
+                      placeholder="Descripción (opcional)"
+                      rows={2}
+                      className="bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-1.5 text-xs text-gray-300 placeholder-gray-700 outline-none resize-none focus:border-orange-600/30 w-full"
+                    />
+                    <div className="flex gap-2">
+                      <button onClick={() => saveEdit(course.id)} className="flex items-center gap-1 bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-lg transition-colors">
+                        <Check size={11} /> Guardar
+                      </button>
+                      <button onClick={() => setEditingId(null)} className="text-gray-500 hover:text-white text-xs px-2 py-1 transition-colors">
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="group/info">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-bold text-sm">{course.title}</span>
+                      {course.level_required && (
+                        <span className="flex items-center gap-1 text-[10px] bg-white/5 text-gray-400 px-2 py-0.5 rounded-full font-bold">
+                          <Lock size={9} /> {course.level_required}
+                        </span>
+                      )}
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${course.is_published ? 'bg-emerald-500/10 text-emerald-400' : 'bg-white/5 text-gray-600'}`}>
+                        {course.is_published ? 'Publicado' : 'Borrador'}
+                      </span>
+                      <button
+                        onClick={() => startEdit(course)}
+                        className="opacity-0 group-hover/info:opacity-100 w-5 h-5 flex items-center justify-center rounded text-gray-600 hover:text-orange-500 transition-all"
+                      >
+                        <Pencil size={11} />
+                      </button>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-0.5 truncate">
+                      {course.description || <span className="italic text-gray-700">Sin descripción</span>}
+                    </p>
+                  </div>
                 )}
               </div>
 
