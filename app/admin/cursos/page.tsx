@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, BookOpen, Lock, Eye, EyeOff, Trash2, ChevronRight } from 'lucide-react'
+import { Plus, BookOpen, Lock, Eye, EyeOff, Trash2, ChevronRight, ImageIcon } from 'lucide-react'
 import Link from 'next/link'
 
 interface Course {
@@ -11,6 +11,7 @@ interface Course {
   level_required: string | null
   is_published: boolean
   order_index: number
+  cover_url?: string | null
 }
 
 export default function CursosPage() {
@@ -19,6 +20,7 @@ export default function CursosPage() {
   const [creating, setCreating] = useState(false)
   const [newTitle, setNewTitle] = useState('')
   const [newLevel, setNewLevel] = useState('')
+  const [uploadingId, setUploadingId] = useState<string | null>(null)
 
   async function load() {
     setLoading(true)
@@ -47,6 +49,15 @@ export default function CursosPage() {
       setCreating(false)
       load()
     }
+  }
+
+  async function uploadCover(courseId: string, file: File) {
+    setUploadingId(courseId)
+    const fd = new FormData()
+    fd.append('image', file)
+    await fetch(`/api/admin/cursos/${courseId}/cover`, { method: 'POST', body: fd })
+    setUploadingId(null)
+    load()
   }
 
   async function togglePublish(course: Course) {
@@ -138,9 +149,32 @@ export default function CursosPage() {
               key={course.id}
               className="bg-[#111] border border-white/5 rounded-xl p-5 flex items-center gap-4 hover:border-white/10 transition-colors group"
             >
-              <div className="w-10 h-10 bg-orange-600/10 rounded-lg flex items-center justify-center shrink-0">
-                <BookOpen size={18} className="text-orange-600" />
-              </div>
+              <label className="relative w-20 shrink-0 cursor-pointer group/thumb" style={{aspectRatio:'16/9'}}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploadingId === course.id}
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadCover(course.id, f) }}
+                />
+                {course.cover_url ? (
+                  <img
+                    src={course.cover_url}
+                    alt=""
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-lg bg-[#1a1a1a] border border-dashed border-white/10 flex items-center justify-center">
+                    <ImageIcon size={14} className="text-gray-700" />
+                  </div>
+                )}
+                <div className="absolute inset-0 rounded-lg bg-black/60 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
+                  {uploadingId === course.id
+                    ? <span className="text-[9px] text-white font-bold">…</span>
+                    : <span className="text-[9px] text-white font-bold">{course.cover_url ? 'CAMBIAR' : 'SUBIR'}</span>
+                  }
+                </div>
+              </label>
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
