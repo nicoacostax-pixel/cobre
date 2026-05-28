@@ -11,6 +11,7 @@ type Course = {
   level_required: string | null
   is_published: boolean
   order_index: number
+  cover_url?: string | null
 }
 
 export default function ComunidadPage() {
@@ -126,8 +127,18 @@ export default function ComunidadPage() {
                 {courses.map((c, i) => (
                   <div key={c.id} className="cm-course-card">
                     <div className="cm-course-thumb">
-                      <div className="cm-course-num">{String(i + 1).padStart(2, '0')}</div>
-                      <div className="cm-course-thumb-title">{c.title}</div>
+                      {c.cover_url ? (
+                        <img
+                          src={c.cover_url}
+                          alt={c.title}
+                          style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}}
+                        />
+                      ) : (
+                        <>
+                          <div className="cm-course-num">{String(i + 1).padStart(2, '0')}</div>
+                          <div className="cm-course-thumb-title">{c.title}</div>
+                        </>
+                      )}
                       <span className={`cm-course-badge ${c.is_published ? 'published' : 'draft'}`}>
                         {c.is_published ? 'Disponible' : 'Próximamente'}
                       </span>

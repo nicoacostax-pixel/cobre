@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState, use } from 'react'
-import { Plus, Trash2, ChevronRight, GripVertical, BookOpen, FileText, Eye, EyeOff, Pencil, Check, X } from 'lucide-react'
+import { Plus, Trash2, ChevronRight, GripVertical, BookOpen, FileText, Eye, EyeOff, Pencil, Check, X, ImageIcon } from 'lucide-react'
 import Link from 'next/link'
 
 interface Lesson  { id: string; title: string; is_published: boolean; order_index: number; video_url?: string }
 interface Module  { id: string; title: string; order_index: number; lessons: Lesson[] }
-interface Course  { id: string; title: string; description: string; level_required: string | null; is_published: boolean; modules: Module[] }
+interface Course  { id: string; title: string; description: string; level_required: string | null; is_published: boolean; cover_url?: string; modules: Module[] }
 
 export default function CourseBuilderPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -22,6 +22,7 @@ export default function CourseBuilderPage({ params }: { params: Promise<{ id: st
   const [newLessonTitle, setNewLessonTitle] = useState('')
   const [editingMod, setEditingMod]         = useState<string | null>(null)
   const [modDraft, setModDraft]             = useState('')
+  const [uploadingCover, setUploadingCover] = useState(false)
 
   async function load() {
     setLoading(true)
@@ -32,6 +33,15 @@ export default function CourseBuilderPage({ params }: { params: Promise<{ id: st
   }
 
   useEffect(() => { load() }, [id])
+
+  async function uploadCover(file: File) {
+    setUploadingCover(true)
+    const fd = new FormData()
+    fd.append('image', file)
+    await fetch(`/api/admin/cursos/${id}/cover`, { method: 'POST', body: fd })
+    setUploadingCover(false)
+    load()
+  }
 
   async function saveTitle() {
     await fetch(`/api/admin/cursos/${id}`, {
@@ -199,7 +209,33 @@ export default function CourseBuilderPage({ params }: { params: Promise<{ id: st
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-xs text-gray-600 border-t border-white/5 pt-4">
+        {/* Cover image */}
+        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-white/5">
+          {course.cover_url ? (
+            <div className="w-32 aspect-video rounded-lg overflow-hidden shrink-0 border border-white/10">
+              <img src={course.cover_url} alt="Portada" className="w-full h-full object-cover" />
+            </div>
+          ) : (
+            <div className="w-32 aspect-video rounded-lg bg-[#1a1a1a] border border-dashed border-white/10 flex items-center justify-center shrink-0">
+              <ImageIcon size={20} className="text-gray-700" />
+            </div>
+          )}
+          <div>
+            <label className={`cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors ${uploadingCover ? 'bg-white/5 text-gray-600 pointer-events-none' : 'bg-orange-600/10 text-orange-500 hover:bg-orange-600/20'}`}>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                disabled={uploadingCover}
+                onChange={e => { const f = e.target.files?.[0]; if (f) uploadCover(f) }}
+              />
+              {uploadingCover ? 'Subiendo…' : course.cover_url ? 'Cambiar portada' : 'Subir portada'}
+            </label>
+            <p className="text-[11px] text-gray-700 mt-1.5">JPG, PNG o WebP · Se muestra en la pestaña Clases</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 text-xs text-gray-600 border-t border-white/5 pt-4 mt-4">
           <span>{course.modules?.length ?? 0} módulos</span>
           <span>·</span>
           <span>{course.modules?.reduce((acc, m) => acc + (m.lessons?.length ?? 0), 0)} lecciones</span>
