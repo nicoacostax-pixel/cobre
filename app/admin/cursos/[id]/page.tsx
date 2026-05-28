@@ -38,9 +38,14 @@ export default function CourseBuilderPage({ params }: { params: Promise<{ id: st
     setUploadingCover(true)
     const fd = new FormData()
     fd.append('image', file)
-    await fetch(`/api/admin/cursos/${id}/cover`, { method: 'POST', body: fd })
+    const res = await fetch(`/api/admin/cursos/${id}/cover`, { method: 'POST', body: fd })
+    const data = await res.json()
+    if (!res.ok) {
+      alert(`Error al subir imagen: ${data.error ?? 'desconocido'}`)
+    } else if (data.cover_url) {
+      setCourse(prev => prev ? { ...prev, cover_url: data.cover_url } : prev)
+    }
     setUploadingCover(false)
-    load()
   }
 
   async function saveTitle() {

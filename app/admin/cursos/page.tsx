@@ -55,9 +55,14 @@ export default function CursosPage() {
     setUploadingId(courseId)
     const fd = new FormData()
     fd.append('image', file)
-    await fetch(`/api/admin/cursos/${courseId}/cover`, { method: 'POST', body: fd })
+    const res = await fetch(`/api/admin/cursos/${courseId}/cover`, { method: 'POST', body: fd })
+    const data = await res.json()
+    if (!res.ok) {
+      alert(`Error al subir imagen: ${data.error ?? 'desconocido'}`)
+    } else if (data.cover_url) {
+      setCourses(prev => prev.map(c => c.id === courseId ? { ...c, cover_url: data.cover_url } : c))
+    }
     setUploadingId(null)
-    load()
   }
 
   async function togglePublish(course: Course) {

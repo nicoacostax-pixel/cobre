@@ -8,7 +8,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   if (!file) return NextResponse.json({ error: 'No image' }, { status: 400 })
 
   const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg'
-  const path = `${id}/cover.${ext}`
+  const path = `${id}/cover_${Date.now()}.${ext}`
   const bytes = await file.arrayBuffer()
 
   const { error: uploadError } = await supabase.storage
