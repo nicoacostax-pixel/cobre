@@ -337,11 +337,15 @@ export default function EspionajePage() {
   const competitorMap = Object.fromEntries(competitors.map(c => [c.id, c]))
 
   const filtered = posts
-    .filter(p =>
-      (filter === 'all' || p.type === filter) &&
-      (!hideQueued || !queueIds.has(p.instagram_id)) &&
-      (!hideDone || !doneIds.has(p.instagram_id))
-    )
+    .filter(p => {
+      if (filter !== 'all' && p.type !== filter) return false
+      // "Ver hechos" mode: show ONLY done posts
+      if (!hideDone) return doneIds.has(p.instagram_id)
+      // Normal mode: hide done, optionally hide queued
+      if (doneIds.has(p.instagram_id)) return false
+      if (hideQueued && queueIds.has(p.instagram_id)) return false
+      return true
+    })
     .sort((a, b) => sort === 'viral' ? engagement(b) - engagement(a) : new Date(b.posted_at ?? 0).getTime() - new Date(a.posted_at ?? 0).getTime())
 
   /* ─── SETUP SCREEN ─── */
@@ -603,22 +607,24 @@ create table spy_queue (
               ))}
             </div>
             <div className="flex items-center gap-2 ml-auto flex-wrap">
-              {/* Hide queued toggle */}
-              <button
-                onClick={() => setHideQueued(h => !h)}
-                className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors ${hideQueued ? 'bg-orange-600/15 border-orange-600/30 text-orange-400' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}
-              >
-                <BookmarkPlus size={12} />
-                {hideQueued ? `Guardados (${queueIds.size})` : 'Mostrando todos'}
-              </button>
-              {/* Hide done toggle */}
+              {/* Hide queued toggle — only in normal mode */}
+              {hideDone && (
+                <button
+                  onClick={() => setHideQueued(h => !h)}
+                  className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors ${hideQueued ? 'bg-orange-600/15 border-orange-600/30 text-orange-400' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}
+                >
+                  <BookmarkPlus size={12} />
+                  {hideQueued ? `Ocultar guardados (${queueIds.size - doneIds.size})` : `Mostrando guardados`}
+                </button>
+              )}
+              {/* Done toggle */}
               {doneIds.size > 0 && (
                 <button
                   onClick={() => setHideDone(h => !h)}
-                  className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors ${hideDone ? 'bg-emerald-600/15 border-emerald-600/30 text-emerald-400' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}
+                  className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors ${!hideDone ? 'bg-emerald-600/20 border-emerald-500/50 text-emerald-300' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}
                 >
                   <Check size={12} />
-                  {hideDone ? `Ya hechos (${doneIds.size})` : 'Mostrando hechos'}
+                  {hideDone ? `Ver hechos (${doneIds.size})` : `← Volver`}
                 </button>
               )}
               <div className="flex items-center gap-1 bg-[#111] border border-white/5 rounded-lg p-1">
@@ -679,27 +685,41 @@ create table spy_queue (
                     }}>
                       {TYPE_ICON[post.type]} {TYPE_LABEL[post.type]}
                     </div>
-                    {/* Save button */}
-                    <button
-                      onClick={() => inQueue ? null : saveToQueue(post, comp?.handle ?? '')}
-                      disabled={isSaving || inQueue}
-                      style={{
-                        position: 'absolute', top: 8, right: 8,
-                        width: 28, height: 28, borderRadius: 999, border: 'none', cursor: inQueue ? 'default' : 'pointer',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        background: inQueue ? 'rgba(200,117,51,0.85)' : 'rgba(12,10,7,0.75)',
-                        transition: 'background 0.2s, transform 0.15s',
-                        transform: isSaving ? 'scale(0.9)' : 'scale(1)',
-                      }}
-                      title={inQueue ? 'Ya guardado en tu cola' : 'Guardar en mi cola'}
-                    >
-                      {inQueue
-                        ? <Check size={13} color="#EDE8DC" strokeWidth={3} />
-                        : isSaving
-                          ? <span style={{ fontSize: 9, color: '#C87533', fontWeight: 700 }}>…</span>
-                          : <BookmarkPlus size={13} color="#C87533" />
-                      }
-                    </button>
+                    {/* "En cola" badge — visible when showing queued posts */}
+                    {inQueue && !hideQueued && !isDone && (
+                      <div style={{
+                        position: 'absolute', top: 8, right: 8, pointerEvents: 'none',
+                        background: 'rgba(200,117,51,0.9)', borderRadius: 4,
+                        padding: '3px 7px', fontSize: 9, fontWeight: 700,
+                        letterSpacing: '0.06em', textTransform: 'uppercase', color: '#fff',
+                        display: 'flex', alignItems: 'center', gap: 4,
+                      }}>
+                        <BookmarkPlus size={9} /> En cola
+                      </div>
+                    )}
+                    {/* Save button — only when not in queue and not showing queued mode */}
+                    {(!inQueue || hideQueued) && !(!hideDone) && (
+                      <button
+                        onClick={() => inQueue ? null : saveToQueue(post, comp?.handle ?? '')}
+                        disabled={isSaving || inQueue}
+                        style={{
+                          position: 'absolute', top: 8, right: 8,
+                          width: 28, height: 28, borderRadius: 999, border: 'none', cursor: inQueue ? 'default' : 'pointer',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          background: inQueue ? 'rgba(200,117,51,0.85)' : 'rgba(12,10,7,0.75)',
+                          transition: 'background 0.2s, transform 0.15s',
+                          transform: isSaving ? 'scale(0.9)' : 'scale(1)',
+                        }}
+                        title={inQueue ? 'Ya guardado en tu cola' : 'Guardar en mi cola'}
+                      >
+                        {inQueue
+                          ? <Check size={13} color="#EDE8DC" strokeWidth={3} />
+                          : isSaving
+                            ? <span style={{ fontSize: 9, color: '#C87533', fontWeight: 700 }}>…</span>
+                            : <BookmarkPlus size={13} color="#C87533" />
+                        }
+                      </button>
+                    )}
                     {/* Viral score */}
                     <div style={{
                       position: 'absolute', bottom: 8, right: 8, pointerEvents: 'none',
