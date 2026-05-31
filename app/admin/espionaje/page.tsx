@@ -29,6 +29,11 @@ const TYPE_TEXT  = { reel: '#C87533', image: '#4A9B8A', carousel: '#D4924A' }
 
 function engagement(p: Post) { return p.likes + p.comments * 3 + (p.views > 0 ? p.views * 0.01 : 0) }
 
+function proxyImg(url: string | null | undefined) {
+  if (!url) return null
+  return `/api/admin/espionaje/proxy-image?url=${encodeURIComponent(url)}`
+}
+
 function fmt(n: number) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
@@ -450,7 +455,7 @@ create table spy_queue (
                     style={{ borderColor: item.status === 'done' ? 'rgba(74,158,138,0.35)' : 'rgba(200,117,51,0.25)', aspectRatio: '1/1', cursor: 'pointer' }}
                   >
                     {item.thumbnail_url
-                      ? <img src={item.thumbnail_url} alt="" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', opacity: item.status==='done' ? 0.45 : 1 }} />
+                      ? <img src={proxyImg(item.thumbnail_url)!} alt="" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', opacity: item.status==='done' ? 0.45 : 1 }} />
                       : <div style={{ width:'100%', height:'100%', background:'#1a1a1a', display:'flex', alignItems:'center', justifyContent:'center' }}>
                           <span style={{ fontSize: 24, opacity: 0.3 }}>📸</span>
                         </div>
@@ -650,7 +655,7 @@ create table spy_queue (
                     <a href={post.post_url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
                       {post.thumbnail_url ? (
                         <img
-                          src={post.thumbnail_url}
+                          src={proxyImg(post.thumbnail_url)!}
                           alt=""
                           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                         />
