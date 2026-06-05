@@ -36,7 +36,14 @@ const guides = [
     href: '/recursos/04',
   },
   {
-    num: '05', cat: 'Avanzado',
+    num: '05', cat: 'Contenido',
+    title: 'Carruseles que paran el scroll',
+    desc: 'Skill instalable para Claude. Hook, setup, contenido, cierre y CTA. 6 tipos de carrusel. Adaptable a cualquier nicho.',
+    meta: 'skill · plug and play',
+    href: '/recursos/carrusel',
+  },
+  {
+    num: '06', cat: 'Avanzado',
     title: 'Tu propia IA empleada',
     desc: 'Construye un asistente entrenado con tus documentos, tu marca y tus procesos. Sin código. Sin plataformas de pago extra.',
     meta: '10 min de lectura',
