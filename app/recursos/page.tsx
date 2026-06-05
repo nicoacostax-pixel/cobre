@@ -43,42 +43,79 @@ const guides = [
     href: '/recursos/carrusel',
   },
   {
-    num: '06', cat: 'Avanzado',
-    title: 'Tu propia IA empleada',
-    desc: 'Construye un asistente entrenado con tus documentos, tu marca y tus procesos. Sin código. Sin plataformas de pago extra.',
-    meta: '10 min de lectura',
-    href: null, soon: true,
-  },
-  {
-    num: '06', cat: 'Contenido',
-    title: 'Crea 100 posts en una tarde',
-    desc: 'Sin After Effects, sin timeline, sin keyframes. Un sistema completo: ideas → guión → imagen → publicación automática.',
-    meta: 'setup en 1 tarde · 0€ extra',
-    href: null, soon: true,
+    num: '06', cat: 'Fundamentos',
+    title: 'Los 5 pasos que separan un chatbot mediocre de un asistente que sabe quién eres',
+    desc: 'Plan, modelo, Project, Skills y connectors. Configurado en una tarde. Te dura el resto del año.',
+    meta: '6 min · 45 min de acción',
+    href: '/recursos/setup',
   },
   {
     num: '07', cat: 'Negocio',
-    title: 'Saber qué publica tu competencia antes que ella',
-    desc: 'Un agente que vigila 5-10 competidores y te avisa cuando publican algo viral. 15 min de setup con Claude + una herramienta gratuita.',
-    meta: '5 pasos · 15 min · 0€ extra',
-    href: null, soon: true,
+    title: 'Las 5 piezas que separan un chat caro de un sistema que factura',
+    desc: 'Pack de 7 días para montar un agente que entrega trabajo a clientes. Plantillas listas y la regla de cada día.',
+    meta: '7 días · setup completo',
+    href: '/recursos/agente',
   },
   {
-    num: '08', cat: 'Fundamentos',
-    title: 'Prompts que funcionan siempre',
-    desc: 'La guía completa de técnicas de prompting que realmente funcionan en el día a día. Sin teoría, todo con ejemplos reales.',
-    meta: '8 min',
-    href: null, soon: true,
+    num: '08', cat: 'Producto',
+    title: 'El PRD que uso antes de buildear cualquier app',
+    desc: '1 prompt + 1 template + 3 reglas. Lo que uso antes de escribir el primer prompt de una app. El filtro que te ahorra construir mierda.',
+    meta: '1 prompt · 1 template · 3 reglas',
+    href: '/recursos/prd',
+  },
+  {
+    num: '09', cat: 'Avanzado',
+    title: 'Tu propio agente de IA viviendo dentro de tu Mac',
+    desc: 'Instala Hermes, el agente open source de Nous Research. Memoria, navegador, terminal, WhatsApp. Todo en tu MacBook, en 10 minutos.',
+    meta: '10 min · open source · gratis',
+    href: '/recursos/hermes',
+  },
+  {
+    num: '10', cat: 'Contenido',
+    title: 'Cómo hago un video desde cero con Claude Code y Remotion',
+    desc: 'Sin After Effects, sin timeline, sin keyframes. Setup en 1 comando, video en React, render a MP4 desde la terminal. 1 plantilla = 100 reels.',
+    meta: '~2 min setup · 0€ por video',
+    href: '/recursos/video',
+  },
+  {
+    num: '11', cat: 'Negocio',
+    title: 'Tracker de competencia en Instagram',
+    desc: 'Un agente que vigila 5-10 competidores en Instagram y te avisa por Telegram cuando publican algo viral. 15 min de setup con Claude Code + Apify.',
+    meta: '5 pasos · 15 min · 0 USD extra',
+    href: '/recursos/tracker-competencia-ig',
+  },
+  {
+    num: '12', cat: 'Automatización',
+    title: 'Construye workflows en n8n desde Cursor + Claude Code',
+    desc: 'Le describes el flow a Claude, te entrega el JSON validado, lo pegas en n8n con Cmd+V. Setup de 2 archivos en 10 minutos.',
+    meta: '2 archivos · 10 min · plan trial sirve',
+    href: '/recursos/n8n',
+  },
+  {
+    num: '13', cat: 'Lanzamiento',
+    title: 'Las 4 cosas que tienes que arreglar antes de mandar tu app a Apple',
+    desc: 'Construí mi app con Claude en 2 horas y Apple me la rechazó en 10 minutos. El checklist de las 4 cosas para pasar la revisión a la primera.',
+    meta: '4 arreglos · checklist interactivo',
+    href: '/recursos/apple',
+  },
+  {
+    num: '14', cat: 'Negocio',
+    title: 'La guía básica para montar tu CRM con bot calificador',
+    desc: 'Qué es, las 4 piezas que lleva, cómo se ve corriendo de verdad, y cuánto cuesta la IA por debajo (desde $8/mes). El mapa completo, sin equipo.',
+    meta: '4 piezas · sin equipo · desde $8/mes',
+    href: '/recursos/crm',
   },
 ]
 
 const catStyle: Record<string, { bg: string; color: string }> = {
-  Fundamentos: { bg: 'rgba(200,117,51,0.12)',  color: '#C87533' },
-  Negocio:     { bg: 'rgba(61,122,110,0.14)',  color: '#4A9B8A' },
-  Contenido:   { bg: 'rgba(232,168,78,0.12)',  color: '#E8A84E' },
-  Prompts:     { bg: 'rgba(237,232,220,0.08)', color: '#998E82' },
-  Avanzado:    { bg: 'rgba(180,150,80,0.14)',  color: '#C8A84A' },
-  Producto:    { bg: 'rgba(61,122,110,0.14)',  color: '#4A9B8A' },
+  Fundamentos:    { bg: 'rgba(200,117,51,0.12)',  color: '#C87533' },
+  Negocio:        { bg: 'rgba(61,122,110,0.14)',  color: '#4A9B8A' },
+  Contenido:      { bg: 'rgba(232,168,78,0.12)',  color: '#E8A84E' },
+  Prompts:        { bg: 'rgba(237,232,220,0.08)', color: '#998E82' },
+  Avanzado:       { bg: 'rgba(180,150,80,0.14)',  color: '#C8A84A' },
+  Producto:       { bg: 'rgba(61,122,110,0.14)',  color: '#4A9B8A' },
+  Automatización: { bg: 'rgba(120,80,200,0.12)',  color: '#9B72E8' },
+  Lanzamiento:    { bg: 'rgba(200,117,51,0.18)',  color: '#E8923A' },
 }
 
 export default function RecursosPage() {
@@ -240,12 +277,13 @@ export default function RecursosPage() {
       <div className="rc-grid">
         {guides.map((g) => {
           const style = catStyle[g.cat] ?? catStyle.Fundamentos
+          const soon = !g.href
           const inner = (
             <>
               <div>
                 <div className="rc-card-top">
-                  <span className={`rc-num${g.soon ? ' soon-label' : ''}`}>
-                    {g.soon ? 'PRÓXIMAMENTE' : `GUÍA Nº ${g.num}`}
+                  <span className={`rc-num${soon ? ' soon-label' : ''}`}>
+                    {soon ? 'PRÓXIMAMENTE' : `GUÍA Nº ${g.num}`}
                   </span>
                   <span className="rc-cat" style={{ background: style.bg, color: style.color }}>{g.cat}</span>
                 </div>
@@ -254,7 +292,7 @@ export default function RecursosPage() {
               </div>
               <div className="rc-card-bot">
                 <span className="rc-meta">{g.meta}</span>
-                {g.soon
+                {soon
                   ? <span className="rc-soon-lbl">EN CAMINO</span>
                   : <span className="rc-read">LEER →</span>
                 }
@@ -264,9 +302,9 @@ export default function RecursosPage() {
           )
 
           return g.href ? (
-            <a key={g.num} href={g.href} className="rc-card">{inner}</a>
+            <a key={`${g.num}-${g.href}`} href={g.href} className="rc-card">{inner}</a>
           ) : (
-            <div key={g.num} className={`rc-card${g.soon ? ' soon' : ''}`}>{inner}</div>
+            <div key={`${g.num}-${g.title}`} className="rc-card soon">{inner}</div>
           )
         })}
       </div>
