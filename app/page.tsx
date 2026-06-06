@@ -32,7 +32,7 @@ function LeadForm() {
       body: JSON.stringify({ name, email, phone: '', answers: [] }),
     })
     if (res.ok) { window.location.href = '/gracias' }
-    else { setLoading(false); setErr('Hubo un error. Intentá de nuevo.') }
+    else { setLoading(false); setErr('Hubo un error. Intenta de nuevo.') }
   }
 
   return (
@@ -63,7 +63,7 @@ function LeadForm() {
       </ShimmerButton>
       {err && <p style={{ color: '#E07B4A', fontSize: 13, marginTop: 8, fontFamily: "'DM Mono',monospace" }}>{err}</p>}
       <p style={{ fontSize: 11, color: '#6B6054', textAlign: 'center', marginTop: 10, fontFamily: "'DM Mono',monospace", letterSpacing: '0.05em' }}>
-        SIN SPAM · SALÍS CUANDO QUERÉS
+        SIN SPAM · TE VAS CUANDO QUIERAS
       </p>
     </form>
   )
@@ -278,8 +278,8 @@ export default function Home() {
               <span className="tag-line" />
             </div>
             <h1 className="h1">
-              Usás IA todos los días,<br />
-              pero seguís en la<br />
+              Usas IA todos los días,<br />
+              pero sigues en la<br />
               <em>misma posición.</em>
             </h1>
             <p className="sub">
@@ -300,7 +300,7 @@ export default function Home() {
             <BorderBeam duration={8} colorFrom="#C87533" colorTo="#E8A84E" />
             <p className="form-label">— Acceso gratuito</p>
             <h2 className="form-title">
-              Recibí las guías<br /><em>en tu correo.</em>
+              Recibe las guías<br /><em>en tu correo.</em>
             </h2>
             <LeadForm />
           </div>
