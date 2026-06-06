@@ -278,12 +278,12 @@ export default function Home() {
               <span className="tag-line" />
             </div>
             <h1 className="h1">
-              Usás IA todos los días.<br />
-              Pero seguís en la<br />
+              Usás IA todos los días,<br />
+              pero seguís en la<br />
               <em>misma posición.</em>
             </h1>
             <p className="sub">
-              Hay diferencia entre usar IA y saber usarla. Estas guías te dan el sistema.
+              Más de 10 recursos gratuitos te van a ayudar a cambiar eso.
             </p>
             <ul className="checks">
               {checks.map(c => (
