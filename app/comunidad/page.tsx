@@ -15,48 +15,44 @@ type Course = {
   cover_url?: string | null
 }
 
-// Portadas CSS por índice de curso
-const COVERS: Record<number, { bg: string; icon: string; label: string; accent: string }> = {
-  1: {
-    bg: 'linear-gradient(135deg, #0a1a0a 0%, #0d2e0d 40%, #1a4a1a 100%)',
-    icon: '🚀',
-    label: 'EMPIEZA AQUÍ',
-    accent: '#4ade80',
-  },
-  2: {
-    bg: 'linear-gradient(135deg, #0a0a1a 0%, #0d0d2e 40%, #1a1a4a 100%)',
-    icon: '🧠',
-    label: 'MEMORIA DE CLAUDE',
-    accent: '#818cf8',
-  },
-  3: {
-    bg: 'linear-gradient(135deg, #0a1520 0%, #0d2235 40%, #1a3a50 100%)',
-    icon: '🌐',
-    label: 'WEBSITE',
-    accent: '#38bdf8',
-  },
-  4: {
-    bg: 'linear-gradient(135deg, #1a0a0a 0%, #2e0d0d 40%, #4a1a1a 100%)',
-    icon: '📈',
-    label: 'LANDING PAGES',
-    accent: '#f87171',
-  },
-  5: {
-    bg: 'linear-gradient(135deg, #1a100a 0%, #2e1a0d 40%, #4a2e1a 100%)',
-    icon: '⚙️',
-    label: 'SKILLS & MCPs',
-    accent: '#C87533',
-  },
-  6: {
-    bg: 'linear-gradient(135deg, #0f0a1a 0%, #1a0d2e 40%, #2e1a4a 100%)',
-    icon: '🎮',
-    label: 'TU PROPIO JUEGO',
-    accent: '#a78bfa',
-  },
+type CoverStyle = { bg: string; icon: string; label: string; accent: string; textSize?: string }
+
+function getCover(title: string): CoverStyle {
+  const t = title.toLowerCase()
+  if (t.includes('empieza'))      return { bg: 'linear-gradient(135deg,#071a07,#0d3010,#1a5020)', icon: '→', label: 'EMPIEZA AQUÍ', accent: '#4ade80', textSize: '3rem' }
+  if (t.includes('claude code'))  return { bg: 'linear-gradient(135deg,#0a0a0a,#1a1008,#2a1a0a)', icon: '{ }', label: 'CLAUDE CODE', accent: '#C87533', textSize: '2rem' }
+  if (t.includes('claude design'))return { bg: 'linear-gradient(135deg,#1a1510,#2e2518,#3a3020)', icon: '✦', label: 'CLAUDE DESIGN', accent: '#E8A84E', textSize: '2rem' }
+  if (t.includes('ghl') || t.includes('high level')) return { bg: 'linear-gradient(135deg,#061518,#0a2530,#0d3545)', icon: '↑↑', label: 'GHL DESDE CERO', accent: '#38bdf8', textSize: '2rem' }
+  if (t.includes('vibe'))         return { bg: 'linear-gradient(135deg,#0f0520,#1a0835,#2e1050)', icon: '◈', label: 'VIBE-CODING', accent: '#a78bfa', textSize: '2rem' }
+  if (t.includes('n8n desde'))    return { bg: 'linear-gradient(135deg,#150515,#220d22,#331533)', icon: '⬡⬡⬡', label: 'n8n DESDE CERO', accent: '#e879f9', textSize: '1.4rem' }
+  if (t.includes('airtable'))     return { bg: 'linear-gradient(135deg,#050a1a,#0a1230,#101a50)', icon: '◧', label: 'AIRTABLE DESDE 0', accent: '#60a5fa', textSize: '1.6rem' }
+  if (t.includes('automatizaciones make') || t.includes('make') && t.includes('automatiz')) return { bg: 'linear-gradient(135deg,#100520,#1a0835,#2a1050)', icon: 'M', label: 'AUTOMATIZACIONES MAKE', accent: '#c084fc', textSize: '1.2rem' }
+  if (t.includes('claude skills') || t.includes('skills')) return { bg: 'linear-gradient(135deg,#0f0a05,#1a1208,#2a1e0d)', icon: '▣', label: 'CLAUDE SKILLS', accent: '#C87533', textSize: '2rem' }
+  if (t.includes('automatizaciones n8n') || (t.includes('n8n') && t.includes('automatiz'))) return { bg: 'linear-gradient(135deg,#150515,#220d22,#2e1030)', icon: '⬡⬡⬡', label: 'AUTOMATIZACIONES n8n', accent: '#e879f9', textSize: '1.2rem' }
+  if (t.includes('whatsapp'))     return { bg: 'linear-gradient(135deg,#051505,#0a2510,#0f3515)', icon: '◉', label: 'AGENTES DE WHATSAPP', accent: '#4ade80', textSize: '1.2rem' }
+  if (t.includes('make desde'))   return { bg: 'linear-gradient(135deg,#0f0520,#180835,#2a1050)', icon: 'M', label: 'MAKE DESDE 0', accent: '#c084fc', textSize: '2.5rem' }
+  if (t.includes('de make'))      return { bg: 'linear-gradient(135deg,#0f0520,#1a0830,#1a1040)', icon: 'M→n8n', label: 'DE MAKE A n8n', accent: '#a78bfa', textSize: '1.4rem' }
+  if (t.includes('recursos'))     return { bg: 'linear-gradient(135deg,#0a0805,#160f08,#1e1510)', icon: '◈', label: 'RECURSOS', accent: '#C87533', textSize: '2.5rem' }
+  if (t.includes('vender') || t.includes('automatizaciones') && t.includes('vend')) return { bg: 'linear-gradient(135deg,#150505,#250a0a,#351510)', icon: '◆◆◆', label: 'CÓMO VENDER', accent: '#fb923c', textSize: '1.6rem' }
+  if (t.includes('prompts'))      return { bg: 'linear-gradient(135deg,#080a15,#0f1225,#151a35)', icon: '»', label: 'BIBLIOTECA DE PROMPTS', accent: '#818cf8', textSize: '1.2rem' }
+  if (t.includes('crea') && t.includes('conecta')) return { bg: 'linear-gradient(135deg,#05050f,#080810,#0f0f18)', icon: '◯◯◯', label: 'CREA · CONECTA · CONVIERTE', accent: '#94a3b8', textSize: '1rem' }
+  if (t.includes('mentalidad'))   return { bg: 'linear-gradient(135deg,#040510,#060818,#0a0d28)', icon: '◉', label: 'MENTALIDAD IA', accent: '#7dd3fc', textSize: '1.8rem' }
+  if (t.includes('club') || t.includes('anual')) return { bg: 'linear-gradient(135deg,#100a00,#201500,#302000)', icon: '♛', label: 'CLUB ANUAL', accent: '#fbbf24', textSize: '2.5rem' }
+  if (t.includes('aprendiz') || t.includes('nivel 2')) return { bg: 'linear-gradient(135deg,#050f15,#081825,#0d2535)', icon: '▲', label: 'NIVEL 2 · APRENDIZ', accent: '#38bdf8', textSize: '1.6rem' }
+  if (t.includes('recluta') || t.includes('nivel 3')) return { bg: 'linear-gradient(135deg,#0f0505,#200808,#300f0f)', icon: '▲▲', label: 'NIVEL 3 · RECLUTA', accent: '#f87171', textSize: '1.6rem' }
+  if (t.includes('grabaci'))      return { bg: 'linear-gradient(135deg,#0f0505,#180808,#200a0a)', icon: '⏺', label: 'GRABACIONES', accent: '#f87171', textSize: '2rem' }
+  if (t.includes('soporte'))      return { bg: 'linear-gradient(135deg,#100308,#1e0510,#2d0818)', icon: '⚡', label: 'SOPORTE', accent: '#f472b6', textSize: '2.5rem' }
+  if (t.includes('openclaw') || t.includes('reto')) return { bg: 'linear-gradient(135deg,#0a0515,#120a25,#1e1040)', icon: '◈', label: 'OPENCLAW', accent: '#a78bfa', textSize: '2rem' }
+  if (t.includes('memoria') || t.includes('claude.md')) return { bg: 'linear-gradient(135deg,#050510,#0a0a20,#101030)', icon: '🧠', label: 'MEMORIA DE CLAUDE', accent: '#818cf8', textSize: '1.6rem' }
+  if (t.includes('website') || t.includes('web')) return { bg: 'linear-gradient(135deg,#050a15,#0a1525,#0f2035)', icon: '🌐', label: 'WEBSITE', accent: '#38bdf8', textSize: '2.5rem' }
+  if (t.includes('landing'))      return { bg: 'linear-gradient(135deg,#150505,#250a0a,#350f0f)', icon: '📈', label: 'LANDING PAGES', accent: '#f87171', textSize: '1.8rem' }
+  if (t.includes('juego') || t.includes('game')) return { bg: 'linear-gradient(135deg,#080515,#100a25,#181040)', icon: '🎮', label: 'TU PROPIO JUEGO', accent: '#a78bfa', textSize: '1.8rem' }
+  // default
+  return { bg: 'linear-gradient(135deg,#0C0A07,#141009,#1C160C)', icon: '◈', label: title.toUpperCase(), accent: '#C87533', textSize: '1.4rem' }
 }
 
 export default function ComunidadPage() {
-  const [tab, setTab] = useState('Comunidad')
+  const [tab, setTab] = useState('Clases')
   const [courses, setCourses] = useState<Course[]>([])
   const [loadingCourses, setLoadingCourses] = useState(false)
 
@@ -354,31 +350,59 @@ export default function ComunidadPage() {
             )}
             {!loadingCourses && courses.length > 0 && (
               <div className="cm-clases-grid">
-                {courses.map((c, i) => {
-                  const cover = COVERS[c.order_index]
+                {courses.map((c) => {
+                  const cover = getCover(c.title)
                   return (
                   <div key={c.id} className="cm-course-card">
-                    <div
-                      className="cm-course-thumb"
-                      style={cover ? { background: cover.bg } : undefined}
-                    >
+                    <div className="cm-course-thumb" style={{ background: cover.bg }}>
                       {c.cover_url ? (
                         <img
                           src={c.cover_url} alt={c.title}
                           style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
                         />
-                      ) : cover ? (
+                      ) : (
                         <>
-                          <div className="cm-cover-icon">{cover.icon}</div>
-                          <div className="cm-cover-label" style={{ color: cover.accent }}>
+                          <div
+                            className="cm-cover-icon"
+                            style={{
+                              fontSize: cover.textSize ?? '2.5rem',
+                              color: cover.accent,
+                              fontFamily: "'DM Mono', monospace",
+                              fontWeight: 700,
+                              letterSpacing: '0.04em',
+                              lineHeight: 1.1,
+                              textAlign: 'center',
+                              position: 'relative', zIndex: 1,
+                              textShadow: `0 0 30px ${cover.accent}66`,
+                              marginBottom: 10,
+                            }}
+                          >
+                            {cover.icon}
+                          </div>
+                          <div
+                            className="cm-cover-label"
+                            style={{
+                              color: 'rgba(237,232,220,0.9)',
+                              fontFamily: "'DM Mono', monospace",
+                              fontSize: 9,
+                              fontWeight: 700,
+                              letterSpacing: '0.16em',
+                              textTransform: 'uppercase',
+                              position: 'relative', zIndex: 1,
+                              textAlign: 'center',
+                            }}
+                          >
                             {cover.label}
                           </div>
                           <div className="cm-cover-num">{String(c.order_index).padStart(2, '0')}</div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="cm-course-num">{String(i + 1).padStart(2, '0')}</div>
-                          <div className="cm-course-thumb-title">{c.title}</div>
+                          {/* accent glow */}
+                          <div style={{
+                            position: 'absolute', bottom: 0, left: '50%',
+                            transform: 'translateX(-50%)',
+                            width: '80%', height: '40%',
+                            background: `radial-gradient(ellipse at 50% 100%, ${cover.accent}22, transparent 70%)`,
+                            pointerEvents: 'none',
+                          }} />
                         </>
                       )}
                       <span className={`cm-course-badge ${c.is_published ? 'published' : 'draft'}`}>
