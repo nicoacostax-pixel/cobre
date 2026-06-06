@@ -205,6 +205,23 @@ export default function Home() {
           box-shadow: 0 0 0 3px rgba(200,117,51,0.1);
         }
 
+        /* VIDEO */
+        .video-wrap {
+          position: relative; z-index: 2;
+          max-width: 860px; margin: 0 auto;
+          padding: 0 24px 60px;
+        }
+        .video-container {
+          position: relative; width: 100%; padding-bottom: 56.25%;
+          border-radius: 16px; overflow: hidden;
+          border: 1px solid var(--border-mid);
+          box-shadow: 0 0 60px rgba(200,117,51,0.1);
+        }
+        .video-container iframe {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%; border: none;
+        }
+
         /* PROOF */
         .proof {
           position: relative; z-index: 2;
@@ -307,6 +324,17 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* VIDEO */}
+      <div className="video-wrap">
+        <div className="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/1198946839?badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            title="Nico IA"
+          />
+        </div>
+      </div>
 
       {/* SOCIAL PROOF */}
       <div className="proof">
