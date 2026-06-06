@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { CopperNav } from '../components/CopperNav'
 
 const TABS = ['Comunidad', 'Clases', 'Calendario', 'Ranking']
 
@@ -12,6 +13,46 @@ type Course = {
   is_published: boolean
   order_index: number
   cover_url?: string | null
+}
+
+// Portadas CSS por índice de curso
+const COVERS: Record<number, { bg: string; icon: string; label: string; accent: string }> = {
+  1: {
+    bg: 'linear-gradient(135deg, #0a1a0a 0%, #0d2e0d 40%, #1a4a1a 100%)',
+    icon: '🚀',
+    label: 'EMPIEZA AQUÍ',
+    accent: '#4ade80',
+  },
+  2: {
+    bg: 'linear-gradient(135deg, #0a0a1a 0%, #0d0d2e 40%, #1a1a4a 100%)',
+    icon: '🧠',
+    label: 'MEMORIA DE CLAUDE',
+    accent: '#818cf8',
+  },
+  3: {
+    bg: 'linear-gradient(135deg, #0a1520 0%, #0d2235 40%, #1a3a50 100%)',
+    icon: '🌐',
+    label: 'WEBSITE',
+    accent: '#38bdf8',
+  },
+  4: {
+    bg: 'linear-gradient(135deg, #1a0a0a 0%, #2e0d0d 40%, #4a1a1a 100%)',
+    icon: '📈',
+    label: 'LANDING PAGES',
+    accent: '#f87171',
+  },
+  5: {
+    bg: 'linear-gradient(135deg, #1a100a 0%, #2e1a0d 40%, #4a2e1a 100%)',
+    icon: '⚙️',
+    label: 'SKILLS & MCPs',
+    accent: '#C87533',
+  },
+  6: {
+    bg: 'linear-gradient(135deg, #0f0a1a 0%, #1a0d2e 40%, #2e1a4a 100%)',
+    icon: '🎮',
+    label: 'TU PROPIO JUEGO',
+    accent: '#a78bfa',
+  },
 }
 
 export default function ComunidadPage() {
@@ -32,73 +73,248 @@ export default function ComunidadPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Inter',sans-serif;background:#050505;color:#e0e0e0;min-height:100vh;-webkit-font-smoothing:antialiased}
-        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,42,109,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,42,109,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-        :root{--pink:#ff2a6d;--pink-dim:rgba(255,42,109,.15);--pink-glow:rgba(255,42,109,.35);--surface:#0f0f0f;--surface2:#161616;--border:rgba(255,255,255,.06);--border-pink:rgba(255,42,109,.25)}
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+          font-family: var(--font-geist-sans), sans-serif !important;
+          background: #0C0A07 !important;
+          color: #EDE8DC;
+          min-height: 100vh;
+          -webkit-font-smoothing: antialiased;
+        }
+        body::after {
+          content: '';
+          position: fixed; inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+          background-size: 180px 180px;
+          pointer-events: none; z-index: 1000; opacity: 0.4;
+        }
 
-        /* site nav */
-        .cm-sitenav{position:relative;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(5,5,5,.92);border-bottom:1px solid var(--border);gap:12px;backdrop-filter:blur(12px)}
-        .cm-sitelogo{font-family:'Poppins',sans-serif;font-weight:900;font-size:18px;color:#fff;text-decoration:none;white-space:nowrap}
-        .cm-sitelogo span{color:var(--pink)}
-        .cm-siteback{font-size:13px;color:#aaa;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
-        .cm-siteback:hover{color:var(--pink)}
-        .cm-join-btn{display:inline-flex;align-items:center;gap:7px;background:var(--pink);color:white;padding:10px 18px;border-radius:12px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,box-shadow .2s;box-shadow:0 0 16px var(--pink-glow);white-space:nowrap;flex-shrink:0}
-        .cm-join-btn:hover{opacity:.88;box-shadow:0 0 28px var(--pink-glow)}
+        /* ── HERO ── */
+        .cm-hero {
+          max-width: 960px; margin: 0 auto;
+          padding: 56px 24px 32px;
+        }
+        .cm-tag {
+          display: inline-flex; align-items: center; gap: 8px;
+          font-family: 'DM Mono', monospace;
+          font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+          color: #C87533;
+          background: rgba(200,117,51,0.12);
+          border: 1px solid rgba(200,117,51,0.28);
+          border-radius: 4px; padding: 5px 12px;
+          margin-bottom: 20px;
+        }
+        .cm-tag-line { width: 16px; height: 1px; background: #C87533; opacity: 0.7; }
+        .cm-h1 {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2.8rem, 6vw, 4.2rem);
+          font-weight: 700; line-height: 0.96;
+          letter-spacing: -0.02em; color: #EDE8DC;
+          margin-bottom: 14px;
+        }
+        .cm-h1 em { font-style: italic; color: #C87533; }
+        .cm-sub { font-size: 15px; color: #998E82; line-height: 1.75; }
 
-        /* tabs */
-        .cm-tabs{position:relative;z-index:10;background:var(--surface);border-bottom:1px solid var(--border)}
-        .cm-tabs-inner{max-width:960px;margin:0 auto;display:flex;padding:0 24px;overflow-x:auto}
-        .cm-tab{padding:14px 18px;font-size:14px;font-weight:600;color:#555;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;user-select:none}
-        .cm-tab:hover{color:#e0e0e0}
-        .cm-tab.active{color:#fff;border-bottom-color:var(--pink);font-weight:800}
+        /* ── TABS ── */
+        .cm-tabs {
+          position: relative; z-index: 10;
+          background: #141009;
+          border-bottom: 1px solid rgba(200,117,51,0.15);
+          border-top: 1px solid rgba(200,117,51,0.1);
+        }
+        .cm-tabs-inner {
+          max-width: 960px; margin: 0 auto;
+          display: flex; padding: 0 24px;
+          overflow-x: auto;
+        }
+        .cm-tab {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+          padding: 14px 18px;
+          color: #4A3D30; cursor: pointer;
+          border-bottom: 2px solid transparent;
+          white-space: nowrap;
+          transition: color 0.2s, border-color 0.2s;
+          user-select: none;
+        }
+        .cm-tab:hover { color: #998E82; }
+        .cm-tab.active { color: #C87533; border-bottom-color: #C87533; }
 
-        /* body */
-        .cm-body{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:32px 24px}
+        /* ── BODY ── */
+        .cm-body {
+          position: relative; z-index: 1;
+          max-width: 960px; margin: 0 auto;
+          padding: 32px 24px 80px;
+        }
 
-        /* clases grid */
-        .cm-clases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 8px}
-        @media(max-width:700px){.cm-clases-grid{grid-template-columns:1fr}}
-        @media(min-width:701px) and (max-width:900px){.cm-clases-grid{grid-template-columns:1fr 1fr}}
+        /* ── EMPTY STATE ── */
+        .cm-empty, .cm-loading {
+          text-align: center; padding: 80px 20px;
+          font-family: 'DM Mono', monospace;
+          font-size: 12px; letter-spacing: 0.08em;
+          text-transform: uppercase; color: #4A3D30;
+        }
 
-        /* course card */
-        .cm-course-card{background:var(--surface);border-radius:16px;border:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s}
-        .cm-course-card:hover{border-color:var(--border-pink);transform:translateY(-2px);box-shadow:0 0 24px rgba(255,42,109,.07)}
-        .cm-course-thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#1a000d,#2d0018);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative}
-        .cm-course-num{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;color:rgba(255,42,109,.15);line-height:1;margin-bottom:4px}
-        .cm-course-thumb-title{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.3}
-        .cm-course-badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:999px}
-        .cm-course-badge.published{background:rgba(255,42,109,.15);color:var(--pink);border:1px solid var(--border-pink)}
-        .cm-course-badge.draft{background:rgba(255,255,255,.05);color:#555;border:1px solid var(--border)}
-        .cm-course-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:10px}
-        .cm-course-title{font-size:14px;font-weight:800;color:#fff;line-height:1.35}
-        .cm-course-desc{font-size:12px;color:#bbb;line-height:1.6;flex:1}
-        .cm-course-foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-        .cm-course-level{font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.04em;text-transform:uppercase}
-        .cm-course-level.none{color:#444}
-        .cm-course-btn{font-size:12px;font-weight:700;color:var(--pink);text-decoration:none;transition:opacity .2s}
-        .cm-course-btn:hover{opacity:.7}
-        .cm-course-btn.locked{color:#444;cursor:default}
+        /* ── COMING SOON TAB ── */
+        .cm-soon-panel {
+          display: flex; flex-direction: column;
+          align-items: center; justify-content: center;
+          padding: 80px 20px; text-align: center; gap: 16px;
+        }
+        .cm-soon-icon {
+          font-size: 2.5rem; opacity: 0.5;
+        }
+        .cm-soon-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 10px; letter-spacing: 0.14em;
+          text-transform: uppercase; color: #4A3D30;
+        }
+        .cm-soon-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.8rem; font-weight: 600;
+          color: #EDE8DC; line-height: 1.2;
+        }
+        .cm-soon-title em { font-style: italic; color: #C87533; }
+        .cm-soon-sub { font-size: 14px; color: #998E82; max-width: 380px; line-height: 1.7; }
 
-        /* empty + loading */
-        .cm-empty{text-align:center;padding:60px 20px;color:#444;font-size:14px}
-        .cm-loading{text-align:center;padding:60px 20px;color:#555;font-size:13px}
+        /* ── COURSE GRID ── */
+        .cm-clases-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px; padding: 0 4px;
+        }
+        @media(max-width: 700px) { .cm-clases-grid { grid-template-columns: 1fr; } }
+        @media(min-width: 701px) and (max-width: 900px) { .cm-clases-grid { grid-template-columns: 1fr 1fr; } }
 
-        @media(max-width:700px){
-          .cm-sitenav{padding:12px 16px}
-          .cm-tabs-inner{padding:0 16px}
-          .cm-body{padding:20px 16px}
+        /* ── COURSE CARD ── */
+        .cm-course-card {
+          background: #141009;
+          border-radius: 14px;
+          border: 1px solid rgba(200,117,51,0.15);
+          display: flex; flex-direction: column;
+          overflow: hidden;
+          transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .cm-course-card:hover {
+          border-color: rgba(200,117,51,0.4);
+          transform: translateY(-2px);
+          box-shadow: 0 0 24px rgba(200,117,51,0.08);
+        }
+        .cm-course-thumb {
+          aspect-ratio: 16/9;
+          background: linear-gradient(135deg, #1C1008, #2A180A);
+          display: flex; flex-direction: column;
+          align-items: center; justify-content: center;
+          padding: 20px; text-align: center;
+          position: relative; overflow: hidden;
+        }
+        .cm-course-thumb::after {
+          content: '';
+          position: absolute; inset: 0;
+          background: radial-gradient(ellipse at 50% 110%, rgba(255,255,255,0.04), transparent 65%);
+          pointer-events: none;
+        }
+        /* CSS cover elements */
+        .cm-cover-icon {
+          font-size: 3rem; line-height: 1;
+          margin-bottom: 10px; position: relative; z-index: 1;
+          filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+        }
+        .cm-cover-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px; font-weight: 700;
+          letter-spacing: 0.14em; text-transform: uppercase;
+          position: relative; z-index: 1;
+          line-height: 1.3;
+        }
+        .cm-cover-num {
+          position: absolute; bottom: 10px; left: 14px;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 4.5rem; font-weight: 700;
+          line-height: 1; opacity: 0.07; color: #fff;
+          user-select: none;
+        }
+        /* fallback (no cover meta) */
+        .cm-course-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 3rem; font-weight: 700;
+          color: rgba(200,117,51,0.12); line-height: 1;
+          margin-bottom: 6px; position: relative;
+        }
+        .cm-course-thumb-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.05rem; font-weight: 600;
+          color: #EDE8DC; line-height: 1.3;
+          position: relative;
+        }
+        .cm-course-badge {
+          position: absolute; top: 10px; right: 10px;
+          font-family: 'DM Mono', monospace;
+          font-size: 9px; font-weight: 500;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          padding: 3px 9px; border-radius: 3px;
+        }
+        .cm-course-badge.published {
+          background: rgba(200,117,51,0.12);
+          color: #C87533;
+          border: 1px solid rgba(200,117,51,0.3);
+        }
+        .cm-course-badge.draft {
+          background: rgba(237,232,220,0.04);
+          color: #4A3D30;
+          border: 1px solid rgba(200,117,51,0.1);
+        }
+        .cm-course-body {
+          padding: 16px; flex: 1;
+          display: flex; flex-direction: column; gap: 8px;
+        }
+        .cm-course-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.1rem; font-weight: 600;
+          color: #EDE8DC; line-height: 1.3;
+        }
+        .cm-course-desc { font-size: 12px; color: #998E82; line-height: 1.65; flex: 1; }
+        .cm-course-foot {
+          display: flex; align-items: center;
+          justify-content: space-between; margin-top: 6px;
+          padding-top: 12px;
+          border-top: 1px solid rgba(200,117,51,0.1);
+        }
+        .cm-course-level {
+          font-family: 'DM Mono', monospace;
+          font-size: 9px; letter-spacing: 0.1em;
+          text-transform: uppercase; color: #C87533;
+        }
+        .cm-course-level.none { color: #4A3D30; }
+        .cm-course-btn {
+          font-family: 'DM Mono', monospace;
+          font-size: 10px; letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #C87533; text-decoration: none;
+          transition: color 0.2s;
+        }
+        .cm-course-btn:hover { color: #E8A84E; }
+        .cm-course-btn.locked { color: #4A3D30; cursor: default; }
+
+        @media(max-width: 700px) {
+          .cm-hero { padding: 40px 20px 24px; }
+          .cm-tabs-inner { padding: 0 16px; }
+          .cm-body { padding: 24px 16px 60px; }
         }
       `}</style>
 
-      <nav className="cm-sitenav">
-        <div style={{display:'flex',alignItems:'center',gap:20}}>
-          <a className="cm-sitelogo" href="/">Nico <span>IA_</span></a>
-          <a className="cm-siteback" href="/">← Inicio</a>
+      <CopperNav activeHref="/comunidad" />
+
+      <div className="cm-hero">
+        <div className="cm-tag">
+          <span className="cm-tag-line" />
+          espacio de la comunidad
+          <span className="cm-tag-line" />
         </div>
-        <a className="cm-join-btn" href="/#registro">Unirme gratis →</a>
-      </nav>
+        <h1 className="cm-h1">La <em>comunidad</em>.</h1>
+        <p className="cm-sub">Donde aprendemos, compartimos y nos apoyamos en español.</p>
+      </div>
 
       <div className="cm-tabs">
         <div className="cm-tabs-inner">
@@ -112,27 +328,53 @@ export default function ComunidadPage() {
 
       <div className="cm-body">
 
+        {tab === 'Comunidad' && (
+          <div className="cm-soon-panel">
+            <div className="cm-soon-icon">🌐</div>
+            <span className="cm-soon-label">acceso completo</span>
+            <h2 className="cm-soon-title">El foro está en <em>Skool.</em></h2>
+            <p className="cm-soon-sub">El espacio completo de la comunidad vive en Skool. Registrate gratis para acceder a debates, retos y soporte directo.</p>
+            <a href="/#registro" style={{
+              fontFamily: "'DM Mono', monospace", fontSize: 12,
+              letterSpacing: '0.08em', textTransform: 'uppercase',
+              color: '#EDE8DC', background: 'linear-gradient(135deg, #C87533, #A86025)',
+              padding: '12px 24px', borderRadius: 8, textDecoration: 'none',
+              marginTop: 8, display: 'inline-block',
+            }}>
+              UNIRME GRATIS →
+            </a>
+          </div>
+        )}
+
         {tab === 'Clases' && (
           <>
-            {loadingCourses && (
-              <div className="cm-loading">Cargando clases…</div>
-            )}
-
+            {loadingCourses && <div className="cm-loading">Cargando clases…</div>}
             {!loadingCourses && courses.length === 0 && (
               <div className="cm-empty">Todavía no hay clases publicadas.</div>
             )}
-
             {!loadingCourses && courses.length > 0 && (
               <div className="cm-clases-grid">
-                {courses.map((c, i) => (
+                {courses.map((c, i) => {
+                  const cover = COVERS[c.order_index]
+                  return (
                   <div key={c.id} className="cm-course-card">
-                    <div className="cm-course-thumb">
+                    <div
+                      className="cm-course-thumb"
+                      style={cover ? { background: cover.bg } : undefined}
+                    >
                       {c.cover_url ? (
                         <img
-                          src={c.cover_url}
-                          alt={c.title}
-                          style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}}
+                          src={c.cover_url} alt={c.title}
+                          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
                         />
+                      ) : cover ? (
+                        <>
+                          <div className="cm-cover-icon">{cover.icon}</div>
+                          <div className="cm-cover-label" style={{ color: cover.accent }}>
+                            {cover.label}
+                          </div>
+                          <div className="cm-cover-num">{String(c.order_index).padStart(2, '0')}</div>
+                        </>
                       ) : (
                         <>
                           <div className="cm-course-num">{String(i + 1).padStart(2, '0')}</div>
@@ -151,16 +393,26 @@ export default function ComunidadPage() {
                           {c.level_required ?? 'Libre acceso'}
                         </span>
                         {c.is_published
-                          ? <a className="cm-course-btn" href={`/cursos/${c.id}`}>Ver clase →</a>
-                          : <span className="cm-course-btn locked">En camino</span>
+                          ? <a className="cm-course-btn" href={`/cursos/${c.id}`}>VER CLASE →</a>
+                          : <span className="cm-course-btn locked">EN CAMINO</span>
                         }
                       </div>
                     </div>
                   </div>
-                ))}
+                  )
+                })}
               </div>
             )}
           </>
+        )}
+
+        {(tab === 'Calendario' || tab === 'Ranking') && (
+          <div className="cm-soon-panel">
+            <div className="cm-soon-icon">{tab === 'Calendario' ? '📅' : '🏆'}</div>
+            <span className="cm-soon-label">en desarrollo</span>
+            <h2 className="cm-soon-title"><em>{tab}</em> pronto.</h2>
+            <p className="cm-soon-sub">Esta sección está en camino. Mientras tanto, todo lo que necesitás está en la comunidad.</p>
+          </div>
         )}
 
       </div>
