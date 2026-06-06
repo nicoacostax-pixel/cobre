@@ -1,498 +1,330 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
+import { BorderBeam } from './components/magicui/border-beam'
+import { ShimmerButton } from './components/magicui/shimmer-button'
+import { RetroGrid } from './components/magicui/retro-grid'
+import { Meteors } from './components/magicui/meteors'
 
-function NeonBlobs() {
-  const b1 = useRef<HTMLDivElement>(null)
-  const b2 = useRef<HTMLDivElement>(null)
-  const b3 = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    let raf = 0
-    const onScroll = () => {
-      raf = requestAnimationFrame(() => {
-        const y = window.scrollY
-        if (b1.current) b1.current.style.transform = `translate3d(0,${y * 0.15}px,0)`
-        if (b2.current) b2.current.style.transform = `translate3d(0,${y * -0.10}px,0)`
-        if (b3.current) b3.current.style.transform = `translate3d(0,${y * 0.20}px,0)`
-      })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf) }
-  }, [])
-
-  const base: React.CSSProperties = { position: 'fixed', borderRadius: '50%', pointerEvents: 'none', filter: 'blur(120px)', willChange: 'transform', zIndex: 0 }
-  return (
-    <>
-      <div ref={b1} style={{ ...base, width: 700, height: 700, top: -200, right: -200, background: 'radial-gradient(circle, rgba(255,42,109,0.12) 0%, transparent 70%)' }} />
-      <div ref={b2} style={{ ...base, width: 500, height: 500, top: 600, left: -200, background: 'radial-gradient(circle, rgba(255,42,109,0.08) 0%, transparent 70%)' }} />
-      <div ref={b3} style={{ ...base, width: 400, height: 400, top: 1400, right: -100, background: 'radial-gradient(circle, rgba(255,100,150,0.07) 0%, transparent 70%)' }} />
-    </>
-  )
-}
-
-const faqs = [
-  { q: '¿Qué son las guías gratis?', a: 'Tutoriales paso a paso para usar IA en tu día a día y en tu negocio. Te llegan por correo, son 100% gratis y están en español. Subimos guías nuevas cada mes.' },
-  { q: '¿Y la comunidad? ¿Qué incluye?', a: 'La comunidad es donde te llevamos más allá de las guías: tutoriales nuevos cada semana, plantillas listas para copiar, skills personalizadas, automatizaciones reales (clientes, ventas, contenido), y soporte directo.' },
-  { q: '¿Necesito experiencia previa?', a: 'No. Todo está pensado para empezar desde cero. Si sabes usar WhatsApp, puedes hacer esto.' },
-  { q: '¿Es solo para principiantes?', a: 'No. Cubrimos desde lo básico hasta agentes, automatizaciones e integraciones avanzadas. Avanzas a tu ritmo.' },
-  { q: '¿Está todo en español?', a: 'Sí. Tutoriales, llamadas y comunidad. Todo 100% en español, sin traducciones raras.' },
-  { q: '¿Para quién es esto?', a: 'Para cualquier persona que quiera usar IA en su vida: emprendedores, creadores, profesionales o simplemente curiosos.' },
-  { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. Cancelas en un clic, sin preguntas.' },
-  { q: '¿Qué incluye la comunidad?', a: 'Tutoriales semanales, plantillas de prompts, retos prácticos, y una comunidad activa donde puedes preguntar y recibir feedback.' },
+const checks = [
+  '15+ guías gratis sobre IA real — prompts, agentes, automatizaciones',
+  'En español, sin tecnicismos, aplicables desde el primer día',
+  'Guías nuevas cada mes directo en tu correo',
 ]
 
-const features = [
-  { icon: '⚡', title: 'Domina Claude, ChatGPT y todo el ecosistema', desc: 'No te quedas con un solo modelo. Aprendes a elegir y combinar las mejores herramientas para cada caso.', pro: false },
-  { icon: '🎯', title: 'Prompts profesionales con sistema de instrucciones', desc: 'Deja los prompts de TikTok. Instrucciones que producen resultados de calidad real, siempre.', pro: false },
-  { icon: '🚀', title: 'Crea contenido 10× más rápido', desc: 'Ideas, guiones, posts, miniaturas, voces. Plantillas reales para creadores y emprendedores.', pro: false },
-  { icon: '🤖', title: 'Automatiza tu negocio con agentes de IA', desc: 'Agentes que responden correos, califican leads, agendan reuniones y hacen el trabajo por ti. Sin código.', pro: true },
-  { icon: '🏢', title: 'Construye tu "IA empleada" para tu equipo', desc: 'Un asistente entrenado con tus documentos, tu marca y tus procesos. Tu propia IA, dentro de tu negocio.', pro: true },
-  { icon: '💰', title: 'Vende servicios y productos con IA', desc: 'Modelos de negocio que están funcionando hoy en LATAM y España. Pasa de aprender a facturar.', pro: false },
+const proof = [
+  { text: 'En una semana ya estaba automatizando mi correo.', name: 'Vanessa R.', role: 'Coach · Barcelona' },
+  { text: 'Pasé de cero a tener prompts y plantillas para mi negocio.', name: 'Gonzalo M.', role: 'Emprendedor · Monterrey' },
+  { text: 'Por fin alguien que explica esto sin jerga.', name: 'Sofía L.', role: 'Copywriter · Madrid' },
 ]
-
-const testimonials = [
-  { text: 'Llevaba meses queriendo entender la IA y nada me hacía clic. Con Nico en una semana ya estaba automatizando mi correo.', name: 'Vanessa R.', role: 'Coach · Barcelona', initial: 'V' },
-  { text: 'Pasé de cero a tener mis propios prompts y plantillas para mi negocio. Todo en español y sin rollo técnico.', name: 'Gonzalo M.', role: 'Emprendedor · Monterrey', initial: 'G' },
-  { text: 'La comunidad es oro. Aprendes con gente real, con casos reales, no con teoría. Vale cada centavo.', name: 'Pamela P.', role: 'Freelancer · Medellín', initial: 'P' },
-]
-
-const guideCards = [
-  { num: '01', level: 'Fundamentos', title: 'Tu primer\nprompt' },
-  { num: '02', level: 'Negocio',     title: 'Automatiza\ntus DMs' },
-  { num: '03', level: 'Avanzado',    title: 'Tu IA\nempleada' },
-]
-
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect() } }, { threshold: 0.12 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-  return { ref, visible }
-}
-
-function Reveal({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const { ref, visible } = useReveal()
-  return (
-    <div ref={ref} className={className} style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(24px)', transition: `opacity .55s ease ${delay}ms, transform .55s ease ${delay}ms` }}>
-      {children}
-    </div>
-  )
-}
 
 function LeadForm() {
-  const [name, setName]   = useState('')
-  const [email, setEmail] = useState('')
+  const [name, setName]     = useState('')
+  const [email, setEmail]   = useState('')
   const [loading, setLoading] = useState(false)
-  const [err, setErr]     = useState('')
+  const [err, setErr]       = useState('')
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault(); setErr(''); setLoading(true)
-    const res = await fetch('/api/ai-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, phone: '', answers: [] }) })
-    if (res.ok) { window.location.href = '/gracias' } else { setLoading(false); setErr('Hubo un error. Intenta de nuevo.') }
+    const res = await fetch('/api/ai-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone: '', answers: [] }),
+    })
+    if (res.ok) { window.location.href = '/gracias' }
+    else { setLoading(false); setErr('Hubo un error. Intentá de nuevo.') }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="lp-form-row">
-        <input className="lp-input" type="text"  placeholder="Tu nombre"    value={name}  onChange={e => setName(e.target.value)}  required />
-        <input className="lp-input" type="email" placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
+    <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <input
+          className="cp-input" type="text" placeholder="Tu nombre"
+          value={name} onChange={e => setName(e.target.value)} required
+        />
+        <input
+          className="cp-input" type="email" placeholder="tu@email.com"
+          value={email} onChange={e => setEmail(e.target.value)} required
+        />
       </div>
-      <button type="submit" disabled={loading} className="lp-btn-submit">
+      <ShimmerButton
+        type="submit" disabled={loading}
+        shimmerColor="rgba(232,168,78,0.45)"
+        background={loading ? '#6B4020' : 'linear-gradient(135deg,#C87533 0%,#A86025 100%)'}
+        shimmerDuration="2.2s"
+        style={{
+          width: '100%', marginTop: 10, padding: '15px 24px',
+          fontSize: 15, fontFamily: "'DM Mono',monospace", fontWeight: 500,
+          color: '#EDE8DC', letterSpacing: '0.04em', borderRadius: 10,
+          opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer',
+        }}
+      >
         {loading ? 'Enviando…' : 'Quiero mis guías gratis →'}
-      </button>
-      {err && <p style={{ color: '#ff2a6d', fontSize: 13, marginTop: 8 }}>{err}</p>}
-      <p style={{ fontSize: 12, color: '#555', textAlign: 'center', marginTop: 10 }}>Sin spam · Sales cuando quieras</p>
+      </ShimmerButton>
+      {err && <p style={{ color: '#E07B4A', fontSize: 13, marginTop: 8, fontFamily: "'DM Mono',monospace" }}>{err}</p>}
+      <p style={{ fontSize: 11, color: '#6B6054', textAlign: 'center', marginTop: 10, fontFamily: "'DM Mono',monospace", letterSpacing: '0.05em' }}>
+        SIN SPAM · SALÍS CUANDO QUERÉS
+      </p>
     </form>
   )
 }
 
 export default function Home() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
-
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{font-family:'Inter',sans-serif!important;background:#050505!important;color:#e0e0e0;line-height:1.6;-webkit-font-smoothing:antialiased}
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+          font-family: var(--font-geist-sans), sans-serif !important;
+          background: #0C0A07 !important;
+          color: #EDE8DC;
+          -webkit-font-smoothing: antialiased;
+        }
+        :root {
+          --copper: #C87533; --copper-dim: rgba(200,117,51,0.14);
+          --copper-glow: rgba(200,117,51,0.28); --amber: #E8A84E;
+          --cream: #EDE8DC; --cream-dim: #998E82;
+          --bg: #0C0A07; --bg2: #141009; --bg3: #1C160C;
+          --border: rgba(200,117,51,0.15); --border-mid: rgba(200,117,51,0.28);
+        }
+        body::after {
+          content: ''; position: fixed; inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+          background-size: 180px 180px; pointer-events: none; z-index: 1000; opacity: 0.4;
+        }
 
-        /* grid texture */
-        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,42,109,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,42,109,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+        /* NAV */
+        .nav {
+          position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 16px 28px;
+          background: rgba(12,10,7,0.85);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+          font-family: 'DM Mono', monospace; font-size: 14px;
+          font-weight: 500; color: var(--cream); text-decoration: none;
+          letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px;
+        }
+        .nav-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--copper); box-shadow: 0 0 8px var(--copper-glow);
+          animation: pulse 2.5s ease-in-out infinite;
+        }
+        .nav-link {
+          font-family: 'DM Mono', monospace; font-size: 11px;
+          letter-spacing: 0.08em; color: var(--cream-dim);
+          text-decoration: none; transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--cream); }
 
-        /* tokens */
-        :root{--pink:#ff2a6d;--pink-dim:rgba(255,42,109,.15);--pink-glow:rgba(255,42,109,.35);--surface:#0f0f0f;--surface2:#161616;--border:rgba(255,255,255,.06);--border-pink:rgba(255,42,109,.25)}
+        /* HERO */
+        .hero {
+          min-height: 100svh;
+          display: flex; align-items: center; justify-content: center;
+          padding: 100px 24px 60px;
+          position: relative; overflow: hidden;
+        }
+        .hero-inner {
+          position: relative; z-index: 2;
+          width: 100%; max-width: 1080px;
+          display: flex; flex-direction: column; align-items: center;
+          gap: 56px;
+        }
+        @media(min-width:880px){
+          .hero-inner { flex-direction: row; align-items: center; gap: 72px; }
+        }
 
-        /* typography helpers */
-        .lp-sp{color:var(--pink);font-family:'Poppins',sans-serif;font-weight:900}
-        .lp-sd{color:#fff;font-family:'Poppins',sans-serif;font-weight:900}
-        .lp-wrap{max-width:620px;margin:0 auto;padding:0 24px}
+        /* LEFT — copy */
+        .hero-copy { flex: 1; max-width: 540px; }
+        .tag {
+          display: inline-flex; align-items: center; gap: 8px;
+          font-family: 'DM Mono', monospace; font-size: 10px;
+          font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+          color: var(--copper); background: var(--copper-dim);
+          border: 1px solid var(--border-mid);
+          border-radius: 4px; padding: 5px 12px; margin-bottom: 24px;
+        }
+        .tag-line { width: 16px; height: 1px; background: var(--copper); opacity: 0.7; }
+        .h1 {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(3rem, 7vw, 5.2rem);
+          font-weight: 700; line-height: 0.96;
+          letter-spacing: -0.02em; color: var(--cream);
+          margin-bottom: 20px;
+        }
+        .h1 em { font-style: italic; color: var(--copper); }
+        .sub {
+          font-size: 16px; color: var(--cream-dim);
+          line-height: 1.75; margin-bottom: 28px; max-width: 420px;
+        }
+        .checks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+        .check {
+          display: flex; align-items: flex-start; gap: 10px;
+          font-size: 14px; color: var(--cream-dim); line-height: 1.5;
+        }
+        .check-icon {
+          width: 16px; height: 16px; border-radius: 50%;
+          background: var(--copper-dim); border: 1px solid var(--border-mid);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0; margin-top: 1px;
+          font-size: 8px; color: var(--copper); font-weight: 700;
+        }
 
-        /* pill */
-        .lp-pill{display:inline-flex;align-items:center;gap:7px;background:var(--pink-dim);border:1px solid var(--border-pink);border-radius:999px;padding:6px 16px;font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.08em;text-transform:uppercase}
-        .lp-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--pink)}
+        /* RIGHT — form */
+        .form-card {
+          position: relative; background: var(--bg2);
+          border: 1px solid var(--border-mid);
+          border-radius: 20px; padding: 30px;
+          width: 100%; max-width: 400px; flex-shrink: 0;
+        }
+        .form-label {
+          font-family: 'DM Mono', monospace; font-size: 10px;
+          letter-spacing: 0.14em; text-transform: uppercase;
+          color: var(--copper); margin-bottom: 10px;
+        }
+        .form-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.6rem; font-weight: 700; line-height: 1.15;
+          color: var(--cream); margin-bottom: 20px;
+        }
+        .form-title em { font-style: italic; color: var(--amber); }
+        .cp-input {
+          width: 100%; padding: 13px 16px;
+          border: 1px solid var(--border-mid); border-radius: 9px;
+          font-size: 14px; font-family: var(--font-geist-sans), sans-serif;
+          outline: none; background: rgba(12,10,7,0.8); color: var(--cream);
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .cp-input::placeholder { color: var(--cream-dim); opacity: 0.6; }
+        .cp-input:focus {
+          border-color: var(--copper);
+          box-shadow: 0 0 0 3px rgba(200,117,51,0.1);
+        }
 
-        /* headings */
-        .lp-h2{font-family:'Poppins',sans-serif;font-size:2.4rem;font-weight:900;line-height:1.05;letter-spacing:-.025em;margin:14px 0 16px;color:#fff}
-        .lp-sub{font-size:15px;color:#ccc;line-height:1.8;margin-bottom:32px}
+        /* PROOF */
+        .proof {
+          position: relative; z-index: 2;
+          display: grid; gap: 12px; padding: 0 24px 60px;
+          max-width: 1080px; margin: 0 auto; width: 100%;
+        }
+        @media(min-width:640px){ .proof { grid-template-columns: repeat(3,1fr); } }
+        .proof-item {
+          background: var(--bg2); border: 1px solid var(--border);
+          border-radius: 12px; padding: 18px 20px;
+        }
+        .proof-text {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.95rem; font-style: italic;
+          color: var(--cream-dim); line-height: 1.6; margin-bottom: 10px;
+        }
+        .proof-name {
+          font-family: 'DM Mono', monospace; font-size: 10px;
+          letter-spacing: 0.06em; color: #4A3D30;
+        }
 
-        /* button */
-        .lp-btn-submit{width:100%;margin-top:12px;padding:16px;background:var(--pink);color:white;border:none;border-radius:12px;font-size:15px;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;letter-spacing:.01em;transition:opacity .2s,transform .15s,box-shadow .2s;box-shadow:0 0 24px var(--pink-glow)}
-        .lp-btn-submit:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 0 36px var(--pink-glow)}
-        .lp-btn-submit:active{transform:translateY(0)}
-        .lp-btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        /* FOOTER */
+        .footer {
+          position: relative; z-index: 2;
+          border-top: 1px solid var(--border);
+          padding: 24px; text-align: center;
+        }
+        .footer-brand {
+          font-family: 'DM Mono', monospace; font-size: 13px;
+          font-weight: 500; letter-spacing: 0.08em; color: var(--cream-dim);
+        }
+        .footer-brand span { color: var(--copper); }
+        .footer-links {
+          display: flex; justify-content: center; gap: 20px;
+          margin-top: 10px; flex-wrap: wrap;
+        }
+        .footer-link {
+          font-family: 'DM Mono', monospace; font-size: 11px;
+          letter-spacing: 0.06em; color: #4A3D30;
+          text-decoration: none; transition: color 0.2s;
+        }
+        .footer-link:hover { color: var(--copper); }
 
-        /* input */
-        .lp-input{width:100%;padding:14px 16px;border:1.5px solid var(--border-pink);border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;outline:none;background:#0a0a0a;color:#e0e0e0;transition:border-color .2s,box-shadow .2s;box-shadow:0 0 10px rgba(255,42,109,.06)}
-        .lp-input::placeholder{color:#aaa}
-        .lp-input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,42,109,.12),0 0 20px rgba(255,42,109,.15)}
-        .lp-form-row{display:flex;flex-direction:column;gap:10px}
-
-        /* animations */
-        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-        @keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
-        @keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
-
-        /* ── NAV ── */
-        .lp-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(5,5,5,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-        .lp-nav-logo{font-family:'Poppins',sans-serif;font-weight:900;font-size:18px;color:white;text-decoration:none;letter-spacing:-.01em}
-        .lp-nav-logo span{color:var(--pink)}
-        .lp-nav-cta{display:flex;align-items:center;gap:7px;background:var(--pink);color:white;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;text-decoration:none;transition:opacity .2s,box-shadow .2s;box-shadow:0 0 16px var(--pink-glow)}
-        .lp-nav-cta:hover{opacity:.88;box-shadow:0 0 28px var(--pink-glow)}
-        .lp-nav-links{display:none}
-
-        /* ── HERO ── */
-        .lp-hero{padding:80px 20px 80px;position:relative;overflow:hidden;text-align:center;z-index:1}
-        .lp-notif{display:inline-flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border-pink);border-radius:999px;padding:8px 20px;font-size:13px;color:#e0e0e0;margin-bottom:28px;animation:fadeUp .6s ease both}
-        .lp-notif-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
-        .lp-h1{font-family:'Poppins',sans-serif;font-size:3rem;font-weight:900;line-height:1.04;letter-spacing:-.03em;margin-bottom:18px;color:#fff;animation:fadeUp .6s .1s ease both}
-        .lp-hero-sub{font-size:16px;color:#ccc;line-height:1.7;max-width:460px;margin:0 auto 44px;animation:fadeUp .6s .2s ease both}
-
-        .lp-hero-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;max-width:860px;margin:0 auto;overflow:hidden;animation:fadeUp .6s .3s ease both;box-shadow:0 0 60px rgba(255,42,109,.06)}
-        .lp-hero-grid{display:flex;flex-direction:column}
-        .lp-cards-col{display:none;padding:36px;background:linear-gradient(145deg,#0d0d0d,#111)}
-        .lp-form-side{padding:32px}
-        .lp-form-badge{display:inline-block;background:var(--pink-dim);color:var(--pink);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:12px}
-        .lp-form-title{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:16px;color:#fff}
-        .lp-cl{list-style:none;margin:0 0 20px}
-        .lp-cl li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#ccc;margin-bottom:8px;line-height:1.5}
-        .lp-ck{width:18px;height:18px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;color:white;font-weight:700}
-        .lp-trust{display:flex;justify-content:center;gap:10px;font-size:12px;color:#888;margin-top:14px;flex-wrap:wrap}
-
-        /* guide card stack */
-        .lp-stack{position:relative;height:340px;width:340px;margin:0 auto}
-        .lp-gc{position:absolute;width:165px;border-radius:18px;padding:18px 14px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,42,109,.2)}
-        .lp-gc:nth-child(1){height:230px;top:60px;left:0;transform:rotate(-10deg);z-index:1;background:linear-gradient(145deg,#1a0d12,#2d1020)}
-        .lp-gc:nth-child(2){height:250px;top:30px;left:88px;transform:rotate(-2deg);z-index:2;background:linear-gradient(145deg,#0d0d14,#1a1028)}
-        .lp-gc:nth-child(3){height:240px;top:16px;left:172px;transform:rotate(7deg);z-index:3;background:linear-gradient(145deg,#12080d,#200a14)}
-        .lp-gc-brand{font-family:'Poppins',sans-serif;font-size:11px;font-weight:900;color:var(--pink)}
-        .lp-gc-num{font-size:10px;font-weight:600;color:#555}
-        .lp-gc-lvl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:6px}
-        .lp-gc-title{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:900;line-height:1.2;color:white;white-space:pre-line}
-        .lp-gc-bot{display:flex;align-items:center;justify-content:space-between}
-        .lp-gc-tag{background:var(--pink-dim);border:1px solid var(--border-pink);border-radius:999px;padding:3px 9px;font-size:9px;font-weight:700;color:var(--pink)}
-        .lp-gc-date{font-size:9px;font-weight:600;color:#444;letter-spacing:.04em}
-
-        /* ── STATS ── */
-        .lp-stats{padding:40px 20px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
-        .lp-stats-grid{display:flex;flex-direction:column;gap:1px;max-width:860px;margin:0 auto;background:var(--border)}
-        .lp-stat-card{background:var(--surface);padding:32px 20px;text-align:center;flex:1}
-        .lp-stat-n{font-family:'Poppins',sans-serif;font-size:2.8rem;font-weight:900;color:var(--pink);line-height:1;text-shadow:0 0 30px var(--pink-glow)}
-        .lp-stat-l{font-size:13px;color:#ccc;margin-top:6px;font-weight:500}
-
-        /* ── ABOUT ── */
-        .lp-about{padding:88px 36px;background:#050505;position:relative;overflow:hidden;z-index:1}
-        .lp-about-grid{display:flex;flex-direction:column;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
-        .lp-photo-wrap{position:relative;width:100%;max-width:340px}
-        .lp-photo-wrap img{width:100%;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 0 40px rgba(255,42,109,.25))}
-        .lp-deco{position:absolute;background:var(--surface2);border:1px solid var(--border-pink);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#e0e0e0;display:flex;align-items:center;gap:6px;white-space:nowrap;animation:float 4s ease-in-out infinite}
-        .lp-deco-sq{position:absolute;background:var(--surface2);border:1px solid var(--border-pink);width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;animation:float 4s ease-in-out infinite}
-        .lp-about-text p{font-size:15px;color:#ccc;line-height:1.9}
-        .lp-about-text p+p{margin-top:16px}
-        .lp-tag{background:var(--surface2);color:#e0e0e0;border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
-
-        /* ── FEATURES ── */
-        .lp-feats-sec{padding:88px 20px;background:var(--surface);position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-        .lp-feat{background:#050505;border-radius:16px;padding:24px;margin-bottom:10px;position:relative;border:1px solid var(--border);transition:border-color .25s,box-shadow .25s,transform .25s}
-        .lp-feat:hover{border-color:var(--border-pink);box-shadow:0 0 24px rgba(255,42,109,.08);transform:translateY(-3px)}
-        .lp-fi{width:48px;height:48px;border-radius:14px;background:var(--pink-dim);border:1px solid var(--border-pink);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
-        .lp-fpro{position:absolute;top:20px;right:20px;border:1px solid var(--border-pink);color:var(--pink);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px}
-        .lp-feat h3{font-size:15px;font-weight:800;margin-bottom:6px;line-height:1.3;color:#fff}
-        .lp-feat p{font-size:13px;color:#ccc;line-height:1.65}
-
-        /* ── TESTIMONIALS ── */
-        .lp-test-sec{padding:88px 20px;background:#050505;position:relative;z-index:1}
-        .lp-test{background:var(--surface);border-radius:20px;padding:26px;margin-bottom:10px;border:1px solid var(--border);transition:border-color .2s}
-        .lp-test:hover{border-color:var(--border-pink)}
-        .lp-test-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-        .lp-test-av{width:40px;height:40px;border-radius:50%;background:var(--pink-dim);border:1px solid var(--border-pink);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--pink);flex-shrink:0}
-        .lp-test-name{font-size:14px;font-weight:700;color:#fff}
-        .lp-test-role{font-size:12px;color:#bbb}
-        .lp-test-stars{color:var(--pink);font-size:13px;letter-spacing:2px;margin-bottom:10px;text-shadow:0 0 10px var(--pink-glow)}
-        .lp-test-q{font-size:32px;font-weight:900;color:var(--pink);line-height:1;margin-bottom:6px;text-shadow:0 0 20px var(--pink-glow)}
-        .lp-test-txt{font-size:14px;color:#ccc;line-height:1.7}
-
-        /* ── FAQ ── */
-        .lp-faq-sec{padding:88px 20px;background:var(--surface);position:relative;z-index:1;border-top:1px solid var(--border)}
-        .lp-faq{background:#050505;border-radius:14px;margin-bottom:8px;overflow:hidden;border:1px solid var(--border);transition:border-color .2s}
-        .lp-faq:hover{border-color:var(--border-pink)}
-        .lp-faq-btn{width:100%;background:none;border:none;padding:18px 22px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;color:#e0e0e0;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.4}
-        .lp-faq-icon{width:24px;height:24px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:var(--pink);transition:transform .25s,background .2s,border-color .2s;font-weight:700}
-        .lp-faq-icon.open{transform:rotate(45deg);background:var(--pink);color:white;border-color:var(--pink)}
-        .lp-faq-ans{font-size:14px;color:#ccc;line-height:1.75;padding:0 22px 18px}
-
-        /* ── CTA ── */
-        .lp-cta{padding:88px 20px;text-align:center;position:relative;overflow:hidden;z-index:1;background:#050505;border-top:1px solid var(--border)}
-        .lp-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(255,42,109,.08) 0%,transparent 65%);pointer-events:none}
-        .lp-cta h2{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;line-height:1.1;color:#fff;margin-bottom:12px}
-        .lp-cta-sub{color:#ccc;font-size:15px;margin-bottom:36px;line-height:1.75;max-width:420px;margin-left:auto;margin-right:auto}
-        .lp-cta-card{background:var(--surface);border:1px solid var(--border-pink);border-radius:20px;padding:28px;text-align:left;max-width:520px;margin:0 auto;box-shadow:0 0 40px rgba(255,42,109,.1)}
-
-        /* ── FOOTER ── */
-        .lp-foot{background:#000;border-top:1px solid var(--border);padding:40px 24px;text-align:center;position:relative;z-index:1}
-        .lp-foot-brand{font-family:'Poppins',sans-serif;font-weight:900;font-size:20px;color:white;margin-bottom:6px}
-        .lp-foot-brand span{color:var(--pink)}
-        .lp-foot p{font-size:13px;color:#444;margin-top:4px}
-        .lp-foot a{color:var(--pink);text-decoration:none}
-
-        /* ── DESKTOP ── */
-        @media(min-width:900px){
-          .lp-h1{font-size:4rem}
-          .lp-hero{padding:90px 24px 90px}
-          .lp-hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center}
-          .lp-cards-col{display:flex;align-items:center;justify-content:center}
-          .lp-form-side{padding:36px}
-          .lp-form-row{flex-direction:row}
-
-          .lp-stats-grid{flex-direction:row;gap:0}
-          .lp-stat-n{font-size:3.4rem}
-
-          .lp-about-grid{flex-direction:row;gap:80px}
-          .lp-photo-wrap{max-width:400px;flex-shrink:0}
-          .lp-h2{font-size:3rem}
-
-          .lp-feats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-          .lp-feats-grid .lp-feat{margin-bottom:0}
-
-          .lp-t-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-          .lp-t-grid .lp-test{margin-bottom:0}
-
-          .lp-faq-cols{columns:2;gap:8px}
-          .lp-faq-cols .lp-faq{break-inside:avoid;margin-bottom:8px}
-
-          .lp-cta h2{font-size:3.4rem}
-          .lp-wrap{max-width:720px}
-          .lp-nav-links{display:flex;align-items:center;gap:4px}
-          .lp-nav-link{font-size:13px;color:#666;text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s,background .2s;font-weight:500}
-          .lp-nav-link:hover{color:#e0e0e0;background:var(--surface2)}
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.7); }
         }
       `}</style>
 
-      <NeonBlobs />
-
-      {/* ── NAV ── */}
-      <nav className="lp-nav">
-        <a className="lp-nav-logo" href="/">Nico <span>IA</span>_</a>
-        <div className="lp-nav-links">
-          <a className="lp-nav-link" href="#registro">Guías</a>
-          <a className="lp-nav-link" href="/recursos">Recursos</a>
-          <a className="lp-nav-link" href="/comunidad">Comunidad</a>
-        </div>
-        <a className="lp-nav-cta" href="#registro">Acceso gratis →</a>
+      {/* NAV */}
+      <nav className="nav">
+        <a className="nav-brand" href="/">
+          <span className="nav-dot" />
+          NICO_IA
+        </a>
+        <a className="nav-link" href="/recursos">VER GUÍAS →</a>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="lp-hero" id="registro">
-        <div className="lp-notif">
-          <span className="lp-notif-dot" />
-          +500 personas aprendiendo · IA en español
-        </div>
-        <h1 className="lp-h1">
-          Aprende <span className="lp-sp">IA</span> en<br />
-          español, sin<br />
-          <span className="lp-sp">tecnicismos.</span>
-        </h1>
-        <p className="lp-hero-sub">
-          Recibe gratis las guías de Nico para usar IA en tu día a día. Y entra a la comunidad donde te llevamos mucho más allá.
-        </p>
+      {/* HERO */}
+      <section className="hero" id="registro">
+        <RetroGrid opacity={0.5} cellSize={64} lightLineColor="rgba(200,117,51,0.08)" />
+        <Meteors number={16} color="rgba(200,117,51,0.4)" />
 
-        <div className="lp-hero-card">
-          <div className="lp-hero-grid">
-            <div className="lp-cards-col">
-              <div className="lp-stack">
-                {guideCards.map((c, i) => (
-                  <div key={i} className="lp-gc">
-                    <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-                        <span className="lp-gc-brand">Nico IA_</span>
-                        <span className="lp-gc-num">Nº {c.num}</span>
-                      </div>
-                      <div className="lp-gc-lvl">{c.level}</div>
-                      <div className="lp-gc-title">{c.title}</div>
-                    </div>
-                    <div className="lp-gc-bot">
-                      <div className="lp-gc-tag">● GRATIS</div>
-                      <span className="lp-gc-date">GUÍA · 2026</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="hero-inner">
+
+          {/* Copy */}
+          <div className="hero-copy">
+            <div className="tag">
+              <span className="tag-line" />
+              IA en español · gratis
+              <span className="tag-line" />
             </div>
-
-            <div className="lp-form-side">
-              <span className="lp-form-badge">GRATIS · GUÍAS</span>
-              <h2 className="lp-form-title">
-                Recibe las guías <span style={{ color: 'var(--pink)' }}>por correo</span>
-              </h2>
-              <ul className="lp-cl">
-                {['Tutoriales paso a paso para usar IA hoy', 'Plantillas y casos reales para tu negocio', 'Guías nuevas cada mes, en español', 'Acceso a la comunidad incluido'].map(item => (
-                  <li key={item}><span className="lp-ck">✓</span>{item}</li>
-                ))}
-              </ul>
-              <LeadForm />
-              <div className="lp-trust">
-                <span>Acceso inmediato</span><span>·</span><span>100% gratis</span><span>·</span><span>En español</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── STATS ── */}
-      <div className="lp-stats">
-        <div className="lp-stats-grid">
-          {[{ n: '+100K', l: 'seguidores en todas las cuentas' }, { n: '+1.500', l: 'personas ya aprendieron' }, { n: '+97', l: 'negocios usando IA hoy' }].map((s, i) => (
-            <Reveal key={s.n} delay={i * 100} className="lp-stat-card">
-              <div className="lp-stat-n">{s.n}</div>
-              <div className="lp-stat-l">{s.l}</div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-
-      {/* ── ABOUT ── */}
-      <section className="lp-about">
-        <div className="lp-about-grid">
-          <Reveal className="lp-photo-wrap">
-            <div style={{ position: 'relative' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/PerfilNicoMayo.png" alt="Nico" />
-              <div className="lp-deco" style={{ top: 16, left: 8, animationDelay: '0s' }}>+100K 👀</div>
-              <div className="lp-deco-sq" style={{ bottom: 40, right: 8, animationDelay: '1.2s' }}>✨</div>
-              <div className="lp-deco" style={{ bottom: 0, left: 8, animationDelay: '.6s' }}>en español 🇪🇸</div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150} className="lp-about-text">
-            <span className="lp-pill"><span className="lp-pill-dot" />sobre mí</span>
-            <h2 className="lp-h2" style={{ marginTop: 16 }}>Hola, soy <span className="lp-sp">Nico</span>.</h2>
-            <p>Hace unos meses no sabía nada de Inteligencia Artificial. Hoy enseño a miles de personas en español a usarla todos los días en su trabajo, su negocio y su vida.</p>
-            <p>En solo <strong style={{ color: '#e0e0e0' }}>2 años</strong> pasamos de 0 a más de 100.000 personas aprendiendo IA en español. Esto no es por mí — es porque la IA está cambiando todo, y tú necesitas estar al frente.</p>
-            <p>Si quieres aprender de verdad, sin humo y sin tecnicismos, este es tu lugar.</p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
-              {['Claude & ChatGPT', 'Agentes sin código', 'Automatizaciones', 'Para LATAM y España'].map(tag => (
-                <span key={tag} className="lp-tag">{tag}</span>
+            <h1 className="h1">
+              Usás IA todos los días.<br />
+              Pero seguís en la<br />
+              <em>misma posición.</em>
+            </h1>
+            <p className="sub">
+              Hay diferencia entre usar IA y saber usarla. Estas guías te dan el sistema.
+            </p>
+            <ul className="checks">
+              {checks.map(c => (
+                <li key={c} className="check">
+                  <span className="check-icon">✓</span>
+                  {c}
+                </li>
               ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── FEATURES ── */}
-      <section className="lp-feats-sec">
-        <div className="lp-wrap">
-          <Reveal>
-            <span className="lp-pill"><span className="lp-pill-dot" />lo que vas a aprender</span>
-            <h2 className="lp-h2">De <span className="lp-sp">prompts</span> a tu <span className="lp-sp">IA empleada</span>.</h2>
-            <p className="lp-sub">Empezamos por lo fundamental y subimos hasta agentes, automatizaciones e integraciones avanzadas. Tú avanzas a tu ritmo.</p>
-          </Reveal>
-          <div className="lp-feats-grid">
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
-                <div className="lp-feat">
-                  {f.pro && <span className="lp-fpro">PRO</span>}
-                  <div className="lp-fi">{f.icon}</div>
-                  <h3>{f.title}</h3>
-                  <p>{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
+            </ul>
           </div>
-        </div>
-      </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="lp-test-sec">
-        <div className="lp-wrap">
-          <Reveal>
-            <span className="lp-pill"><span className="lp-pill-dot" />la comunidad</span>
-            <h2 className="lp-h2">Gente real, <span className="lp-sp">resultados reales</span>.</h2>
-          </Reveal>
-          <div className="lp-t-grid" style={{ marginTop: 28 }}>
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 100}>
-                <div className="lp-test">
-                  <div className="lp-test-head">
-                    <div className="lp-test-av">{t.initial}</div>
-                    <div>
-                      <div className="lp-test-name">{t.name}</div>
-                      <div className="lp-test-role">{t.role}</div>
-                    </div>
-                  </div>
-                  <div className="lp-test-stars">★★★★★</div>
-                  <div className="lp-test-q">&ldquo;</div>
-                  <p className="lp-test-txt">{t.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section className="lp-faq-sec">
-        <div className="lp-wrap">
-          <Reveal>
-            <span className="lp-pill"><span className="lp-pill-dot" />preguntas frecuentes</span>
-            <h2 className="lp-h2">Lo que <span className="lp-sp">todos preguntan</span>.</h2>
-          </Reveal>
-          <div className="lp-faq-cols" style={{ marginTop: 28 }}>
-            {faqs.map((faq, i) => (
-              <div key={i} className="lp-faq">
-                <button className="lp-faq-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                  {faq.q}
-                  <span className={`lp-faq-icon${openFaq === i ? ' open' : ''}`}>+</span>
-                </button>
-                {openFaq === i && <div className="lp-faq-ans">{faq.a}</div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <div className="lp-cta">
-        <Reveal>
-          <h2>La IA no espera.<br /><span style={{ color: 'var(--pink)', textShadow: '0 0 30px var(--pink-glow)' }}>Tú tampoco.</span></h2>
-          <p className="lp-cta-sub">Recibe las guías y descubre la comunidad donde te llevamos del primer prompt a tu propia IA empleada.</p>
-          <div className="lp-cta-card">
+          {/* Form */}
+          <div className="form-card">
+            <BorderBeam duration={8} colorFrom="#C87533" colorTo="#E8A84E" />
+            <p className="form-label">— Acceso gratuito</p>
+            <h2 className="form-title">
+              Recibí las guías<br /><em>en tu correo.</em>
+            </h2>
             <LeadForm />
           </div>
-        </Reveal>
+
+        </div>
+      </section>
+
+      {/* SOCIAL PROOF */}
+      <div className="proof">
+        {proof.map(p => (
+          <div key={p.name} className="proof-item">
+            <p className="proof-text">"{p.text}"</p>
+            <span className="proof-name">{p.name} · {p.role}</span>
+          </div>
+        ))}
       </div>
 
-      {/* ── FOOTER ── */}
-      <footer className="lp-foot">
-        <div className="lp-foot-brand">Nico <span>IA</span>_</div>
-        <p>© 2026 · hecho con cariño en español</p>
-        <p style={{ marginTop: 6 }}><a href="mailto:hola@cobrestudio.net">hola@cobrestudio.net</a></p>
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="footer-brand">NICO_<span>IA</span></div>
+        <div className="footer-links">
+          <a className="footer-link" href="/recursos">RECURSOS</a>
+          <a className="footer-link" href="mailto:hola@cobrestudio.net">HOLA@COBRESTUDIO.NET</a>
+        </div>
       </footer>
     </>
   )
