@@ -221,6 +221,14 @@ export default function Home() {
           position: absolute; inset: 0;
           width: 100%; height: 100%; border: none;
         }
+        /* mobile-only video inside hero */
+        .video-mobile {
+          width: 100%; position: relative; z-index: 2;
+        }
+        .video-mobile .video-container { margin: 0; }
+        @media(min-width:880px){ .video-mobile { display: none; } }
+        /* desktop video below hero */
+        @media(max-width:879px){ .video-wrap { display: none; } }
 
         /* PROOF */
         .proof {
@@ -312,6 +320,17 @@ export default function Home() {
             </ul>
           </div>
 
+          {/* Video — mobile only, between copy and form */}
+          <div className="video-mobile">
+            <div className="video-container">
+              <iframe
+                src="https://player.vimeo.com/video/1198946839?badge=0&autopause=0&autoplay=1&muted=1&loop=0&player_id=0&app_id=58479"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                title="Nico IA"
+              />
+            </div>
+          </div>
+
           {/* Form */}
           <div className="form-card">
             <BorderBeam duration={8} colorFrom="#C87533" colorTo="#E8A84E" />
@@ -329,7 +348,7 @@ export default function Home() {
       <div className="video-wrap">
         <div className="video-container">
           <iframe
-            src="https://player.vimeo.com/video/1198946839?badge=0&autopause=0&player_id=0&app_id=58479"
+            src="https://player.vimeo.com/video/1198946839?badge=0&autopause=0&autoplay=1&muted=1&loop=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             title="Nico IA"
           />
