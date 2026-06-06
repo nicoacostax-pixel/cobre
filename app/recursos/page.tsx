@@ -105,6 +105,13 @@ const guides = [
     meta: '4 piezas · sin equipo · desde $8/mes',
     href: '/recursos/crm',
   },
+  {
+    num: '15', cat: 'Automatización',
+    title: 'El motor de guardados de Instagram',
+    desc: 'Los prompts exactos, el schema y el scheduler para convertir tus guardados de Instagram en ideas de contenido listas — con Claude Code, sin experiencia en Python.',
+    meta: 'Claude Code · Notion · launchd',
+    href: '/recursos/saves-engine',
+  },
 ]
 
 const catStyle: Record<string, { bg: string; color: string }> = {
