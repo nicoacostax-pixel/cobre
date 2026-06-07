@@ -26,3 +26,18 @@ export async function POST(req: Request) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json(data)
 }
+
+export async function DELETE(req: Request) {
+  const { id } = await req.json()
+  const { error } = await supabase.from('courses').delete().eq('id', id)
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ ok: true })
+}
+
+export async function PUT(req: Request) {
+  const body = await req.json()
+  const { id, ...updates } = body
+  const { data, error } = await supabase.from('courses').update(updates).eq('id', id).select().single()
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json(data)
+}
